@@ -1,8 +1,8 @@
-import * as React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { Icon, IconButton } from "@mui/material";
 import { ProviderContext, SnackbarKey, SnackbarProvider } from "notistack";
-import { IconButton, Icon } from "@mui/material";
+import * as React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter } from "react-router-dom";
 
 import { App } from "./app";
 

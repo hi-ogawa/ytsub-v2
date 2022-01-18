@@ -1,44 +1,44 @@
-import * as React from "react";
 import {
   AppBar,
   Box,
+  Button,
   Card,
+  CircularProgress,
   CssBaseline,
   Drawer,
-  Toolbar,
-  IconButton,
   Icon,
+  IconButton,
+  InputAdornment,
   InputBase,
-  Paper,
-  Typography,
-  TextField,
   List,
   ListItem,
   ListItemText,
-  CircularProgress,
-  InputAdornment,
-  Button,
-  MenuItem,
   ListSubheader,
+  MenuItem,
+  Paper,
+  TextField,
   TextFieldProps,
+  Toolbar,
+  Typography,
 } from "@mui/material";
+import { useSnackbar } from "notistack";
+import * as React from "react";
+import { useQuery, UseQueryOptions } from "react-query";
 import {
-  Routes,
+  Link,
+  Navigate,
   Route,
+  Routes,
   useNavigate,
   useParams,
-  Navigate,
-  Link,
 } from "react-router-dom";
-import { useSnackbar } from "notistack";
-import { useQuery, UseQueryOptions } from "react-query";
+import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/misc";
 import { proxyFetch } from "../utils/proxy";
 import {
   parseVideoId,
   parseVideoMetadata,
   VideoMetadata,
 } from "../utils/youtube";
-import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/misc";
 
 function Header({ openMenu }: { openMenu: () => void }) {
   const navigate = useNavigate();
