@@ -1,0 +1,49 @@
+{
+  "scripts": {
+    "clean": "rm -rf build",
+    "webpack": "webpack",
+    "webpack:dev": "webpack serve",
+    "tsc:dev": "tsc --noEmit -w",
+    "prettier": "prettier -w .",
+    "prettier:check": "prettier -c .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.8",
+    "notistack": "^2.0.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-query": "^3.34.8",
+    "react-router-dom": "^6.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.4.0",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "babel-jest": "^27.4.6",
+    "copy-webpack-plugin": "^10.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.4.7",
+    "prettier": "^2.5.1",
+    "react-refresh": "^0.11.0",
+    "react-refresh-typescript": "^2.0.3",
+    "react-test-renderer": "^17.0.2",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.4",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  },
+  "volta": {
+    "node": "16.13.2",
+    "npm": "8.3.1"
+  }
+}
