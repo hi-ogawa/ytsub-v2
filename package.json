@@ -3,6 +3,7 @@
     "clean": "rm -rf build",
     "webpack": "webpack",
     "webpack:dev": "webpack serve",
+    "tsc": "tsc",
     "tsc:dev": "tsc --noEmit -w",
     "prettier": "prettier -w .",
     "prettier:check": "prettier -c .",
