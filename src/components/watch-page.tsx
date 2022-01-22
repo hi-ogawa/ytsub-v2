@@ -3,6 +3,7 @@ import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
 import { Err, Ok, Result } from "ts-results";
+import * as assert from "../utils/assert";
 import { useCaptionEntries, useVideoMetadata } from "../utils/hooks";
 import { CaptionEntry, VideoMetadata, WatchParameters } from "../utils/types";
 import { fromSearchParams } from "../utils/url";
@@ -21,32 +22,52 @@ export const WatchPage = withHook3(
   },
   (
     watchParameters: WatchParameters
-  ): Result<[WatchParameters, VideoMetadata], "error" | "loading"> => {
-    const { videoId } = watchParameters;
-    const { data, isLoading, isError } = useVideoMetadata(videoId);
+  ): Result<
+    [WatchParameters, VideoMetadata, string, string],
+    "error" | "loading"
+  > => {
+    const { videoId, captionConfig1, captionConfig2 } = watchParameters;
+    const {
+      data: videoMetadata,
+      isLoading,
+      isError,
+    } = useVideoMetadata(videoId);
     if (isError) {
       return Err("error");
     }
     if (isLoading) {
       return Err("loading");
     }
-    return Ok([watchParameters, data!]);
+    assert.ok(videoMetadata);
+    const url1 = captionConfigToUrl(captionConfig1, videoMetadata);
+    const url2 = captionConfigToUrl(captionConfig2, videoMetadata);
+    if (!url1 || !url2) {
+      return Err("error");
+    }
+    return Ok([watchParameters, videoMetadata, url1, url2]);
   },
-  ([watchParameters, videoMetadata]: [WatchParameters, VideoMetadata]): Result<
+  ([watchParameters, videoMetadata, url1, url2]: [
+    WatchParameters,
+    VideoMetadata,
+    string,
+    string
+  ]): Result<
     [WatchParameters, VideoMetadata, CaptionEntry[]],
     "error" | "loading"
   > => {
-    const { captionConfig1, captionConfig2 } = watchParameters;
-    const url1 = captionConfigToUrl(captionConfig1, videoMetadata);
-    const url2 = captionConfigToUrl(captionConfig2, videoMetadata);
-    const { data, isLoading, isError } = useCaptionEntries([url1!, url2!]);
+    const {
+      data: captionEntries,
+      isLoading,
+      isError,
+    } = useCaptionEntries([url1, url2]);
     if (isError) {
       return Err("error");
     }
     if (isLoading) {
       return Err("loading");
     }
-    return Ok([watchParameters, videoMetadata, data!]);
+    assert.ok(captionEntries);
+    return Ok([watchParameters, videoMetadata, captionEntries]);
   },
   WatchPageOk,
   WatchPageErr
