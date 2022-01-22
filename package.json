@@ -9,6 +9,8 @@
     "prettier:check": "prettier -c .",
     "isort": "tslint -p . --fix",
     "isort:check": "tslint -p .",
+    "lint": "npm run prettier && npm run isort",
+    "lint:check": "npm run prettier:check && npm run isort:check",
     "test": "jest"
   },
   "dependencies": {
@@ -19,7 +21,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.34.8",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "sprintf-js": "^1.1.2",
+    "ts-results": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -31,6 +35,7 @@
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "@types/sprintf-js": "^1.1.2",
     "babel-jest": "^27.4.6",
     "copy-webpack-plugin": "^10.2.0",
     "html-webpack-plugin": "^5.5.0",

@@ -1,3 +1,7 @@
+Examples for data exploration and testing
+
+- https://www.youtube.com/watch?v=MoH8Fk2K9bc (Learn French with Elisabeth - HelloFrench)
+
 ```sh
 # Download "watch" page
 curl -H 'accept-language: en' 'https://www.youtube.com/watch?v=MoH8Fk2K9bc' > misc/youtube/examples/MoH8Fk2K9bc.html
@@ -7,4 +11,8 @@ python -c 'import re, sys; print(re.search("var ytInitialPlayerResponse = ({.+?}
 
 # Extract "language code" mapping
 jq '.captions.playerCaptionsTracklistRenderer.translationLanguages | map({"\(.languageCode)": .languageName.simpleText}) | add' misc/youtube/examples/MoH8Fk2K9bc.json > misc/youtube/languages.json
+
+# Download ttml files
+curl "$(jq -r '.captions.playerCaptionsTracklistRenderer.captionTracks | .[0].baseUrl' misc/youtube/examples/MoH8Fk2K9bc.json)&fmt=ttml" > misc/youtube/examples/MoH8Fk2K9bc-en.ttml
+curl "$(jq -r '.captions.playerCaptionsTracklistRenderer.captionTracks | .[1].baseUrl' misc/youtube/examples/MoH8Fk2K9bc.json)&fmt=ttml" > misc/youtube/examples/MoH8Fk2K9bc-fr-FR.ttml
 ```

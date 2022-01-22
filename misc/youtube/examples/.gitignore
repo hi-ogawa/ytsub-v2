@@ -1,2 +1,5 @@
 *.html
 *.json
+*.ttml
+!MoH8Fk2K9bc-en.ttml
+!MoH8Fk2K9bc-fr-FR.ttml
