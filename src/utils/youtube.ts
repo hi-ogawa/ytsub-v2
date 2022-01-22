@@ -82,16 +82,11 @@ export function ttmlsToCaptionEntries(
   });
 }
 
-// TODO: parseTimestamp
-// TODO: stringifyTimestamp
-
-// e.g. 00:02:04.020 => 2 * 60 + 4.02 = 124.02
 export function parseTimestamp(text: string): number {
   const [h, m, s] = text.split(":").map(Number);
   return (h * 60 + m) * 60 + s;
 }
 
-// e.g. 124.02 => 00:02:04.02
 export function stringifyTimestamp(s: number): string {
   let ms = (s * 1000) % 1000;
   let m = Math.floor(s / 60);

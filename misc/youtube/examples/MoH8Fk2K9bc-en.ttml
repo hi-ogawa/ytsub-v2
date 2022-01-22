@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/ns/ttml" xmlns:ttm="http://www.w3.org/ns/ttml#metadata" xmlns:tts="http://www.w3.org/ns/ttml#styling" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" ttp:profile="http://www.w3.org/TR/profile/sdp-us" >
+<head>
+<styling>
+<style xml:id="s1" tts:textAlign="center" tts:extent="90% 90%" tts:origin="5% 5%" tts:displayAlign="after"/>
+<style xml:id="s2" tts:fontSize=".72c" tts:backgroundColor="black" tts:color="white"/>
+</styling>
+<layout>
+<region xml:id="r1" style="s1"/>
+</layout>
+</head>
+<body region="r1">
+<div>
+<p begin="00:00:05.280" end="00:00:07.650" style="s2">Welcome to this video where we</p>
+<p begin="00:00:07.680" end="00:00:11.780" style="s2">see in a few minutes<br />a French expression.</p>
+<p begin="00:00:11.810" end="00:00:16.980" style="s2">So today we&#39;re going to see<br />the expression &quot;noyer le poisson&quot;.</p>
+<p begin="00:00:17.010" end="00:00:19.320" style="s2">This expression is a bit strange because</p>
+<p begin="00:00:19.350" end="00:00:22.660" style="s2">that drowning a fish,<br />in fact, it&#39;s impossible.</p>
+<p begin="00:00:22.690" end="00:00:25.820" style="s2">The fish breathes in the water.</p>
+<p begin="00:00:25.840" end="00:00:27.680" style="s2">So, let&#39;s see what this</p>
+<p begin="00:00:27.710" end="00:00:31.380" style="s2">expression of the contextualizations<br />and especially, where it comes from.</p>
+<p begin="00:00:31.400" end="00:00:34.240" style="s2">So when we say we&#39;re trying to drown</p>
+<p begin="00:00:34.270" end="00:00:39.620" style="s2">the fish,<br />it means we&#39;re trying to divert a</p>
+<p begin="00:00:39.640" end="00:00:44.980" style="s2">conversation in a conversation with<br />someone, there&#39;s a topic that&#39;s brought up.</p>
+<p begin="00:00:45.010" end="00:00:50.920" style="s2">And you, you don&#39;t want to talk<br />or do you try to talk about yourself?</p>
+<p begin="00:00:50.950" end="00:00:52.600" style="s2">Really try to divert</p>
+<p begin="00:00:52.630" end="00:00:56.960" style="s2">the conversation so that we don&#39;t<br />to stop talking about this subject.</p>
+<p begin="00:00:56.990" end="00:00:59.540" style="s2">Because it bothers you?</p>
+<p begin="00:00:59.570" end="00:01:03.240" style="s2">It embarrasses you<br />or are you not allowed to talk about it?</p>
+<p begin="00:01:03.270" end="00:01:07.880" style="s2">Because you promised someone that<br />you had not talked about this subject?</p>
+<p begin="00:01:07.910" end="00:01:11.340" style="s2">So you are really trying to<br />drown the fish.</p>
+<p begin="00:01:11.370" end="00:01:14.340" style="s2">So you&#39;re trying to bury the issue</p>
+<p begin="00:01:14.370" end="00:01:19.740" style="s2">and move on to another<br />theme in the conversation.</p>
+<p begin="00:01:19.760" end="00:01:21.400" style="s2">I&#39;ll give you some context.</p>
+<p begin="00:01:21.430" end="00:01:24.740" style="s2">It&#39;s okay, it will help you<br />to understand better.</p>
+<p begin="00:01:24.760" end="00:01:26.040" style="s2">Here is a first context.</p>
+<p begin="00:01:26.070" end="00:01:29.400" style="s2">So often,<br />you can say that politicians try to</p>
+<p begin="00:01:29.430" end="00:01:35.680" style="s2">to drown the fish when they don&#39;t have the<br />the answer to a question.</p>
+<p begin="00:01:36.000" end="00:01:39.400" style="s2">If you ask a politician how much</p>
+<p begin="00:01:39.430" end="00:01:44.920" style="s2">costs for a subway ticket in Paris,<br />he might answer the important one</p>
+<p begin="00:01:44.950" end="00:01:49.380" style="s2">it&#39;s not how much the ticket costs<br />but how much you can afford</p>
+<p begin="00:01:49.410" end="00:01:54.060" style="s2">reimburse every year<br />people who take the subway.</p>
+<p begin="00:01:54.090" end="00:01:56.780" style="s2">You see, there, he has perfectly<br />drown the fish.</p>
+<p begin="00:01:56.800" end="00:01:58.980" style="s2">In fact, he didn&#39;t know<br />to answer the question.</p>
+<p begin="00:01:59.010" end="00:02:02.040" style="s2">So he diverted the conversation.</p>
+<p begin="00:02:02.070" end="00:02:04.260" style="s2">He covered up, he has.</p>
+<p begin="00:02:04.290" end="00:02:09.890" style="s2">He hid a little that he didn&#39;t know how to<br />that he didn&#39;t know how to answer by changing the.</p>
+<p begin="00:02:09.920" end="00:02:14.340" style="s2">Changing the subject a bit,<br />here is another example.</p>
+<p begin="00:02:14.370" end="00:02:16.860" style="s2">If you have for example a friend</p>
+<p begin="00:02:16.890" end="00:02:21.580" style="s2">who is pregnant but doesn&#39;t want to say so yet<br />to say so yet and someone tells you</p>
+<p begin="00:02:21.610" end="00:02:26.780" style="s2">that you noticed, Maria has really<br />Maria has really put on weight, unless she&#39;s pregnant.</p>
+<p begin="00:02:26.810" end="00:02:30.380" style="s2">And you, you haven&#39;t made much progress.</p>
+<p begin="00:02:30.410" end="00:02:33.060" style="s2">You keep it a secret,<br />you don&#39;t want to talk about it.</p>
+<p begin="00:02:33.090" end="00:02:38.780" style="s2">So, you&#39;re going to try to drown out<br />the fish, to divert the conversation</p>
+<p begin="00:02:38.810" end="00:02:43.380" style="s2">to talk about somebody else instead,<br />for example to answer it?</p>
+<p begin="00:02:43.400" end="00:02:45.300" style="s2">Ah, I don&#39;t know, I didn&#39;t notice.</p>
+<p begin="00:02:45.320" end="00:02:46.760" style="s2">On the other hand, I don&#39;t know if you saw</p>
+<p begin="00:02:46.760" end="00:02:48.880" style="s2">Sandra, but she is in her<br />eighth month of pregnancy.</p>
+<p begin="00:02:48.910" end="00:02:51.040" style="s2">She&#39;s really huge.</p>
+<p begin="00:02:51.070" end="00:02:53.700" style="s2">It looks like it&#39;s going to explode.</p>
+<p begin="00:02:53.730" end="00:02:55.360" style="s2">You have.</p>
+<p begin="00:02:55.600" end="00:02:58.800" style="s2">Divert the conversation you will drown</p>
+<p begin="00:02:58.830" end="00:03:03.900" style="s2">the fish, this expression noyer le poisson<br />the fish, in fact, it becomes a date</p>
+<p begin="00:03:03.930" end="00:03:09.780" style="s2">of the time and it was used to say<br />that we put a lot of sauce</p>
+<p begin="00:03:09.810" end="00:03:12.800" style="s2">on the fish,<br />to actually hide the taste of a fish</p>
+<p begin="00:03:12.830" end="00:03:16.600" style="s2">that was not very fresh,<br />which calls for a fort.</p>
+<p begin="00:03:16.630" end="00:03:18.180" style="s2">It was not very good anymore</p>
+<p begin="00:03:18.210" end="00:03:23.940" style="s2">to put a lot of sauce on it<br />to hide the bad taste of the fish.</p>
+<p begin="00:03:23.960" end="00:03:25.880" style="s2">That&#39;s it for this expression.</p>
+<p begin="00:03:25.880" end="00:03:26.920" style="s2">That&#39;s it for today.</p>
+<p begin="00:03:26.950" end="00:03:30.660" style="s2">I hope you enjoyed this video.</p>
+<p begin="00:03:30.690" end="00:03:34.340" style="s2">If you liked it, don&#39;t forget<br />to give it a thumbs up.</p>
+<p begin="00:03:34.370" end="00:03:37.780" style="s2">Don&#39;t hesitate to tell me in comments<br />if there are any expressions</p>
+<p begin="00:03:37.810" end="00:03:42.060" style="s2">that you would like me to explain<br />and put in context.</p>
+<p begin="00:03:42.090" end="00:03:43.960" style="s2">I wish you all a very,</p>
+<p begin="00:03:43.990" end="00:03:46.400" style="s2">day and I hope to see you very, very<br />and see you very, very soon.</p>
+</div>
+</body>
+</tt>
