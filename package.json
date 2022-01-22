@@ -3,6 +3,7 @@
     "clean": "rm -rf build",
     "webpack": "webpack",
     "webpack:dev": "webpack serve",
+    "webpack:prod": "rm -rf build/webpack/production && WEBPACK_MODE=production webpack --progress",
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit -w",
     "prettier": "prettier -w .",

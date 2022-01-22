@@ -4,15 +4,18 @@ const CopyPlugin = require("copy-webpack-plugin");
 const ReactRefreshTypeScript = require("react-refresh-typescript");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
+const MODE = process.env.WEBPACK_MODE ?? "development";
+const PRODUCTION = MODE === "production";
+
 module.exports = {
-  mode: "development",
+  mode: MODE,
   devtool: "inline-source-map",
   entry: {
     index: "./src/index.ts",
   },
   output: {
     filename: "[name].[fullhash].js",
-    path: path.resolve(__dirname, "build", "webpack", "development"),
+    path: path.resolve(__dirname, "build", "webpack", MODE),
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
@@ -28,7 +31,7 @@ module.exports = {
             options: {
               transpileOnly: true,
               getCustomTransformers: () => ({
-                before: [ReactRefreshTypeScript()],
+                before: PRODUCTION ? [] : [ReactRefreshTypeScript()],
               }),
             },
           },
@@ -38,7 +41,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "./src/index.html", publicPath: "/" }),
-    new ReactRefreshWebpackPlugin(),
     new CopyPlugin({
       patterns: [
         {
@@ -47,6 +49,7 @@ module.exports = {
         },
       ],
     }),
+    ...(PRODUCTION ? [] : [new ReactRefreshWebpackPlugin()]),
   ],
   devServer: {
     historyApiFallback: true,
