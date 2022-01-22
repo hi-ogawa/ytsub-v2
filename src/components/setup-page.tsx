@@ -15,7 +15,7 @@ import * as React from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Err, Ok } from "ts-results";
 import { useVideoMetadata } from "../utils/hooks";
-import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/misc";
+import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
 import { toSearchParams } from "../utils/url";
 import { withHook } from "../utils/with-hook";
