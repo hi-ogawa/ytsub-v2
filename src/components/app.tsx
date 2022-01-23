@@ -20,6 +20,7 @@ import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { parseVideoId } from "../utils/youtube";
 import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
+import { ShareTargetPage } from "./share-target";
 import { WatchPage } from "./watch-page";
 
 function Header({ openMenu }: { openMenu: () => void }) {
@@ -196,6 +197,7 @@ export function App() {
           <Route path="settings" element={<SettingsPage />} />
           <Route path="setup/:videoId" element={<SetupPage />} />
           <Route path="watch" element={<WatchPage />} />
+          <Route path="share-target" element={<ShareTargetPage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Box>
