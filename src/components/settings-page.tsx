@@ -20,9 +20,8 @@ function LanguageSelect({
   languageCodes,
   ...props
 }: {
-  languageCodes?: LanguageCode[];
+  languageCodes: LanguageCode[];
 } & TextFieldProps) {
-  languageCodes ??= FILTERED_LANGUAGE_CODES;
   return (
     <TextField {...props} select>
       <MenuItem
