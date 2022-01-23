@@ -1,4 +1,5 @@
 import { sprintf } from "sprintf-js";
+import { LanguageCode } from "./language";
 import { CaptionConfig, CaptionEntry, VideoMetadata } from "./types";
 
 export function parseVideoId(value: string): string | undefined {
@@ -47,6 +48,30 @@ export function captionConfigToUrl(
     }
     return url;
   }
+  return;
+}
+
+export function findCaptionConfig(
+  videoMetadata: VideoMetadata,
+  code: LanguageCode
+): CaptionConfig | undefined {
+  const { captionTracks } =
+    videoMetadata.captions.playerCaptionsTracklistRenderer;
+
+  // Manual caption
+  let manual = captionTracks.find(({ vssId }) => vssId.startsWith("." + code));
+  if (manual) {
+    return { vssId: manual.vssId };
+  }
+
+  // Machine speech recognition capion
+  let machine = captionTracks.find(({ vssId }) =>
+    vssId.startsWith("a." + code)
+  );
+  if (machine) {
+    return { vssId: machine.vssId };
+  }
+
   return;
 }
 

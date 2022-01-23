@@ -160,3 +160,8 @@ export const FILTERED_LANGUAGE_CODES: LanguageCode[] = [
   "it",
   "ru",
 ];
+
+export interface LanguageSetting {
+  language1?: LanguageCode;
+  language2?: LanguageCode;
+}
