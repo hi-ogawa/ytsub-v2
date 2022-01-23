@@ -12,8 +12,9 @@ npm run prettier
 
 # testing
 npm run test
+npm run test:playwright
 
-# deployment (https://ytsub-hiro18181.netlify.app)
+# deployment
 # - initialize
 npm install -g netlify-cli
 netlify login

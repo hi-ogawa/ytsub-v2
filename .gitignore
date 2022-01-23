@@ -1,3 +1,5 @@
 node_modules
 build
 .netlify
+test-results/
+playwright-report/
