@@ -8,6 +8,7 @@ import {
   InputBase,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Paper,
   Toolbar,
@@ -17,6 +18,7 @@ import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { parseVideoId } from "../utils/youtube";
+import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
 import { WatchPage } from "./watch-page";
 
@@ -105,16 +107,29 @@ function Header({ openMenu }: { openMenu: () => void }) {
   );
 }
 
-function Menu() {
-  const LinkBehavior = React.forwardRef(function LinkBehavior(props, ref) {
-    return <Link to="/" ref={ref as any} {...props} role={undefined} />;
+function makeLinkBehavior(to: string) {
+  return React.forwardRef(function LinkBehavior(props, ref) {
+    return <Link to={to} ref={ref as any} {...props} role={undefined} />;
   });
+}
 
+function Menu() {
+  // TODO: Close drawer on success navigation
+  // (Probably need to implement custom link component with https://reactrouter.com/docs/en/v6/api#uselinkclickhandler)
   return (
     <Box sx={{ width: "200px" }}>
       <List>
-        <ListItem button component={LinkBehavior}>
+        <ListItem button component={makeLinkBehavior("/")}>
+          <ListItemIcon>
+            <Icon>home</Icon>
+          </ListItemIcon>
           <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button component={makeLinkBehavior("/settings")}>
+          <ListItemIcon>
+            <Icon>settings</Icon>
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
         </ListItem>
       </List>
     </Box>
@@ -122,7 +137,13 @@ function Menu() {
 }
 
 function HomePage() {
-  const videoIds = ["XrhqJmQnKAs", "MoH8Fk2K9bc"];
+  const videoIds = [
+    "XrhqJmQnKAs",
+    "MoH8Fk2K9bc",
+    "vCb8iA4SjOI",
+    "GZ2uc-3pQbA",
+    "FSYe9GQc9Ow",
+  ];
 
   return (
     <Box
@@ -171,6 +192,7 @@ export function App() {
         </Box>
         <Routes>
           <Route index element={<HomePage />} />
+          <Route path="settings" element={<SettingsPage />} />
           <Route path="setup/:videoId" element={<SetupPage />} />
           <Route path="watch" element={<WatchPage />} />
           <Route path="*" element={<Navigate replace to="/" />} />

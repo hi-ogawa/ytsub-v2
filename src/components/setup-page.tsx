@@ -16,9 +16,11 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Err, Ok } from "ts-results";
 import { useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
+import { useLanguageSetting } from "../utils/storage";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
 import { encode } from "../utils/url";
 import { withHook } from "../utils/with-hook";
+import { findCaptionConfig } from "../utils/youtube";
 
 export const SetupPage = withHook(
   () => {
@@ -42,6 +44,9 @@ export const SetupPage = withHook(
 function SetupPageOk({ data: videoId }: { data: string }) {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  const [{ language1, language2 }] = useLanguageSetting();
+  const [caption1, setCaption1] = React.useState<CaptionConfig>();
+  const [caption2, setCaption2] = React.useState<CaptionConfig>();
 
   const {
     data: videoMetadata,
@@ -55,8 +60,19 @@ function SetupPageOk({ data: videoId }: { data: string }) {
     },
   });
 
-  const [caption1, setCaption1] = React.useState<CaptionConfig>();
-  const [caption2, setCaption2] = React.useState<CaptionConfig>();
+  React.useEffect(() => {
+    if (videoMetadata) {
+      if (language1 && language2) {
+        const found1 = findCaptionConfig(videoMetadata, language1);
+        let found2 = findCaptionConfig(videoMetadata, language2);
+        if (found1 && !found2) {
+          found2 = { vssId: found1.vssId, translation: language2 };
+        }
+        setCaption1(found1);
+        setCaption2(found2);
+      }
+    }
+  }, [videoMetadata]);
 
   function onPlay() {
     if (!caption1 || !caption2) return;
