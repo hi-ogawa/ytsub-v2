@@ -163,7 +163,7 @@ export function App() {
           width: 1,
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "grey.100",
+          backgroundColor: "grey.50",
         }}
       >
         <Box sx={{ flex: "0 0 auto" }}>
