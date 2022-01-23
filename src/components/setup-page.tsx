@@ -66,7 +66,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
         const found1 = findCaptionConfig(videoMetadata, language1);
         let found2 = findCaptionConfig(videoMetadata, language2);
         if (found1 && !found2) {
-          found2 = { vssId: found1.vssId, translation: language2 };
+          found2 = { id: found1.id, translation: language2 };
         }
         setCaption1(found1);
         setCaption2(found2);
@@ -79,8 +79,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
 
     const watchParameters: WatchParameters = {
       videoId,
-      captionConfig1: caption1,
-      captionConfig2: caption2,
+      captions: [caption1, caption2],
     };
     navigate("/watch", watchParameters);
   }
@@ -178,7 +177,7 @@ function renderCaptionConfigSelectOptions(
 
   for (const track of captionTracks) {
     const { vssId, languageCode, kind } = track;
-    const config: CaptionConfig = { vssId };
+    const config: CaptionConfig = { id: vssId };
     const value = JSON.stringify(config);
     children.push(
       <MenuItem key={value} value={value} sx={{ marginLeft: 2 }}>
@@ -200,7 +199,7 @@ function renderCaptionConfigSelectOptions(
 
     for (const translation of translationLanguages) {
       const code = translation.languageCode;
-      const config: CaptionConfig = { vssId, translation: code };
+      const config: CaptionConfig = { id: vssId, translation: code };
       if (!FILTERED_LANGUAGE_CODES.includes(code as any)) {
         continue;
       }

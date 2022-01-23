@@ -26,7 +26,10 @@ export const WatchPage = withHook3(
     [WatchParameters, VideoMetadata, string, string],
     "error" | "loading"
   > => {
-    const { videoId, captionConfig1, captionConfig2 } = watchParameters;
+    const {
+      videoId,
+      captions: [captionConfig1, captionConfig2],
+    } = watchParameters;
     const {
       data: videoMetadata,
       isLoading,

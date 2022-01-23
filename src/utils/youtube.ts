@@ -37,7 +37,7 @@ export function captionConfigToUrl(
   captionConfig: CaptionConfig,
   videoMetadata: VideoMetadata
 ): string | undefined {
-  const { vssId, translation } = captionConfig;
+  const { id: vssId, translation } = captionConfig;
   const { captionTracks } =
     videoMetadata.captions.playerCaptionsTracklistRenderer;
   const track = captionTracks.find((track) => track.vssId === vssId);
@@ -61,7 +61,7 @@ export function findCaptionConfig(
   // Manual caption
   let manual = captionTracks.find(({ vssId }) => vssId.startsWith("." + code));
   if (manual) {
-    return { vssId: manual.vssId };
+    return { id: manual.vssId };
   }
 
   // Machine speech recognition capion
@@ -69,7 +69,7 @@ export function findCaptionConfig(
     vssId.startsWith("a." + code)
   );
   if (machine) {
-    return { vssId: machine.vssId };
+    return { id: machine.vssId };
   }
 
   return;
