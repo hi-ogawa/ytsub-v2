@@ -210,23 +210,9 @@ function CaptionConfigSelect({
   value?: CaptionConfig;
   onChange: (value?: CaptionConfig) => void;
 } & Omit<TextFieldProps, "value" | "onChange">) {
-  const children: React.ReactNode[] = [
-    <MenuItem
-      key=""
-      value=""
-      sx={{
-        fontSize: "0.8rem",
-        opacity: 0.5,
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      SELECT LANGUAGE
-    </MenuItem>,
-  ];
-  if (videoMetadata) {
-    children.push(...renderCaptionConfigSelectOptions(videoMetadata));
-  }
+  const options = videoMetadata
+    ? renderCaptionConfigSelectOptions(videoMetadata)
+    : [];
   return (
     <TextField
       {...props}
@@ -236,7 +222,19 @@ function CaptionConfigSelect({
         onChange(value ? JSON.parse(value) : undefined);
       }}
     >
-      {children}
+      <MenuItem
+        key=""
+        value=""
+        sx={{
+          fontSize: "0.8rem",
+          opacity: 0.5,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        SELECT LANGUAGE
+      </MenuItem>
+      {...options}
     </TextField>
   );
 }
