@@ -12,13 +12,13 @@ import {
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import * as React from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Err, Ok } from "ts-results";
 import { useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
 import { useLanguageSetting } from "../utils/storage";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
-import { encode } from "../utils/url";
+import { useNavigateCustom } from "../utils/url";
 import { withHook } from "../utils/with-hook";
 import { findCaptionConfig } from "../utils/youtube";
 
@@ -43,7 +43,7 @@ export const SetupPage = withHook(
 
 function SetupPageOk({ data: videoId }: { data: string }) {
   const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
+  const navigate = useNavigateCustom();
   const [{ language1, language2 }] = useLanguageSetting();
   const [caption1, setCaption1] = React.useState<CaptionConfig>();
   const [caption2, setCaption2] = React.useState<CaptionConfig>();
@@ -82,7 +82,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
       captionConfig1: caption1,
       captionConfig2: caption2,
     };
-    navigate("/watch?data=" + encode(watchParameters));
+    navigate("/watch", watchParameters);
   }
 
   return (

@@ -1,23 +1,24 @@
 import { Box, CircularProgress, Icon, Paper } from "@mui/material";
 import { useSnackbar } from "notistack";
 import * as React from "react";
-import { Navigate, useSearchParams } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Err, Ok, Result } from "ts-results";
 import * as assert from "../utils/assert";
 import { useCaptionEntries, useVideoMetadata } from "../utils/hooks";
 import { CaptionEntry, VideoMetadata, WatchParameters } from "../utils/types";
-import { decode } from "../utils/url";
+import { useSearchParamsCustom } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
 import { captionConfigToUrl, stringifyTimestamp } from "../utils/youtube";
 
 export const WatchPage = withHook3(
   (): Result<WatchParameters, "error" | "loading"> => {
-    const data = useSearchParams()[0].get("data");
-    if (!data) {
+    // TODO: validate
+    const watchParameters = useSearchParamsCustom<WatchParameters>();
+    if (!watchParameters.ok) {
+      console.error(watchParameters.val);
       return Err("error");
     }
-    const watchParameters: WatchParameters = decode(data);
-    return Ok(watchParameters);
+    return Ok(watchParameters.val);
   },
   (
     watchParameters: WatchParameters
