@@ -1,4 +1,4 @@
-import { Box, Card, CircularProgress, Icon, Paper } from "@mui/material";
+import { Box, CircularProgress, Icon, Paper } from "@mui/material";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
@@ -6,19 +6,18 @@ import { Err, Ok, Result } from "ts-results";
 import * as assert from "../utils/assert";
 import { useCaptionEntries, useVideoMetadata } from "../utils/hooks";
 import { CaptionEntry, VideoMetadata, WatchParameters } from "../utils/types";
-import { fromSearchParams } from "../utils/url";
+import { decode } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
 import { captionConfigToUrl, stringifyTimestamp } from "../utils/youtube";
 
 export const WatchPage = withHook3(
   (): Result<WatchParameters, "error" | "loading"> => {
-    const [searchParams] = useSearchParams();
-    // TODO: validate parameters
-    const result = fromSearchParams<WatchParameters>(searchParams);
-    if (!result.ok) {
+    const data = useSearchParams()[0].get("data");
+    if (!data) {
       return Err("error");
     }
-    return Ok(result.val);
+    const watchParameters: WatchParameters = decode(data);
+    return Ok(watchParameters);
   },
   (
     watchParameters: WatchParameters
@@ -85,7 +84,7 @@ function WatchPageOk({
       sx={(theme) => ({
         flex: "1 1 auto",
         display: "flex",
-        padding: 0.6,
+        padding: 1,
         gap: 1,
 
         "#watch-page-player-box": {
@@ -196,15 +195,15 @@ function SubtitlesViewer({
   captionEntries: CaptionEntry[];
 }) {
   return (
-    <Card
-      elevation={1}
+    <Paper
+      variant="outlined"
       square
-      sx={{ display: "flex", flexDirection: "column", padding: 0.6, gap: 0.6 }}
+      sx={{ display: "flex", flexDirection: "column", padding: 0.8, gap: 0.8 }}
     >
       {captionEntries.map((e) => (
         <CaptionEntryComponent key={toCaptionEntryId(e)} captionEntry={e} />
       ))}
-    </Card>
+    </Paper>
   );
 }
 
@@ -247,13 +246,13 @@ function CaptionEntryComponent({
           display: "flex",
           "> *": {
             flex: "1 1 50%",
-            "&:first-child": {
+            "&:first-of-type": {
               paddingRight: 0.8,
               borderRightWidth: "1px",
               borderRightStyle: "solid",
               borderRightColor: "grey.300",
             },
-            "&:not(:first-child)": {
+            "&:not(:first-of-type)": {
               paddingLeft: 0.8,
             },
           },

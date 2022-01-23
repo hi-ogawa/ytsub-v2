@@ -36,14 +36,14 @@ export function captionConfigToUrl(
   captionConfig: CaptionConfig,
   videoMetadata: VideoMetadata
 ): string | undefined {
-  const { vssId, translationLanguageCode } = captionConfig;
+  const { vssId, translation } = captionConfig;
   const { captionTracks } =
     videoMetadata.captions.playerCaptionsTracklistRenderer;
   const track = captionTracks.find((track) => track.vssId === vssId);
   if (track) {
     let url = track.baseUrl + "&fmt=ttml";
-    if (translationLanguageCode) {
-      url += "&" + translationLanguageCode;
+    if (translation) {
+      url += "&tlang=" + translation;
     }
     return url;
   }

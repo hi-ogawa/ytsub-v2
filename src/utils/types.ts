@@ -2,8 +2,7 @@ export interface CaptionConfig {
   // e.g. ".en", ".fr", (manual caption) "a.fr" (auto caption)
   vssId: string;
   // e.g. "en", "fr"
-  languageCode: string;
-  translationLanguageCode?: string;
+  translation?: string;
 }
 
 export interface WatchParameters {

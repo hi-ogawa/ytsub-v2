@@ -17,7 +17,7 @@ import { Err, Ok } from "ts-results";
 import { useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
-import { toSearchParams } from "../utils/url";
+import { encode } from "../utils/url";
 import { withHook } from "../utils/with-hook";
 
 export const SetupPage = withHook(
@@ -66,7 +66,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
       captionConfig1: caption1,
       captionConfig2: caption2,
     };
-    navigate("/watch?" + toSearchParams(watchParameters).toString());
+    navigate("/watch?data=" + encode(watchParameters));
   }
 
   return (
@@ -162,7 +162,8 @@ function renderCaptionConfigSelectOptions(
 
   for (const track of captionTracks) {
     const { vssId, languageCode, kind } = track;
-    const value = JSON.stringify({ vssId, languageCode });
+    const config: CaptionConfig = { vssId };
+    const value = JSON.stringify(config);
     children.push(
       <MenuItem key={value} value={value} sx={{ marginLeft: 2 }}>
         {languageCodeToName(languageCode, kind)}
@@ -172,7 +173,7 @@ function renderCaptionConfigSelectOptions(
 
   for (const track of captionTracks) {
     const { vssId, languageCode, kind } = track;
-    const value = JSON.stringify({ vssId, languageCode });
+    const value = JSON.stringify({ vssId });
     children.push(
       <ListSubheader key={`group-translations-${value}`}>
         <Box sx={{ opacity: 0.8, textTransform: "uppercase" }}>
@@ -183,17 +184,14 @@ function renderCaptionConfigSelectOptions(
 
     for (const translation of translationLanguages) {
       const code = translation.languageCode;
+      const config: CaptionConfig = { vssId, translation: code };
       if (!FILTERED_LANGUAGE_CODES.includes(code as any)) {
         continue;
       }
-      const value = JSON.stringify({
-        vssId,
-        languageCode,
-        translationLanguageCode: code,
-      });
+      const value = JSON.stringify(config);
       children.push(
         <MenuItem key={value} value={value} sx={{ marginLeft: 2 }}>
-          {languageCodeToName(translation.languageCode)}
+          {languageCodeToName(code)}
         </MenuItem>
       );
     }
