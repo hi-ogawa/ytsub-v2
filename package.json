@@ -4,6 +4,7 @@
     "webpack": "webpack",
     "webpack:dev": "webpack serve",
     "webpack:prod": "rm -rf build/webpack/production && WEBPACK_MODE=production webpack --progress",
+    "deploy": "npm run webpack:prod && netlify deploy --prod",
     "tsc": "tsc",
     "tsc:dev": "tsc --noEmit -w",
     "prettier": "prettier -w .",

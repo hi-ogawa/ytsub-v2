@@ -21,6 +21,5 @@ netlify login
 netlify sites:create --name ytsub-hiro18181
 netlify link --name ytsub-hiro18181
 # - deploy
-npm run webpack:prod
-netlify deploy --prod
+npm run deploy
 ```
