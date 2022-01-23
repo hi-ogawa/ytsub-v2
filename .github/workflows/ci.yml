@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm install
+      - run: npm ci
       - run: npm run prettier:check
       - run: npm run isort:check
 
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm install
+      - run: npm ci
       - run: npm run tsc
 
   test:
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm install
+      - run: npm ci
       - run: npm run test
 
   webpack:
@@ -40,5 +40,16 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm install
+      - run: npm ci
       - run: npm run webpack
+
+  playwright:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.13.2"
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npm run test:playwright

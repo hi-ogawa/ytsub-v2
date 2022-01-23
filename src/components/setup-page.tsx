@@ -126,7 +126,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
           sx={{ marginBottom: 1, pointerEvents: "none" }}
           inputProps={{ style: { textOverflow: "ellipsis" } }}
           disabled={!isSuccess}
-          value={videoMetadata ? videoMetadata.videoDetails.author : "----"}
+          value={videoMetadata?.videoDetails?.author ?? ""}
         />
         <TextField
           label="Title"
@@ -134,7 +134,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
           sx={{ marginBottom: 1, pointerEvents: "none" }}
           inputProps={{ style: { textOverflow: "ellipsis" } }}
           disabled={!isSuccess}
-          value={videoMetadata ? videoMetadata.videoDetails.title : "----"}
+          value={videoMetadata?.videoDetails?.title ?? ""}
         />
         <CaptionConfigSelect
           label="1st language"

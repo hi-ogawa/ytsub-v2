@@ -36,6 +36,7 @@ function Header({ openMenu }: { openMenu: () => void }) {
     navigate(`/setup/${videoId}`);
   }
 
+  // TODO: Search box is too wide on mobile layout and it causes horizontal scroll
   return (
     <AppBar position="static">
       <Toolbar variant="dense">

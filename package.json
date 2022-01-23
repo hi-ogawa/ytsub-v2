@@ -12,7 +12,9 @@
     "isort:check": "tslint -p .",
     "lint": "npm run prettier && npm run isort",
     "lint:check": "npm run prettier:check && npm run isort:check",
-    "test": "jest"
+    "test": "jest",
+    "test:playwright": "playwright test",
+    "test:playwright:debug": "PWDEBUG=1 playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -32,6 +34,7 @@
     "@babel/preset-env": "^7.16.8",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@playwright/test": "^1.18.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.4.0",
