@@ -1,14 +1,13 @@
 export interface CaptionConfig {
   // e.g. ".en", ".fr", (manual caption) "a.fr" (auto caption)
-  vssId: string;
+  id: string;
   // e.g. "en", "fr"
   translation?: string;
 }
 
 export interface WatchParameters {
   videoId: string;
-  captionConfig1: CaptionConfig;
-  captionConfig2: CaptionConfig;
+  captions: [CaptionConfig, CaptionConfig];
 }
 
 // aka. youtube player response

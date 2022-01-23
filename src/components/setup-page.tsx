@@ -12,13 +12,13 @@ import {
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import * as React from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Err, Ok } from "ts-results";
 import { useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
 import { useLanguageSetting } from "../utils/storage";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
-import { encode } from "../utils/url";
+import { useNavigateCustom } from "../utils/url";
 import { withHook } from "../utils/with-hook";
 import { findCaptionConfig } from "../utils/youtube";
 
@@ -43,7 +43,7 @@ export const SetupPage = withHook(
 
 function SetupPageOk({ data: videoId }: { data: string }) {
   const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
+  const navigate = useNavigateCustom();
   const [{ language1, language2 }] = useLanguageSetting();
   const [caption1, setCaption1] = React.useState<CaptionConfig>();
   const [caption2, setCaption2] = React.useState<CaptionConfig>();
@@ -66,7 +66,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
         const found1 = findCaptionConfig(videoMetadata, language1);
         let found2 = findCaptionConfig(videoMetadata, language2);
         if (found1 && !found2) {
-          found2 = { vssId: found1.vssId, translation: language2 };
+          found2 = { id: found1.id, translation: language2 };
         }
         setCaption1(found1);
         setCaption2(found2);
@@ -79,10 +79,9 @@ function SetupPageOk({ data: videoId }: { data: string }) {
 
     const watchParameters: WatchParameters = {
       videoId,
-      captionConfig1: caption1,
-      captionConfig2: caption2,
+      captions: [caption1, caption2],
     };
-    navigate("/watch?data=" + encode(watchParameters));
+    navigate("/watch", watchParameters);
   }
 
   return (
@@ -178,7 +177,7 @@ function renderCaptionConfigSelectOptions(
 
   for (const track of captionTracks) {
     const { vssId, languageCode, kind } = track;
-    const config: CaptionConfig = { vssId };
+    const config: CaptionConfig = { id: vssId };
     const value = JSON.stringify(config);
     children.push(
       <MenuItem key={value} value={value} sx={{ marginLeft: 2 }}>
@@ -200,7 +199,7 @@ function renderCaptionConfigSelectOptions(
 
     for (const translation of translationLanguages) {
       const code = translation.languageCode;
-      const config: CaptionConfig = { vssId, translation: code };
+      const config: CaptionConfig = { id: vssId, translation: code };
       if (!FILTERED_LANGUAGE_CODES.includes(code as any)) {
         continue;
       }
