@@ -1,6 +1,7 @@
 import { useQuery, UseQueryOptions } from "react-query";
 import { proxyFetch } from "./proxy";
 import { parseVideoMetadata, ttmlsToCaptionEntries } from "./youtube";
+import { loadYoutubeApi } from "./youtube";
 
 function createUseQuery<TQueryFnArg, TQueryFnData>(
   key: any,
@@ -53,3 +54,8 @@ export const useCaptionEntries = createUseQuery(
     return ttmlsToCaptionEntries(ttml1, ttml2);
   }
 );
+
+export const useYoutubeApi = createUseQuery("youtube-api", loadYoutubeApi, {
+  staleTime: Infinity,
+  cacheTime: Infinity,
+});

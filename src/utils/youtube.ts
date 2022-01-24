@@ -120,3 +120,99 @@ export function stringifyTimestamp(s: number): string {
   m = m % 60;
   return sprintf("%02d:%02d:%02d.%03d", h, m, s, ms);
 }
+
+//
+// https://developers.google.com/youtube/iframe_api_reference
+//
+
+type YoutubeApi = any;
+type YoutubePlayer = any;
+
+export type PlayerState = {
+  currentTime: number;
+  isPlaying: boolean;
+};
+
+export const DEFAULT_PLAYER_STATE: PlayerState = {
+  currentTime: 0,
+  isPlaying: false,
+};
+
+type PlayerOptions = {
+  videoId: string;
+  height?: number;
+  width?: number;
+  playerVars?: {
+    autoplay?: 0 | 1;
+    start?: number; // must be integer
+  };
+};
+
+export class Player {
+  // TODO: cleanup
+  static async create(
+    element: HTMLElement,
+    options: PlayerOptions
+  ): Promise<Player> {
+    const api = await loadYoutubeApi();
+    return new Promise((resolve) => {
+      const onReady = (event: any) => {
+        resolve(new Player(event.target));
+      };
+      const newOptions = { ...options, events: { onReady } };
+      new api.Player(element, newOptions);
+    });
+  }
+
+  constructor(private internal: YoutubePlayer) {}
+
+  destroy() {
+    this.internal.destroy();
+  }
+
+  seekTo(time: number) {
+    this.internal.seekTo(time);
+  }
+
+  pauseVideo() {
+    this.internal.pauseVideo();
+  }
+
+  playVideo() {
+    this.internal.playVideo();
+  }
+
+  cueVideoById(videoId: string) {
+    this.internal.cueVideoById(videoId);
+  }
+
+  getState(): PlayerState {
+    return {
+      currentTime: this.internal.getCurrentTime(),
+      isPlaying: this.internal.getPlayerState() == 1,
+    };
+  }
+}
+
+let youtubeApiPromise: Promise<YoutubeApi> | undefined = undefined;
+
+export async function loadYoutubeApi(): Promise<YoutubeApi> {
+  if (typeof youtubeApiPromise === "undefined") {
+    youtubeApiPromise = new Promise((resolve, reject) => {
+      const el = document.createElement("script");
+      el.type = "text/javascript";
+      el.async = true;
+      el.src = "https://www.youtube.com/iframe_api";
+      el.addEventListener("load", () => {
+        const youtubeApi = (window as any).YT;
+        youtubeApi.ready(() => resolve(youtubeApi));
+      });
+      el.addEventListener("error", (error) => {
+        console.error(error);
+        reject(new Error());
+      });
+      document.body.appendChild(el);
+    });
+  }
+  return youtubeApiPromise;
+}
