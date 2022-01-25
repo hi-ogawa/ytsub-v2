@@ -1,6 +1,8 @@
 import { useLocalStorage } from "@rehooks/local-storage";
 import type { LocalStorageReturnValue } from "@rehooks/local-storage/lib/use-localstorage";
+import { isEqual } from "lodash";
 import type { LanguageSetting } from "./language";
+import type { HistoryEntry } from "./types";
 
 const PREFIX = "ytsub-v2";
 
@@ -13,4 +15,33 @@ export function useLanguageSetting(): LocalStorageReturnValue<LanguageSetting> {
     language1: undefined,
     language2: undefined,
   });
+}
+
+function isEqualHistoryEntry(e1: HistoryEntry, e2: HistoryEntry): boolean {
+  return isEqual(e1.watchParameters, e2.watchParameters);
+}
+
+export function useHistoryEntries(): [
+  entries: HistoryEntry[],
+  add: (entry: HistoryEntry) => void,
+  remove: (entry: HistoryEntry) => void
+] {
+  const [entries, setEntries] = useLocalStorage<HistoryEntry[]>(
+    toKey("history-entries"),
+    []
+  );
+
+  function filterOut(entry: HistoryEntry): HistoryEntry[] {
+    return entries.filter((other) => !isEqualHistoryEntry(other, entry));
+  }
+
+  function add(entry: HistoryEntry) {
+    setEntries([entry, ...filterOut(entry)]);
+  }
+
+  function remove(entry: HistoryEntry) {
+    setEntries(filterOut(entry));
+  }
+
+  return [entries, add, remove];
 }

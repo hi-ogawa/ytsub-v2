@@ -21,6 +21,7 @@ import { parseVideoId } from "../utils/youtube";
 import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
 import { ShareTargetPage } from "./share-target";
+import { WatchHistoryPage } from "./watch-history-page";
 import { WatchPage } from "./watch-page";
 
 function Header({ openMenu }: { openMenu: () => void }) {
@@ -133,6 +134,12 @@ function Menu() {
           </ListItemIcon>
           <ListItemText primary="Settings" />
         </ListItem>
+        <ListItem button component={makeLinkBehavior("/watch-history")}>
+          <ListItemIcon>
+            <Icon>history</Icon>
+          </ListItemIcon>
+          <ListItemText primary="History" />
+        </ListItem>
       </List>
     </Box>
   );
@@ -197,6 +204,7 @@ export function App() {
           <Route path="settings" element={<SettingsPage />} />
           <Route path="setup/:videoId" element={<SetupPage />} />
           <Route path="watch" element={<WatchPage />} />
+          <Route path="watch-history" element={<WatchHistoryPage />} />
           <Route path="share-target" element={<ShareTargetPage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>

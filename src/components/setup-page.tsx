@@ -16,7 +16,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { Err, Ok } from "ts-results";
 import { useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
-import { useLanguageSetting } from "../utils/storage";
+import { useHistoryEntries, useLanguageSetting } from "../utils/storage";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
 import { useNavigateCustom } from "../utils/url";
 import { withHook } from "../utils/with-hook";
@@ -47,6 +47,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
   const [{ language1, language2 }] = useLanguageSetting();
   const [caption1, setCaption1] = React.useState<CaptionConfig>();
   const [caption2, setCaption2] = React.useState<CaptionConfig>();
+  const addHistoryEntry = useHistoryEntries()[1];
 
   const {
     data: videoMetadata,
@@ -75,12 +76,17 @@ function SetupPageOk({ data: videoId }: { data: string }) {
   }, [videoMetadata]);
 
   function onPlay() {
-    if (!caption1 || !caption2) return;
+    if (!videoMetadata || !caption1 || !caption2) return;
 
     const watchParameters: WatchParameters = {
       videoId,
       captions: [caption1, caption2],
     };
+
+    addHistoryEntry({
+      watchParameters,
+      videoDetails: videoMetadata.videoDetails,
+    });
     navigate("/watch", watchParameters);
   }
 
@@ -225,9 +231,23 @@ function CaptionConfigSelect({
   value?: CaptionConfig;
   onChange: (value?: CaptionConfig) => void;
 } & Omit<TextFieldProps, "value" | "onChange">) {
-  const options = videoMetadata
-    ? renderCaptionConfigSelectOptions(videoMetadata)
-    : [];
+  const options: React.ReactNode[] = [
+    <MenuItem
+      key=""
+      value=""
+      sx={{
+        fontSize: "0.8rem",
+        opacity: 0.5,
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      SELECT LANGUAGE
+    </MenuItem>,
+  ];
+  if (videoMetadata) {
+    options.push(...renderCaptionConfigSelectOptions(videoMetadata));
+  }
   return (
     <TextField
       {...props}
@@ -237,19 +257,7 @@ function CaptionConfigSelect({
         onChange(value ? JSON.parse(value) : undefined);
       }}
     >
-      <MenuItem
-        key=""
-        value=""
-        sx={{
-          fontSize: "0.8rem",
-          opacity: 0.5,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        SELECT LANGUAGE
-      </MenuItem>
-      {...options}
+      {options}
     </TextField>
   );
 }

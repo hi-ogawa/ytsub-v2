@@ -10,24 +10,26 @@ export interface WatchParameters {
   captions: [CaptionConfig, CaptionConfig];
 }
 
+export interface VideoDetails {
+  videoId: string;
+  title: string;
+  author: string;
+  channelId: string;
+  thumbnail: {
+    thumbnails: {
+      url: string;
+      width: number;
+      height: number;
+    }[];
+  };
+}
+
 // aka. youtube player response
 export type VideoMetadata = {
   playabilityStatus: {
     status: "OK" | "ERROR";
   };
-  videoDetails: {
-    videoId: string;
-    title: string;
-    author: string;
-    channelId: string;
-    thumbnail: {
-      thumbnails: {
-        url: string;
-        width: number;
-        height: number;
-      }[];
-    };
-  };
+  videoDetails: VideoDetails;
   captions: {
     playerCaptionsTracklistRenderer: {
       captionTracks: {
@@ -48,4 +50,9 @@ export interface CaptionEntry {
   end: number;
   text1: string;
   text2: string;
+}
+
+export interface HistoryEntry {
+  watchParameters: WatchParameters;
+  videoDetails: VideoDetails;
 }
