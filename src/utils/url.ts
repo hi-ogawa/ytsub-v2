@@ -1,19 +1,13 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Err, Ok, Result } from "ts-results";
-import { fromFlatJson, toFlatJson } from "./flat-json";
+import { Result } from "ts-results";
+import * as assert from "./assert";
+import { fromFlatTree, toFlatTree } from "./flat-json";
+import { wrapError } from "./misc";
 
 export function useNavigateCustom() {
   const navigate = useNavigate();
   function navigateExtra(pathname: string, data: any) {
-    let search = "";
-    try {
-      const flatJson = toFlatJson(data);
-      if (typeof flatJson !== "string") {
-        search = "?" + new URLSearchParams(flatJson).toString();
-      }
-    } catch (e) {
-      console.error(e);
-    }
+    const search = wrapError(() => "?" + toJsonSearchParams(data)).unwrapOr("");
     navigate({ pathname, search });
   }
   return navigateExtra;
@@ -21,13 +15,18 @@ export function useNavigateCustom() {
 
 export function useSearchParamsCustom<T>(): Result<T, Error> {
   const [searchParams] = useSearchParams();
-  try {
-    const flatJson = Object.fromEntries((searchParams as any).entries());
-    return Ok(fromFlatJson(flatJson));
-  } catch (e) {
-    if (e instanceof Error) {
-      return Err(e);
-    }
-    return Err(new Error());
-  }
+  return wrapError(() => fromJsonSearchParams(searchParams));
+}
+
+function toJsonSearchParams(data: any, root: string = ""): URLSearchParams {
+  const tree = toFlatTree({ [root]: data });
+  assert.ok(typeof tree !== "string");
+  return new URLSearchParams(tree as any);
+}
+
+function fromJsonSearchParams(params: URLSearchParams, root: string = ""): any {
+  const tree = new Map<string, string>(params as any);
+  const data = fromFlatTree(tree);
+  assert.ok(root in data);
+  return data[root];
 }

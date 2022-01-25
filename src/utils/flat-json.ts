@@ -7,8 +7,8 @@ Path
   Key . Path
 
 Key
-  escape(string, "_", ".")
-  *number
+  escape(<string>, "_", ".")
+  _<number>
 
 Leaf
   _{}
@@ -16,9 +16,9 @@ Leaf
   _null
   _true
   _false
-  _number
-  string
-  \_string
+  _<number>
+  <string>
+  \_<string>
 
 */
 
@@ -249,11 +249,11 @@ function pathTreeFromFlatTree(flatTree: FlatTree): PathTree {
   return mapKeys(flatTree, pathToKeys);
 }
 
-function toFlatTree(data: any): FlatTree {
+export function toFlatTree(data: any): FlatTree {
   return pathTreeToFlatTree(treeToPathTree(toTree(data)));
 }
 
-function fromFlatTree(flatTree: FlatTree): any {
+export function fromFlatTree(flatTree: FlatTree): any {
   return fromTree(treeFromPathTree(pathTreeFromFlatTree(flatTree)));
 }
 
