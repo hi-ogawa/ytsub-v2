@@ -8,12 +8,14 @@ import {
   InputBase,
   List,
   ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   Paper,
   Toolbar,
   Typography,
 } from "@mui/material";
+import { memoize } from "lodash";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
@@ -110,36 +112,52 @@ function Header({ openMenu }: { openMenu: () => void }) {
   );
 }
 
-function makeLinkBehavior(to: string) {
+const makeLinkBehavior = memoize((to: string) => {
   return React.forwardRef(function LinkBehavior(props, ref) {
     return <Link to={to} ref={ref as any} {...props} role={undefined} />;
   });
+});
+
+interface MenuEntry {
+  to: string;
+  icon: string;
+  title: string;
 }
 
-function Menu() {
-  // TODO: Close drawer on success navigation
-  // (Probably need to implement custom link component with https://reactrouter.com/docs/en/v6/api#uselinkclickhandler)
+const MENU_ENTRIES: MenuEntry[] = [
+  {
+    to: "/",
+    icon: "home",
+    title: "Home",
+  },
+  {
+    to: "/settings",
+    icon: "settings",
+    title: "Settings",
+  },
+  {
+    to: "/watch-history",
+    icon: "history",
+    title: "History",
+  },
+];
+
+function Menu({ closeDrawer }: { closeDrawer: () => void }) {
   return (
     <Box sx={{ width: "200px" }}>
       <List>
-        <ListItem button component={makeLinkBehavior("/")}>
-          <ListItemIcon>
-            <Icon>home</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button component={makeLinkBehavior("/settings")}>
-          <ListItemIcon>
-            <Icon>settings</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
-        <ListItem button component={makeLinkBehavior("/watch-history")}>
-          <ListItemIcon>
-            <Icon>history</Icon>
-          </ListItemIcon>
-          <ListItemText primary="History" />
-        </ListItem>
+        {MENU_ENTRIES.map((entry) => (
+          <ListItemButton
+            key={entry.to}
+            component={makeLinkBehavior(entry.to)}
+            {...({ onClick: closeDrawer } as any)}
+          >
+            <ListItemIcon>
+              <Icon>{entry.icon}</Icon>
+            </ListItemIcon>
+            <ListItemText primary={entry.title} />
+          </ListItemButton>
+        ))}
       </List>
     </Box>
   );
@@ -185,7 +203,7 @@ export function App() {
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
       >
-        <Menu />
+        <Menu closeDrawer={() => setIsDrawerOpen(false)} />
       </Drawer>
       <Box
         sx={{
