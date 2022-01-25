@@ -4,14 +4,27 @@ import * as React from "react";
 import { Navigate } from "react-router-dom";
 import { Err, Ok, Result } from "ts-results";
 import * as assert from "../utils/assert";
-import { useCaptionEntries, useVideoMetadata } from "../utils/hooks";
+import {
+  useCaptionEntries,
+  useVideoMetadata,
+  useYoutubeApi,
+} from "../utils/hooks";
 import { CaptionEntry, VideoMetadata, WatchParameters } from "../utils/types";
 import { useSearchParamsCustom } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
-import { captionConfigToUrl, stringifyTimestamp } from "../utils/youtube";
+import {
+  captionConfigToUrl,
+  DEFAULT_PLAYER_STATE,
+  Player,
+  PlayerState,
+  stringifyTimestamp,
+} from "../utils/youtube";
 
 export const WatchPage = withHook3(
   (): Result<WatchParameters, "error" | "loading"> => {
+    // Load youtube api script as early as possible
+    useYoutubeApi(null);
+
     // TODO: validate
     const watchParameters = useSearchParamsCustom<WatchParameters>();
     if (!watchParameters.ok) {
@@ -76,12 +89,75 @@ export const WatchPage = withHook3(
   WatchPageErr
 );
 
+function findCurrentEntry(
+  entries: CaptionEntry[],
+  time: number
+): CaptionEntry | undefined {
+  for (let i = entries.length - 1; i >= 0; i--) {
+    if (entries[i].begin <= time) {
+      return entries[i];
+    }
+  }
+  return;
+}
+
+const PLAYER_STATE_SYNC_INTERVAL = 200;
+
 function WatchPageOk({
   data: [watchParameters, _, captionEntries],
 }: {
   data: [WatchParameters, VideoMetadata, CaptionEntry[]];
 }) {
   const { videoId } = watchParameters;
+  const [player, setPlayer] = React.useState<Player>(); // TODO: refactor so that we don't have to early return for `!player`
+  const [playerState, setPlayerState] = React.useState(DEFAULT_PLAYER_STATE);
+
+  const { currentTime, isPlaying } = playerState;
+  const currentEntry = findCurrentEntry(captionEntries, currentTime);
+
+  function setupPlayerStateSync(player: Player): () => void {
+    const unsubscribe = setInterval(() => {
+      setPlayerState(player.getState());
+    }, PLAYER_STATE_SYNC_INTERVAL);
+    return () => clearInterval(unsubscribe);
+  }
+
+  // TODO
+  function repeatEntry() {}
+
+  function onClickEntryPlay(entry: CaptionEntry) {
+    if (!player) return;
+
+    // No-op if some text is selected (e.g. for google translate extension)
+    if (document.getSelection()?.toString()) return;
+
+    if (entry === currentEntry) {
+      if (isPlaying) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
+      }
+    } else {
+      player.seekTo(entry.begin);
+      player.playVideo();
+    }
+  }
+
+  // TODO
+  function onClickEntryRepeat() {}
+
+  // Setup `playerState` synchronization
+  React.useEffect(() => {
+    if (!player) return;
+    return setupPlayerStateSync(player);
+  }, [!!player]);
+
+  // Handle repeating entry
+  React.useEffect(() => {
+    if (!player || !isPlaying) return;
+    repeatEntry();
+    return;
+  }, [currentTime]);
 
   return (
     <Box
@@ -130,10 +206,16 @@ function WatchPageOk({
       })}
     >
       <Box id="watch-page-player-box">
-        <Player videoId={videoId} />
+        <PlayerComponent videoId={videoId} setPlayer={setPlayer} />
       </Box>
       <Box id="watch-page-subtitles-viewer-box">
-        <SubtitlesViewer captionEntries={captionEntries} />
+        <SubtitlesViewer
+          captionEntries={captionEntries}
+          currentEntry={currentEntry}
+          onClickEntryPlay={onClickEntryPlay}
+          onClickEntryRepeat={onClickEntryRepeat}
+          playerState={playerState}
+        />
       </Box>
     </Box>
   );
@@ -165,7 +247,30 @@ function WatchPageErr({ data }: { data: "error" | "loading" }) {
   return <Navigate to="/" />;
 }
 
-export function Player({ videoId }: { videoId: string }) {
+export function PlayerComponent({
+  videoId,
+  setPlayer,
+}: {
+  videoId: string;
+  setPlayer: (player: Player | undefined) => void;
+}) {
+  const playerEl = React.useRef<HTMLIFrameElement>(null);
+
+  React.useEffect(() => {
+    // TODO: cleanup
+    assert.ok(playerEl.current);
+    Player.create(playerEl.current, {
+      videoId,
+      width: 400,
+      height: 225,
+      playerVars: {
+        autoplay: 0,
+        start: 0,
+      },
+    }).then(setPlayer);
+    return;
+  }, []);
+
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box
@@ -173,20 +278,23 @@ export function Player({ videoId }: { videoId: string }) {
           flex: "0 0 auto",
           width: "100%",
           maxWidth: { xs: "480px", md: "initial" },
-          boxShadow: 3,
+          boxShadow: 1,
         }}
       >
-        <Box sx={{ position: "relative", paddingTop: "56.25%" }}>
-          <iframe
-            style={{
+        <Box
+          sx={{
+            position: "relative",
+            paddingTop: "56.25%",
+            "& > :first-of-type": {
               position: "absolute",
               top: 0,
-              width: "100%",
-              height: "100%",
-            }}
-            src={`https://www.youtube.com/embed/${videoId}`}
-            frameBorder="0"
-          />
+              width: 1,
+              height: 1,
+            },
+          }}
+        >
+          {/* Replaced with <iframe /> via `new Player(...)` */}
+          <div ref={playerEl as any} />
         </Box>
       </Box>
     </Box>
@@ -195,8 +303,16 @@ export function Player({ videoId }: { videoId: string }) {
 
 function SubtitlesViewer({
   captionEntries,
+  currentEntry,
+  onClickEntryPlay,
+  onClickEntryRepeat,
+  playerState,
 }: {
   captionEntries: CaptionEntry[];
+  currentEntry: CaptionEntry | undefined;
+  onClickEntryPlay: (entry: CaptionEntry) => void;
+  onClickEntryRepeat: (entry: CaptionEntry) => void;
+  playerState: PlayerState;
 }) {
   return (
     <Paper
@@ -205,29 +321,59 @@ function SubtitlesViewer({
       sx={{ display: "flex", flexDirection: "column", padding: 0.8, gap: 0.8 }}
     >
       {captionEntries.map((e) => (
-        <CaptionEntryComponent key={toCaptionEntryId(e)} captionEntry={e} />
+        <CaptionEntryComponent
+          key={toCaptionEntryId(e)}
+          entry={e}
+          currentEntry={currentEntry}
+          onClickEntryPlay={onClickEntryPlay}
+          onClickEntryRepeat={onClickEntryRepeat}
+          playerState={playerState}
+        />
       ))}
     </Paper>
   );
 }
 
 function CaptionEntryComponent({
-  captionEntry,
+  entry,
+  currentEntry,
+  onClickEntryPlay,
+  onClickEntryRepeat,
+  playerState,
 }: {
-  captionEntry: CaptionEntry;
+  entry: CaptionEntry;
+  currentEntry: CaptionEntry | undefined;
+  onClickEntryPlay: (entry: CaptionEntry) => void;
+  onClickEntryRepeat: (entry: CaptionEntry) => void;
+  playerState: PlayerState;
 }) {
-  const { begin, end, text1, text2 } = captionEntry;
+  const { begin, end, text1, text2 } = entry;
   const timestamp = [begin, end].map(stringifyTimestamp).join(" - ");
+  const { isPlaying } = playerState;
+  const isCurrentEntry = entry === currentEntry;
+  const isCurrentEntryPlaying = isCurrentEntry && isPlaying;
+
   return (
     <Paper
       variant="outlined"
       square
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        padding: 0.8,
-        fontSize: 12,
-      }}
+      sx={[
+        {
+          display: "flex",
+          flexDirection: "column",
+          padding: 0.8,
+          fontSize: 12,
+        },
+        isCurrentEntry && {
+          backgroundColor: "grey.100",
+        },
+        isCurrentEntryPlaying && {
+          marginLeft: "-1px",
+          borderLeftWidth: "2px",
+          borderLeftStyle: "solid",
+          borderLeftColor: "primary.light",
+        },
+      ]}
     >
       <Box
         sx={{
@@ -241,8 +387,24 @@ function CaptionEntryComponent({
         <Box
           sx={{ fontSize: 16, color: "grey.500", display: "flex", gap: 0.8 }}
         >
-          <Icon sx={{ fontSize: 16 }}>repeat</Icon>
-          <Icon sx={{ fontSize: 16 }}>play_circle_outline</Icon>
+          {/* TODO: implement "repeat" action */}
+          <Icon
+            sx={{ fontSize: 16, display: "none", cursor: "pointer" }}
+            onClick={() => onClickEntryRepeat(entry)}
+          >
+            repeat
+          </Icon>
+          <Icon
+            sx={[
+              { fontSize: 16, cursor: "pointer" },
+              isCurrentEntryPlaying && {
+                color: "primary.light",
+              },
+            ]}
+            onClick={() => onClickEntryPlay(entry)}
+          >
+            play_circle_outline
+          </Icon>
         </Box>
       </Box>
       <Box
@@ -260,7 +422,9 @@ function CaptionEntryComponent({
               paddingLeft: 0.8,
             },
           },
+          cursor: "pointer",
         }}
+        onClick={() => onClickEntryPlay(entry)}
       >
         <Box>{text1}</Box>
         <Box>{text2}</Box>
