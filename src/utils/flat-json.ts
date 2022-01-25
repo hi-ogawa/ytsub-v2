@@ -25,7 +25,7 @@ Leaf
 const PATH_SEPARATOR = ".";
 const SPECIAL_PREFIX = "_";
 const PATH_SEPARATOR_ESCAPE_RE = /(?<!\\)\\\./;
-const SPECIAL_PREFIX_ESCAPE_RE = /(?<!\\)\\\_/;
+const SPECIAL_PREFIX_ESCAPE_RE = /(?<!\\)\\_/;
 
 type Key = string | number;
 type Leaf = string;
@@ -41,6 +41,7 @@ function escapeStringKey(key: string): string {
 }
 
 function unescapeStringKey(escaped: string): string {
+  // TODO: fix ".\\\\_" => ".\\_"
   return escaped
     .replace(PATH_SEPARATOR_ESCAPE_RE, PATH_SEPARATOR)
     .replace(SPECIAL_PREFIX_ESCAPE_RE, SPECIAL_PREFIX);
@@ -79,8 +80,8 @@ function pathToKeys(path: string): (string | number)[] {
       continue;
     }
     if (path[i] === PATH_SEPARATOR) {
-      escapedKeys.push(path.slice(sep, i++));
-      sep = i;
+      escapedKeys.push(path.slice(sep, i));
+      sep = i + 1;
     }
   }
   escapedKeys.push(path.slice(sep));
@@ -108,14 +109,14 @@ function toTree(data: any): Tree {
   }
   if (Array.isArray(data)) {
     if (data.length === 0) {
-      return "[]";
+      return SPECIAL_PREFIX + "[]";
     }
     return new Map(data.map((value, i) => [i, toTree(value)]));
   }
   if (typeof data === "object") {
     const entries = Object.entries(data);
     if (entries.length === 0) {
-      return "{}";
+      return SPECIAL_PREFIX + "{}";
     }
     return new Map(entries.map(([key, value]) => [key, toTree(value)]));
   }
