@@ -20,6 +20,8 @@ import {
   stringifyTimestamp,
 } from "../utils/youtube";
 
+// TODO: Split components for better react refresh
+
 export const WatchPage = withHook3(
   (): Result<WatchParameters, "error" | "loading"> => {
     // Load youtube api script as early as possible
