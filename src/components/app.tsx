@@ -8,6 +8,7 @@ import {
   InputBase,
   List,
   ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   Paper,
@@ -116,30 +117,35 @@ function makeLinkBehavior(to: string) {
   });
 }
 
-function Menu() {
-  // TODO: Close drawer on success navigation
-  // (Probably need to implement custom link component with https://reactrouter.com/docs/en/v6/api#uselinkclickhandler)
+function Menu({ closeDrawer }: { closeDrawer: () => void }) {
+  const closeProps = { onClick: closeDrawer } as any;
   return (
     <Box sx={{ width: "200px" }}>
       <List>
-        <ListItem button component={makeLinkBehavior("/")}>
+        <ListItemButton component={makeLinkBehavior("/")} {...closeProps}>
           <ListItemIcon>
             <Icon>home</Icon>
           </ListItemIcon>
           <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button component={makeLinkBehavior("/settings")}>
+        </ListItemButton>
+        <ListItemButton
+          component={makeLinkBehavior("/settings")}
+          {...closeProps}
+        >
           <ListItemIcon>
             <Icon>settings</Icon>
           </ListItemIcon>
           <ListItemText primary="Settings" />
-        </ListItem>
-        <ListItem button component={makeLinkBehavior("/watch-history")}>
+        </ListItemButton>
+        <ListItemButton
+          component={makeLinkBehavior("/watch-history")}
+          {...closeProps}
+        >
           <ListItemIcon>
             <Icon>history</Icon>
           </ListItemIcon>
           <ListItemText primary="History" />
-        </ListItem>
+        </ListItemButton>
       </List>
     </Box>
   );
@@ -185,7 +191,7 @@ export function App() {
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
       >
-        <Menu />
+        <Menu closeDrawer={() => setIsDrawerOpen(false)} />
       </Drawer>
       <Box
         sx={{
