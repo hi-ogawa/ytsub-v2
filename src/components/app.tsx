@@ -15,6 +15,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { memoize } from "lodash";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
@@ -111,41 +112,52 @@ function Header({ openMenu }: { openMenu: () => void }) {
   );
 }
 
-function makeLinkBehavior(to: string) {
+const makeLinkBehavior = memoize((to: string) => {
   return React.forwardRef(function LinkBehavior(props, ref) {
     return <Link to={to} ref={ref as any} {...props} role={undefined} />;
   });
+});
+
+interface MenuEntry {
+  to: string;
+  icon: string;
+  title: string;
 }
 
+const MENU_ENTRIES: MenuEntry[] = [
+  {
+    to: "/",
+    icon: "home",
+    title: "Home",
+  },
+  {
+    to: "/settings",
+    icon: "settings",
+    title: "Settings",
+  },
+  {
+    to: "/watch-history",
+    icon: "history",
+    title: "History",
+  },
+];
+
 function Menu({ closeDrawer }: { closeDrawer: () => void }) {
-  const closeProps = { onClick: closeDrawer } as any;
   return (
     <Box sx={{ width: "200px" }}>
       <List>
-        <ListItemButton component={makeLinkBehavior("/")} {...closeProps}>
-          <ListItemIcon>
-            <Icon>home</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItemButton>
-        <ListItemButton
-          component={makeLinkBehavior("/settings")}
-          {...closeProps}
-        >
-          <ListItemIcon>
-            <Icon>settings</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItemButton>
-        <ListItemButton
-          component={makeLinkBehavior("/watch-history")}
-          {...closeProps}
-        >
-          <ListItemIcon>
-            <Icon>history</Icon>
-          </ListItemIcon>
-          <ListItemText primary="History" />
-        </ListItemButton>
+        {MENU_ENTRIES.map((entry) => (
+          <ListItemButton
+            key={entry.to}
+            component={makeLinkBehavior(entry.to)}
+            {...({ onClick: closeDrawer } as any)}
+          >
+            <ListItemIcon>
+              <Icon>{entry.icon}</Icon>
+            </ListItemIcon>
+            <ListItemText primary={entry.title} />
+          </ListItemButton>
+        ))}
       </List>
     </Box>
   );
