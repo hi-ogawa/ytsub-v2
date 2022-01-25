@@ -369,7 +369,9 @@ function CaptionEntryComponent({
         },
         isCurrentEntryPlaying && {
           marginLeft: "-1px",
-          borderLeft: "2px solid rgba(0, 0, 255, 0.3)",
+          borderLeftWidth: "2px",
+          borderLeftStyle: "solid",
+          borderLeftColor: "primary.light",
         },
       ]}
     >
@@ -396,7 +398,7 @@ function CaptionEntryComponent({
             sx={[
               { fontSize: 16, cursor: "pointer" },
               isCurrentEntryPlaying && {
-                color: "rgba(0, 0, 255, 0.3)",
+                color: "primary.light",
               },
             ]}
             onClick={() => onClickEntryPlay(entry)}
