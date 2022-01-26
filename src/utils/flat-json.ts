@@ -7,7 +7,7 @@ Path
   Key . Path
 
 Key
-  escape(<string>, "_", ".")
+  escape(<string>, "\", "_", ".")
   _<number>
 
 Leaf
@@ -17,15 +17,13 @@ Leaf
   _true
   _false
   _<number>
-  <string>
-  \_<string>
+  escape(<string>, "\", "_", ".")  TOOD: doesn't have to escape "."
 
 */
 
 const PATH_SEPARATOR = ".";
 const SPECIAL_PREFIX = "_";
-const PATH_SEPARATOR_ESCAPE_RE = /(?<!\\)\\\./;
-const SPECIAL_PREFIX_ESCAPE_RE = /(?<!\\)\\_/;
+const ESCAPE_CHARS = ["\\", PATH_SEPARATOR, SPECIAL_PREFIX];
 
 type Key = string | number;
 type Leaf = string;
@@ -36,15 +34,27 @@ type FlatJson = string | Record<string, string>;
 
 function escapeStringKey(key: string): string {
   return key
-    .replace(PATH_SEPARATOR, "\\" + PATH_SEPARATOR)
-    .replace(SPECIAL_PREFIX, "\\" + SPECIAL_PREFIX);
+    .replaceAll("\\", "\\\\")
+    .replaceAll(PATH_SEPARATOR, "\\" + PATH_SEPARATOR)
+    .replaceAll(SPECIAL_PREFIX, "\\" + SPECIAL_PREFIX);
 }
 
 function unescapeStringKey(escaped: string): string {
-  // TODO: fix ".\\\\_" => ".\\_"
   return escaped
-    .replace(PATH_SEPARATOR_ESCAPE_RE, PATH_SEPARATOR)
-    .replace(SPECIAL_PREFIX_ESCAPE_RE, SPECIAL_PREFIX);
+    .replaceAll("\\\\", "\\")
+    .replaceAll("\\" + PATH_SEPARATOR, PATH_SEPARATOR)
+    .replaceAll("\\" + SPECIAL_PREFIX, SPECIAL_PREFIX);
+  // let result = "";
+  // for (let i = 0; i < escaped.length; i++) {
+  //   if (escaped[i] == "\\") {
+  //     i++;
+  //     assert.ok(ESCAPE_CHARS.includes(escaped[i]));
+  //     result += escaped[i];
+  //     continue;
+  //   }
+  //   result += escaped[i];
+  // }
+  // return result;
 }
 
 function escapeKey(key: string | number): string {
@@ -77,6 +87,7 @@ function pathToKeys(path: string): (string | number)[] {
   for (let i = 0; i < path.length; i++) {
     if (path[i] === "\\") {
       i++;
+      assert.ok(ESCAPE_CHARS.includes(path[i]));
       continue;
     }
     if (path[i] === PATH_SEPARATOR) {
@@ -102,10 +113,11 @@ function toTree(data: any): Tree {
     return SPECIAL_PREFIX + JSON.stringify(data);
   }
   if (typeof data === "string") {
-    if (data.startsWith(SPECIAL_PREFIX)) {
-      return "\\" + data;
-    }
-    return data;
+    return escapeStringKey(data);
+    // if (data.startsWith(SPECIAL_PREFIX)) {
+    //   return "\\" + data;
+    // }
+    // return data;
   }
   if (Array.isArray(data)) {
     if (data.length === 0) {
@@ -146,10 +158,11 @@ function fromTree(tree: Tree): any {
       assert.ok(typeof data === "number");
       return data;
     }
-    if (tree.startsWith("\\" + SPECIAL_PREFIX)) {
-      return tree.slice(1);
-    }
-    return tree;
+    return unescapeStringKey(tree);
+    // if (tree.startsWith("\\" + SPECIAL_PREFIX)) {
+    //   return tree.slice(1);
+    // }
+    // return tree;
   }
 
   assert.ok(tree.size > 0);

@@ -43,30 +43,64 @@ describe("flat-json", () => {
   });
 
   describe("edge-cases", () => {
-    it("case 0", () => {
-      const x = {};
-      const y = "_{}";
-      expect(toFlatJson(x)).toStrictEqual(y);
-      expect(fromFlatJson(y)).toStrictEqual(x);
-    });
+    interface Example {
+      x: any;
+      y: string | Record<string, string>;
+      toFail?: true;
+      fromFail?: true;
+    }
 
-    it("case 1", () => {
-      const x = { "": { ".": 0 } };
-      const y = { ".\\.": "_0" };
-      expect(toFlatJson(x)).toStrictEqual(y);
-      expect(fromFlatJson(y)).toStrictEqual(x);
-    });
-
-    // TODO: fix
-    it.skip("case 2", () => {
-      const x = {
-        "": {
-          "\\_": false,
+    const EXAMPLES: Example[] = [
+      {
+        x: {},
+        y: "_{}",
+      },
+      {
+        x: { "": { ".": 0 } },
+        y: { ".\\.": "_0" },
+      },
+      {
+        x: {
+          "": {
+            "\\_": false,
+          },
         },
-      };
-      const y = { ".\\\\_": "_false" };
-      expect(toFlatJson(x)).toStrictEqual(y);
-      expect(fromFlatJson(y)).toStrictEqual(x);
+        y: { ".\\\\\\_": "_false" },
+      },
+      {
+        x: [{ "..": "" }],
+        y: { "_0.\\.\\.": "" },
+      },
+      {
+        x: { "": { "\\.": false } },
+        y: { ".\\\\\\.": "_false" },
+      },
+      {
+        x: { "\\": [0] },
+        y: { "\\\\._0": "_0" },
+      },
+      {
+        x: "\\_",
+        y: "\\\\\\_",
+      },
+      {
+        x: -0,
+        y: "_0",
+        fromFail: true,
+      },
+    ];
+
+    function xfail(condition: boolean, e: any): any {
+      return condition ? e.not : e;
+    }
+
+    EXAMPLES.forEach(({ x, y, toFail = false, fromFail = false }, i) => {
+      it(`toFlatJson(${i})`, () => {
+        xfail(toFail, expect(toFlatJson(x))).toStrictEqual(y);
+      });
+      it(`fromFlatJson(${i})`, () => {
+        xfail(fromFail, expect(fromFlatJson(y))).toStrictEqual(x);
+      });
     });
   });
 });
@@ -81,12 +115,13 @@ function describeExplicit(blockName: string, blockFn: () => void): void {
 // DESCRIBE=flat-json-fuzz npm run test -- -t flat-json-fuzz
 describeExplicit("flat-json-fuzz", () => {
   describe("fromFlatJson(toFlatJson(...))", () => {
+    // TODO: exclude `-0`
     it("works", () => {
       fc.assert(
         fc.property(fc.jsonValue(), (data) => {
           expect(fromFlatJson(toFlatJson(data))).toStrictEqual(data);
         }),
-        { verbose: true }
+        { verbose: true, numRuns: 10 ** 4 }
       );
     });
   });
