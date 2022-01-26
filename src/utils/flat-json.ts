@@ -22,8 +22,8 @@ Leaf
 */
 
 const PATH_SEPARATOR = ".";
-const SPECIAL_PREFIX = "_";
-const ESCAPE_CHARS = ["\\", PATH_SEPARATOR, SPECIAL_PREFIX];
+const NUMBER_KEY_PREFIX = "_";
+const LEAF_NON_STRING_PREFIX = "_";
 
 type Key = string | number;
 type Leaf = string;
@@ -48,22 +48,22 @@ function unescapeString(input: string, specials: string[]): string {
 
 function escapeKey(key: string | number): string {
   if (typeof key === "number") {
-    return SPECIAL_PREFIX + key;
+    return NUMBER_KEY_PREFIX + key;
   }
   if (typeof key === "string") {
-    return escapeString(key, ["\\", SPECIAL_PREFIX, PATH_SEPARATOR]);
+    return escapeString(key, ["\\", NUMBER_KEY_PREFIX, PATH_SEPARATOR]);
   }
   assert.ok(false);
 }
 
 function unescapeKey(escapedKey: string): string | number {
-  if (escapedKey.startsWith(SPECIAL_PREFIX)) {
-    const key = JSON.parse(escapedKey.slice(SPECIAL_PREFIX.length));
+  if (escapedKey.startsWith(NUMBER_KEY_PREFIX)) {
+    const key = JSON.parse(escapedKey.slice(1));
     assert.ok(typeof key === "number");
     assert.ok(Number.isInteger(key));
     return key;
   }
-  return unescapeString(escapedKey, ["\\", SPECIAL_PREFIX, PATH_SEPARATOR]);
+  return unescapeString(escapedKey, ["\\", NUMBER_KEY_PREFIX, PATH_SEPARATOR]);
 }
 
 function keysToPath(keys: (string | number)[]): string {
@@ -76,7 +76,7 @@ function pathToKeys(path: string): (string | number)[] {
   for (let i = 0; i < path.length; i++) {
     if (path[i] === "\\") {
       i++;
-      assert.ok(ESCAPE_CHARS.includes(path[i]));
+      assert.ok(["\\", PATH_SEPARATOR, NUMBER_KEY_PREFIX].includes(path[i]));
       continue;
     }
     if (path[i] === PATH_SEPARATOR) {
@@ -90,30 +90,30 @@ function pathToKeys(path: string): (string | number)[] {
 
 function toTree(data: any): Tree {
   if (data === null) {
-    return SPECIAL_PREFIX + "null";
+    return LEAF_NON_STRING_PREFIX + "null";
   }
   if (data === true) {
-    return SPECIAL_PREFIX + "true";
+    return LEAF_NON_STRING_PREFIX + "true";
   }
   if (data === false) {
-    return SPECIAL_PREFIX + "false";
+    return LEAF_NON_STRING_PREFIX + "false";
   }
   if (typeof data === "number") {
-    return SPECIAL_PREFIX + JSON.stringify(data);
+    return LEAF_NON_STRING_PREFIX + JSON.stringify(data);
   }
   if (typeof data === "string") {
-    return escapeString(data, ["\\", SPECIAL_PREFIX]);
+    return escapeString(data, ["\\", LEAF_NON_STRING_PREFIX]);
   }
   if (Array.isArray(data)) {
     if (data.length === 0) {
-      return SPECIAL_PREFIX + "[]";
+      return LEAF_NON_STRING_PREFIX + "[]";
     }
     return new Map(data.map((value, i) => [i, toTree(value)]));
   }
   if (typeof data === "object") {
     const entries = Object.entries(data);
     if (entries.length === 0) {
-      return SPECIAL_PREFIX + "{}";
+      return LEAF_NON_STRING_PREFIX + "{}";
     }
     return new Map(entries.map(([key, value]) => [key, toTree(value)]));
   }
@@ -122,7 +122,7 @@ function toTree(data: any): Tree {
 
 function fromTree(tree: Tree): any {
   if (typeof tree === "string") {
-    if (tree.startsWith(SPECIAL_PREFIX)) {
+    if (tree.startsWith(LEAF_NON_STRING_PREFIX)) {
       const slice = tree.slice(1);
       if (slice === "null") {
         return null;
@@ -143,7 +143,7 @@ function fromTree(tree: Tree): any {
       assert.ok(typeof data === "number");
       return data;
     }
-    return unescapeString(tree, ["\\", SPECIAL_PREFIX]);
+    return unescapeString(tree, ["\\", LEAF_NON_STRING_PREFIX]);
   }
 
   assert.ok(tree.size > 0);
