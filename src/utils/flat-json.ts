@@ -17,7 +17,7 @@ Leaf
   _true
   _false
   _<number>
-  escape(<string>, "\", "_", ".")  TOOD: doesn't have to escape "."
+  escape(<string>, "\", "_")
 
 */
 
@@ -32,29 +32,18 @@ type PathTree = Leaf | Map<Key[], Leaf>;
 type FlatTree = Leaf | Map<string, Leaf>;
 type FlatJson = string | Record<string, string>;
 
-function escapeStringKey(key: string): string {
-  return key
-    .replaceAll("\\", "\\\\")
-    .replaceAll(PATH_SEPARATOR, "\\" + PATH_SEPARATOR)
-    .replaceAll(SPECIAL_PREFIX, "\\" + SPECIAL_PREFIX);
+function escapeString(input: string, specials: string[]): string {
+  for (let i = 0; i < specials.length; i++) {
+    input = input.replaceAll(specials[i], "\\" + specials[i]);
+  }
+  return input;
 }
 
-function unescapeStringKey(escaped: string): string {
-  return escaped
-    .replaceAll("\\\\", "\\")
-    .replaceAll("\\" + PATH_SEPARATOR, PATH_SEPARATOR)
-    .replaceAll("\\" + SPECIAL_PREFIX, SPECIAL_PREFIX);
-  // let result = "";
-  // for (let i = 0; i < escaped.length; i++) {
-  //   if (escaped[i] == "\\") {
-  //     i++;
-  //     assert.ok(ESCAPE_CHARS.includes(escaped[i]));
-  //     result += escaped[i];
-  //     continue;
-  //   }
-  //   result += escaped[i];
-  // }
-  // return result;
+function unescapeString(input: string, specials: string[]): string {
+  for (let i = specials.length - 1; i >= 0; i--) {
+    input = input.replaceAll("\\" + specials[i], specials[i]);
+  }
+  return input;
 }
 
 function escapeKey(key: string | number): string {
@@ -62,7 +51,7 @@ function escapeKey(key: string | number): string {
     return SPECIAL_PREFIX + key;
   }
   if (typeof key === "string") {
-    return escapeStringKey(key);
+    return escapeString(key, ["\\", SPECIAL_PREFIX, PATH_SEPARATOR]);
   }
   assert.ok(false);
 }
@@ -74,7 +63,7 @@ function unescapeKey(escapedKey: string): string | number {
     assert.ok(Number.isInteger(key));
     return key;
   }
-  return unescapeStringKey(escapedKey);
+  return unescapeString(escapedKey, ["\\", SPECIAL_PREFIX, PATH_SEPARATOR]);
 }
 
 function keysToPath(keys: (string | number)[]): string {
@@ -113,11 +102,7 @@ function toTree(data: any): Tree {
     return SPECIAL_PREFIX + JSON.stringify(data);
   }
   if (typeof data === "string") {
-    return escapeStringKey(data);
-    // if (data.startsWith(SPECIAL_PREFIX)) {
-    //   return "\\" + data;
-    // }
-    // return data;
+    return escapeString(data, ["\\", SPECIAL_PREFIX]);
   }
   if (Array.isArray(data)) {
     if (data.length === 0) {
@@ -158,11 +143,7 @@ function fromTree(tree: Tree): any {
       assert.ok(typeof data === "number");
       return data;
     }
-    return unescapeStringKey(tree);
-    // if (tree.startsWith("\\" + SPECIAL_PREFIX)) {
-    //   return tree.slice(1);
-    // }
-    // return tree;
+    return unescapeString(tree, ["\\", SPECIAL_PREFIX]);
   }
 
   assert.ok(tree.size > 0);

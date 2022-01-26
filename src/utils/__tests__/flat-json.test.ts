@@ -1,8 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
 import fc from "fast-check";
 import { fromFlatJson, toFlatJson } from "../flat-json";
+import { describeOnlyEnv, NormalizeZeroVisitor } from "./helpers";
 
-describe("flat-json", () => {
+describe("flat-json-simple", () => {
   const from = {
     videoId: "MoH8Fk2K9bc",
     captionConfigs: [
@@ -105,22 +106,18 @@ describe("flat-json", () => {
   });
 });
 
-function describeExplicit(blockName: string, blockFn: () => void): void {
-  (process.env.DESCRIBE === blockName ? describe : describe.skip)(
-    blockName,
-    blockFn
-  );
-}
-
-// DESCRIBE=flat-json-fuzz npm run test -- -t flat-json-fuzz
-describeExplicit("flat-json-fuzz", () => {
+// DESCRIBE=flat-json-fuzz npm run test
+describeOnlyEnv("flat-json-fuzz", () => {
   describe("fromFlatJson(toFlatJson(...))", () => {
-    // TODO: exclude `-0`
+    const normalizeZero = new NormalizeZeroVisitor(); // Exclude `-0`
     it("works", () => {
       fc.assert(
-        fc.property(fc.jsonValue(), (data) => {
-          expect(fromFlatJson(toFlatJson(data))).toStrictEqual(data);
-        }),
+        fc.property(
+          fc.jsonValue().map((data) => normalizeZero.visit(data)),
+          (data) => {
+            expect(fromFlatJson(toFlatJson(data))).toStrictEqual(data);
+          }
+        ),
         { verbose: true, numRuns: 10 ** 4 }
       );
     });
