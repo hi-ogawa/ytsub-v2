@@ -12,6 +12,10 @@ module.exports = {
   devtool: "inline-source-map",
   entry: {
     index: "./src/index.ts",
+    serviceWorker: {
+      import: "./src/service-worker/index.ts",
+      filename: "service-worker.js",
+    },
   },
   output: {
     filename: "[name].[fullhash].js",
@@ -40,7 +44,11 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: "./src/index.html", publicPath: "/" }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      publicPath: "/",
+      excludeChunks: ["serviceWorker"],
+    }),
     new CopyPlugin({
       patterns: [
         {
@@ -49,10 +57,6 @@ module.exports = {
         },
         {
           from: "src/assets/manifest.json",
-          to: "[name][ext]",
-        },
-        {
-          from: "src/assets/service-worker.js",
           to: "[name][ext]",
         },
       ],
