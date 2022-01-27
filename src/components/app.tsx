@@ -20,6 +20,7 @@ import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { parseVideoId } from "../utils/youtube";
+import { BookmarkListPage } from "./bookmark-list-page";
 import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
 import { ShareTargetPage } from "./share-target";
@@ -140,6 +141,11 @@ const MENU_ENTRIES: MenuEntry[] = [
     icon: "history",
     title: "History",
   },
+  {
+    to: "/bookmarks",
+    icon: "bookmarks",
+    title: "Bookmarks",
+  },
 ];
 
 function Menu({ closeDrawer }: { closeDrawer: () => void }) {
@@ -223,6 +229,7 @@ export function App() {
           <Route path="setup/:videoId" element={<SetupPage />} />
           <Route path="watch" element={<WatchPage />} />
           <Route path="watch-history" element={<WatchHistoryPage />} />
+          <Route path="bookmarks" element={<BookmarkListPage />} />
           <Route path="share-target" element={<ShareTargetPage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>

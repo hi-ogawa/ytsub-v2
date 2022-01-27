@@ -56,3 +56,9 @@ export interface HistoryEntry {
   watchParameters: WatchParameters;
   videoDetails: VideoDetails;
 }
+
+export interface BookmarkEntry {
+  watchParameters: WatchParameters;
+  captionEntry: CaptionEntry;
+  bookmarkText: string;
+}
