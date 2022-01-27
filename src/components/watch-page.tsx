@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Icon, Paper } from "@mui/material";
+import { Box, CircularProgress, Fab, Icon, Paper, Zoom } from "@mui/material";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import {
   useVideoMetadata,
   useYoutubeApi,
 } from "../utils/hooks";
+import { useBookmarkEntries } from "../utils/storage";
 import { CaptionEntry, VideoMetadata, WatchParameters } from "../utils/types";
 import { useSearchParamsCustom } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
@@ -103,7 +104,47 @@ function findCurrentEntry(
   return;
 }
 
+function useSelection(filter?: (selection: Selection) => boolean) {
+  const [selection, setSelection] = React.useState<Selection>();
+  const listener = React.useCallback(() => {
+    let selection = document.getSelection() ?? undefined;
+    if (selection && filter && !filter(selection)) {
+      selection = undefined;
+    }
+    setSelection(selection);
+  }, []);
+  React.useEffect(() => {
+    document.addEventListener("selectionchange", listener);
+    return () => document.removeEventListener("selectionchange", listener);
+  }, []);
+  return selection;
+}
+
 const PLAYER_STATE_SYNC_INTERVAL = 200;
+const BOOKMARKABLE_CLASSNAME = "bookmarkable";
+
+function isBookmarkSelection(selection: Selection): boolean {
+  return !!(
+    selection &&
+    selection.toString().trim() &&
+    selection.anchorNode &&
+    selection.anchorNode === selection.focusNode &&
+    selection.anchorNode.nodeType === document.TEXT_NODE &&
+    selection.anchorNode.parentElement?.classList?.contains(
+      BOOKMARKABLE_CLASSNAME
+    )
+  );
+}
+
+function findSelectionEntryIndex(selection: Selection): number {
+  const textElement = selection.getRangeAt(0).startContainer;
+  const entryNode = textElement.parentElement?.parentElement?.parentElement!;
+  const entriesContainer = entryNode.parentElement!;
+  const index = Array.from(entriesContainer.childNodes).findIndex(
+    (other) => other === entryNode
+  );
+  return index;
+}
 
 function WatchPageOk({
   data: [watchParameters, _, captionEntries],
@@ -113,6 +154,8 @@ function WatchPageOk({
   const { videoId } = watchParameters;
   const [player, setPlayer] = React.useState<Player>(); // TODO: refactor so that we don't have to early return for `!player`
   const [playerState, setPlayerState] = React.useState(DEFAULT_PLAYER_STATE);
+  const selection = useSelection(isBookmarkSelection);
+  const addBookmark = useBookmarkEntries()[1];
 
   const { currentTime, isPlaying } = playerState;
   const currentEntry = findCurrentEntry(captionEntries, currentTime);
@@ -147,6 +190,20 @@ function WatchPageOk({
 
   // TODO
   function onClickEntryRepeat() {}
+
+  function onClickCloseBookmark() {
+    if (!selection) return;
+    selection.removeAllRanges();
+  }
+
+  function onClickAddBookmark() {
+    if (!selection) return;
+    const bookmarkText = selection.toString().trim();
+    const index = findSelectionEntryIndex(selection);
+    const captionEntry = captionEntries[index];
+    addBookmark({ watchParameters, captionEntry, bookmarkText });
+    selection.removeAllRanges();
+  }
 
   // Setup `playerState` synchronization
   React.useEffect(() => {
@@ -212,7 +269,7 @@ function WatchPageOk({
       <Box id="watch-page-player-box">
         <PlayerComponent videoId={videoId} setPlayer={setPlayer} />
       </Box>
-      <Box id="watch-page-subtitles-viewer-box">
+      <Box id="watch-page-subtitles-viewer-box" sx={{ postition: "relative" }}>
         <SubtitlesViewer
           captionEntries={captionEntries}
           currentEntry={currentEntry}
@@ -220,6 +277,26 @@ function WatchPageOk({
           onClickEntryRepeat={onClickEntryRepeat}
           playerState={playerState}
         />
+        <Zoom in={!!selection}>
+          <Box
+            sx={{
+              position: "absolute",
+              padding: 1.5,
+              paddingTop: 0,
+              bottom: 0,
+              right: 0,
+              display: "flex",
+              gap: 1.5,
+            }}
+          >
+            <Fab color="secondary" onClick={onClickCloseBookmark}>
+              <Icon>close</Icon>
+            </Fab>
+            <Fab color="primary" onClick={onClickAddBookmark}>
+              <Icon>bookmark</Icon>
+            </Fab>
+          </Box>
+        </Zoom>
       </Box>
     </Box>
   );
@@ -430,8 +507,8 @@ function CaptionEntryComponent({
         }}
         onClick={() => onClickEntryPlay(entry, true)}
       >
-        <Box>{text1}</Box>
-        <Box>{text2}</Box>
+        <Box className={BOOKMARKABLE_CLASSNAME}>{text1}</Box>
+        <Box className={BOOKMARKABLE_CLASSNAME}>{text2}</Box>
       </Box>
     </Paper>
   );

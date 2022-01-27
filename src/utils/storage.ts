@@ -2,7 +2,7 @@ import { useLocalStorage } from "@rehooks/local-storage";
 import type { LocalStorageReturnValue } from "@rehooks/local-storage/lib/use-localstorage";
 import { isEqual } from "lodash";
 import type { LanguageSetting } from "./language";
-import type { HistoryEntry } from "./types";
+import type { BookmarkEntry, HistoryEntry } from "./types";
 
 const PREFIX = "ytsub-v2";
 
@@ -41,6 +41,27 @@ export function useHistoryEntries(): [
 
   function remove(entry: HistoryEntry) {
     setEntries(filterOut(entry));
+  }
+
+  return [entries, add, remove];
+}
+
+export function useBookmarkEntries(): [
+  entries: BookmarkEntry[],
+  add: (entry: BookmarkEntry) => void,
+  remove: (entry: BookmarkEntry) => void
+] {
+  const [entries, setEntries] = useLocalStorage<BookmarkEntry[]>(
+    toKey("bookmark-entries"),
+    []
+  );
+
+  function add(entry: BookmarkEntry) {
+    setEntries([entry, ...entries]);
+  }
+
+  function remove(entry: BookmarkEntry) {
+    setEntries(entries.filter((other) => other !== entry));
   }
 
   return [entries, add, remove];
