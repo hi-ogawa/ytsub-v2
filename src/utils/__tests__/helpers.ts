@@ -7,7 +7,7 @@ export function describeOnlyEnv(blockName: string, blockFn: () => void): void {
   );
 }
 
-interface JsonVisitor {
+export interface JsonVisitor {
   visit: (x: any) => any;
   null: (x: null) => any;
   boolean: (x: boolean) => any;
@@ -17,7 +17,7 @@ interface JsonVisitor {
   object: (x: object) => any;
 }
 
-class BaseVisitor implements JsonVisitor {
+export class BaseVisitor implements JsonVisitor {
   visit(x: any): any {
     if (x === null) {
       return this.null(x);
@@ -36,16 +36,16 @@ class BaseVisitor implements JsonVisitor {
     }
     return this.object(x);
   }
-  null(x: null) {
+  null(x: null): any {
     return x;
   }
-  boolean(x: boolean) {
+  boolean(x: boolean): any {
     return x;
   }
-  number(x: number) {
+  number(x: number): any {
     return x;
   }
-  string(x: string) {
+  string(x: string): any {
     return x;
   }
   array(x: any[]): any[] {

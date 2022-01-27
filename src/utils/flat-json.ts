@@ -1,4 +1,5 @@
 import * as assert from "./assert";
+import { BaseVisitor } from "./__tests__/helpers";
 
 /*
 
@@ -86,6 +87,122 @@ function pathToKeys(path: string): (string | number)[] {
   }
   escapedKeys.push(path.slice(sep));
   return escapedKeys.map(unescapeKey);
+}
+
+function toRecordV2(data: any, root: string): Record<string, string> {
+  const result: Record<string, string> = {};
+  function traverse(data: any, path: string): void {
+    if (data === null) {
+      result[path] = LEAF_NON_STRING_PREFIX + "null";
+    } if (data === true) {
+      result[path] = LEAF_NON_STRING_PREFIX + "true";
+    } else if (data === false) {
+      result[path] = LEAF_NON_STRING_PREFIX + "false";
+    } else if (typeof data === "number") {
+      result[path] = LEAF_NON_STRING_PREFIX + JSON.stringify(data);
+    } else if (typeof data === "string") {
+      result[path] = escapeString(data, ["\\", LEAF_NON_STRING_PREFIX]);
+    } else if (Array.isArray(data)) {
+      if (data.length === 0) {
+        result[path] = LEAF_NON_STRING_PREFIX + "[]";
+      } else {
+        for (let i = 0; i < data.length; i++) {
+          traverse(data[i], path + PATH_SEPARATOR + escapeKey(i))
+        }
+      }
+    } else if (typeof data === "object") {
+      const entries = Object.entries(data);
+      if (entries.length === 0) {
+        result[path] = LEAF_NON_STRING_PREFIX + "{}";
+      } else {
+        for (const [k, v] of entries) {
+          traverse(v, path + PATH_SEPARATOR + escapeKey(k));
+        }
+      }
+    }
+  }
+  traverse(data, escapeKey(root));
+  return result;
+}
+
+import * as _ from "lodash";
+
+function fromRecord(record: Record<string, string>, root: string): any {
+  const pairs = _.toPairs(record).map(([path, leaf]) => [pathToKeys(path), leaf]);
+  for (const [path, leaf] of pairs) {
+  };
+  const result: Record<string, string> = {};
+  function traverse(data: any, path: string): void {
+    if (data === null) {
+      result[path] = LEAF_NON_STRING_PREFIX + "null";
+    } if (data === true) {
+      result[path] = LEAF_NON_STRING_PREFIX + "true";
+    } else if (data === false) {
+      result[path] = LEAF_NON_STRING_PREFIX + "false";
+    } else if (typeof data === "number") {
+      result[path] = LEAF_NON_STRING_PREFIX + JSON.stringify(data);
+    } else if (typeof data === "string") {
+      result[path] = escapeString(data, ["\\", LEAF_NON_STRING_PREFIX]);
+    } else if (Array.isArray(data)) {
+      if (data.length === 0) {
+        result[path] = LEAF_NON_STRING_PREFIX + "[]";
+      } else {
+        for (let i = 0; i < data.length; i++) {
+          traverse(data[i], path + PATH_SEPARATOR + escapeKey(i))
+        }
+      }
+    } else if (typeof data === "object") {
+      const entries = Object.entries(data);
+      if (entries.length === 0) {
+        result[path] = LEAF_NON_STRING_PREFIX + "{}";
+      } else {
+        for (const [k, v] of entries) {
+          traverse(v, path + PATH_SEPARATOR + escapeKey(k));
+        }
+      }
+    }
+  }
+}
+
+function toRecord(data: any, root: string): Record<string, string> {
+  function* rec(data: any, keys: Key[]): Generator<[Key[], Leaf]> {
+    if (data === null) {
+      const leaf = LEAF_NON_STRING_PREFIX + "null";
+      yield [keys, leaf];
+    } else if (data === true) {
+      const leaf = LEAF_NON_STRING_PREFIX + "true";
+      yield [keys, leaf];
+    } else if (data === false) {
+      const leaf = LEAF_NON_STRING_PREFIX + "false";
+      yield [keys, leaf];
+    } else if (typeof data === "number") {
+      const leaf = LEAF_NON_STRING_PREFIX + JSON.stringify(data);
+      yield [keys, leaf];
+    } else if (typeof data === "string") {
+      const leaf = escapeString(data, ["\\", LEAF_NON_STRING_PREFIX]);
+      yield [keys, leaf];
+    } else if (Array.isArray(data)) {
+      if (data.length === 0) {
+        const leaf = LEAF_NON_STRING_PREFIX + "[]";
+        yield [keys, leaf];
+      } else {
+        for (let i = 0; i < data.length; i++) {
+          yield* rec(data[i], [...keys, i]);
+        }
+      }
+    } else if (typeof data === "object") {
+      const entries = Object.entries(data);
+      if (entries.length === 0) {
+        yield [keys, LEAF_NON_STRING_PREFIX + "{}"];
+      } else {
+        for (const [k, v] of entries) {
+          yield* rec(v, [...keys, k]);
+        }
+      }
+    }
+    assert.ok(false);
+  }
+  return Object.fromEntries(Array.from(rec(data, [root]), ([keys, leaf]) => [keysToPath(keys), leaf]));
 }
 
 function toTree(data: any): Tree {
