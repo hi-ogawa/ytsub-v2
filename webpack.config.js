@@ -12,6 +12,10 @@ module.exports = {
   devtool: "inline-source-map",
   entry: {
     index: "./src/index.ts",
+    serviceWorker: {
+      import: "./src/service-worker/index.ts",
+      filename: "service-worker.js",
+    },
   },
   output: {
     filename: "[name].[fullhash].js",
@@ -49,10 +53,6 @@ module.exports = {
         },
         {
           from: "src/assets/manifest.json",
-          to: "[name][ext]",
-        },
-        {
-          from: "src/assets/service-worker.js",
           to: "[name][ext]",
         },
       ],
