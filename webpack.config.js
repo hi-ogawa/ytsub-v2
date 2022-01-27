@@ -44,7 +44,11 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: "./src/index.html", publicPath: "/" }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      publicPath: "/",
+      excludeChunks: ["serviceWorker"],
+    }),
     new CopyPlugin({
       patterns: [
         {
