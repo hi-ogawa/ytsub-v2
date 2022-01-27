@@ -127,13 +127,13 @@ function WatchPageOk({
   // TODO
   function repeatEntry() {}
 
-  function onClickEntryPlay(entry: CaptionEntry) {
+  function onClickEntryPlay(entry: CaptionEntry, toggle: boolean) {
     if (!player) return;
 
     // No-op if some text is selected (e.g. for google translate extension)
     if (document.getSelection()?.toString()) return;
 
-    if (entry === currentEntry) {
+    if (toggle && entry === currentEntry) {
       if (isPlaying) {
         player.pauseVideo();
       } else {
@@ -312,7 +312,7 @@ function SubtitlesViewer({
 }: {
   captionEntries: CaptionEntry[];
   currentEntry: CaptionEntry | undefined;
-  onClickEntryPlay: (entry: CaptionEntry) => void;
+  onClickEntryPlay: (entry: CaptionEntry, toggle: boolean) => void;
   onClickEntryRepeat: (entry: CaptionEntry) => void;
   playerState: PlayerState;
 }) {
@@ -345,7 +345,7 @@ function CaptionEntryComponent({
 }: {
   entry: CaptionEntry;
   currentEntry: CaptionEntry | undefined;
-  onClickEntryPlay: (entry: CaptionEntry) => void;
+  onClickEntryPlay: (entry: CaptionEntry, toggle: boolean) => void;
   onClickEntryRepeat: (entry: CaptionEntry) => void;
   playerState: PlayerState;
 }) {
@@ -403,7 +403,7 @@ function CaptionEntryComponent({
                 color: "primary.light",
               },
             ]}
-            onClick={() => onClickEntryPlay(entry)}
+            onClick={() => onClickEntryPlay(entry, false)}
           >
             play_circle_outline
           </Icon>
@@ -426,7 +426,7 @@ function CaptionEntryComponent({
           },
           cursor: "pointer",
         }}
-        onClick={() => onClickEntryPlay(entry)}
+        onClick={() => onClickEntryPlay(entry, true)}
       >
         <Box>{text1}</Box>
         <Box>{text2}</Box>
