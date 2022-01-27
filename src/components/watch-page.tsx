@@ -189,6 +189,8 @@ function WatchPageOk({
 
         // Split vertically by the height of `#watch-page-player-box` defined by aspect ratio `width * 9 / 16`
         [theme.breakpoints.down("md")]: {
+          padding: 0,
+          gap: 0,
           flexDirection: "column",
 
           "#watch-page-player-box": {
