@@ -1,6 +1,5 @@
 import { useLocalStorage } from "@rehooks/local-storage";
 import type { LocalStorageReturnValue } from "@rehooks/local-storage/lib/use-localstorage";
-import { isEqual } from "lodash";
 import type { LanguageSetting } from "./language";
 import type { BookmarkEntry, HistoryEntry } from "./types";
 
@@ -17,10 +16,6 @@ export function useLanguageSetting(): LocalStorageReturnValue<LanguageSetting> {
   });
 }
 
-function isEqualHistoryEntry(e1: HistoryEntry, e2: HistoryEntry): boolean {
-  return isEqual(e1.watchParameters, e2.watchParameters);
-}
-
 export function useHistoryEntries(): [
   entries: HistoryEntry[],
   add: (entry: HistoryEntry) => void,
@@ -32,7 +27,9 @@ export function useHistoryEntries(): [
   );
 
   function filterOut(entry: HistoryEntry): HistoryEntry[] {
-    return entries.filter((other) => !isEqualHistoryEntry(other, entry));
+    return entries.filter(
+      (other) => other.watchParameters.videoId !== entry.watchParameters.videoId
+    );
   }
 
   function add(entry: HistoryEntry) {
