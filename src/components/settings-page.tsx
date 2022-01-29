@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  MenuItem,
   Paper,
   TextField,
   TextFieldProps,
@@ -23,23 +22,12 @@ function LanguageSelect({
   languageCodes: LanguageCode[];
 } & TextFieldProps) {
   return (
-    <TextField {...props} select>
-      <MenuItem
-        key=""
-        value=""
-        sx={{
-          fontSize: "0.8rem",
-          opacity: 0.5,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        SELECT LANGUAGE
-      </MenuItem>
+    <TextField {...props} select SelectProps={{ native: true }}>
+      <option key="" value="" disabled />
       {languageCodes.map((code) => (
-        <MenuItem key={code} value={code}>
+        <option key={code} value={code}>
           {languageCodeToName(code)}
-        </MenuItem>
+        </option>
       ))}
     </TextField>
   );

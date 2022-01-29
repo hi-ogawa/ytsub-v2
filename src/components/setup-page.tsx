@@ -4,8 +4,6 @@ import {
   Card,
   CircularProgress,
   InputAdornment,
-  ListSubheader,
-  MenuItem,
   TextField,
   TextFieldProps,
   Typography,
@@ -175,33 +173,48 @@ function renderCaptionConfigSelectOptions(
 
   const children: React.ReactNode[] = [];
 
-  children.push(
-    <ListSubheader key={`group-captions`}>
-      <Box sx={{ opacity: 0.8, textTransform: "uppercase" }}>Captions</Box>
-    </ListSubheader>
-  );
+  // children.push(
+  //   <ListSubheader key={`group-captions`}>
+  //     <Box sx={{ opacity: 0.8, textTransform: "uppercase" }}>Captions</Box>
+  //   </ListSubheader>
+  // );
+
+  const captionOptions: React.ReactNode[] = [];
 
   for (const track of captionTracks) {
     const { vssId, languageCode, kind } = track;
     const config: CaptionConfig = { id: vssId };
     const value = JSON.stringify(config);
-    children.push(
-      <MenuItem key={value} value={value} sx={{ marginLeft: 2 }}>
+    // children.push(
+    //   <option key={value} value={value}>
+    //     {languageCodeToName(languageCode, kind)}
+    //   </option>
+    // );
+    captionOptions.push(
+      <option key={value} value={value}>
         {languageCodeToName(languageCode, kind)}
-      </MenuItem>
+      </option>
     );
   }
+
+  children.push(
+    <optgroup key={`group-captions`} label="Captions">
+      {captionOptions}
+    </optgroup>
+  );
 
   for (const track of captionTracks) {
     const { vssId, languageCode, kind } = track;
     const value = JSON.stringify({ vssId });
-    children.push(
-      <ListSubheader key={`group-translations-${value}`}>
-        <Box sx={{ opacity: 0.8, textTransform: "uppercase" }}>
-          Auto Translations ({languageCodeToName(languageCode, kind)})
-        </Box>
-      </ListSubheader>
-    );
+    // children.push(
+    //   <ListSubheader key={`group-translations-${value}`}>
+    //     <Box sx={{ opacity: 0.8, textTransform: "uppercase" }}>
+    //       Auto Translations ({languageCodeToName(languageCode, kind)})
+    //     </Box>
+    //   </ListSubheader>
+    // );
+
+    const translationOptions: React.ReactNode[] = [];
 
     for (const translation of translationLanguages) {
       const code = translation.languageCode;
@@ -210,12 +223,26 @@ function renderCaptionConfigSelectOptions(
         continue;
       }
       const value = JSON.stringify(config);
-      children.push(
-        <MenuItem key={value} value={value} sx={{ marginLeft: 2 }}>
+      // children.push(
+      //   <option key={value} value={value}>
+      //     {languageCodeToName(code)}
+      //   </option>
+      // );
+      translationOptions.push(
+        <option key={value} value={value}>
           {languageCodeToName(code)}
-        </MenuItem>
+        </option>
       );
     }
+
+    children.push(
+      <optgroup
+        key={`group-translations-${value}`}
+        label={`Auto Translations (${languageCodeToName(languageCode, kind)})`}
+      >
+        {translationOptions}
+      </optgroup>
+    );
   }
 
   return children;
@@ -231,33 +258,18 @@ function CaptionConfigSelect({
   value?: CaptionConfig;
   onChange: (value?: CaptionConfig) => void;
 } & Omit<TextFieldProps, "value" | "onChange">) {
-  const options: React.ReactNode[] = [
-    <MenuItem
-      key=""
-      value=""
-      sx={{
-        fontSize: "0.8rem",
-        opacity: 0.5,
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      SELECT LANGUAGE
-    </MenuItem>,
-  ];
-  if (videoMetadata) {
-    options.push(...renderCaptionConfigSelectOptions(videoMetadata));
-  }
   return (
     <TextField
       {...props}
       select
+      SelectProps={{ native: true }}
       value={value ? JSON.stringify(value) : ""}
       onChange={({ target: { value } }) => {
         onChange(value ? JSON.parse(value) : undefined);
       }}
     >
-      {options}
+      <option key="" value="" disabled />
+      {videoMetadata && renderCaptionConfigSelectOptions(videoMetadata)}
     </TextField>
   );
 }
