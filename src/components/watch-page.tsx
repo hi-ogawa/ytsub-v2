@@ -9,7 +9,7 @@ import {
   useVideoMetadata,
   useYoutubeApi,
 } from "../utils/hooks";
-import { useBookmarkEntries } from "../utils/storage";
+import { useBookmarkEntries, usePlayerSettings } from "../utils/storage";
 import { CaptionEntry, VideoMetadata, WatchParameters } from "../utils/types";
 import { useSearchParamsCustom } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
@@ -151,6 +151,7 @@ function WatchPageOk({
   const [playerState, setPlayerState] = React.useState(DEFAULT_PLAYER_STATE);
   const selection = useSelection(isBookmarkSelection);
   const addBookmark = useBookmarkEntries()[1];
+  const { autoScroll } = usePlayerSettings()[0];
 
   const { currentTime, isPlaying } = playerState;
   const currentEntry = findCurrentEntry(captionEntries, currentTime);
@@ -201,6 +202,23 @@ function WatchPageOk({
     selection.removeAllRanges();
   }
 
+  function scrollToEntry(entry: CaptionEntry) {
+    const index = captionEntries.findIndex((other) => other === entry);
+    if (index === -1) {
+      return;
+    }
+    // TODO: ugly but works for now
+    const parentSelector = "#watch-page-subtitles-viewer-box > :first-child";
+    const childSelector = `:nth-child(${index + 1})`;
+    const parent = document.querySelector<HTMLElement>(parentSelector)!;
+    const child = parent.querySelector<HTMLElement>(childSelector)!;
+    const hp = parent.clientHeight;
+    const hc = child.clientHeight;
+    const op = parent.offsetTop;
+    const oc = child.offsetTop;
+    parent.scroll({ top: oc - op + hc / 2 - hp / 2, behavior: "smooth" });
+  }
+
   // Setup `playerState` synchronization
   React.useEffect(() => {
     if (!player) return;
@@ -211,8 +229,14 @@ function WatchPageOk({
   React.useEffect(() => {
     if (!player || !isPlaying) return;
     repeatEntry();
-    return;
   }, [currentTime]);
+
+  // Handle auto scroll
+  React.useEffect(() => {
+    if (autoScroll && currentEntry) {
+      scrollToEntry(currentEntry);
+    }
+  }, [autoScroll, currentEntry]);
 
   return (
     <Box

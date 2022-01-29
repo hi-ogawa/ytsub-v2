@@ -2,7 +2,9 @@ import {
   AppBar,
   Box,
   CssBaseline,
+  Divider,
   Drawer,
+  FormControlLabel,
   Icon,
   IconButton,
   InputBase,
@@ -11,7 +13,9 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  ListSubheader,
   Paper,
+  Switch,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -19,6 +23,7 @@ import { memoize } from "lodash";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { usePlayerSettings } from "../utils/storage";
 import { parseVideoId } from "../utils/youtube";
 import { BookmarkListPage } from "./bookmark-list-page";
 import { SettingsPage } from "./settings-page";
@@ -146,6 +151,8 @@ const MENU_ENTRIES: MenuEntry[] = [
 ];
 
 function Menu({ closeDrawer }: { closeDrawer: () => void }) {
+  const [playerSettings, setPlayerSettings] = usePlayerSettings();
+
   return (
     <Box sx={{ width: "200px" }}>
       <List>
@@ -161,6 +168,24 @@ function Menu({ closeDrawer }: { closeDrawer: () => void }) {
             <ListItemText primary={entry.title} />
           </ListItemButton>
         ))}
+        <Divider />
+        <ListSubheader>Player Settings</ListSubheader>
+        <ListItem sx={{ pl: 4 }}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={playerSettings.autoScroll}
+                onChange={(event) =>
+                  setPlayerSettings({
+                    ...playerSettings,
+                    autoScroll: event.target.checked,
+                  })
+                }
+              />
+            }
+            label="Auto Scroll"
+          />
+        </ListItem>
       </List>
     </Box>
   );

@@ -1,7 +1,7 @@
 import { useLocalStorage } from "@rehooks/local-storage";
 import type { LocalStorageReturnValue } from "@rehooks/local-storage/lib/use-localstorage";
 import type { LanguageSetting } from "./language";
-import type { BookmarkEntry, HistoryEntry } from "./types";
+import type { BookmarkEntry, HistoryEntry, PlayerSettings } from "./types";
 
 const PREFIX = "ytsub-v2";
 
@@ -62,4 +62,10 @@ export function useBookmarkEntries(): [
   }
 
   return [entries, add, remove];
+}
+
+export function usePlayerSettings(): LocalStorageReturnValue<PlayerSettings> {
+  return useLocalStorage<PlayerSettings>(toKey("player-settings"), {
+    autoScroll: false,
+  });
 }
