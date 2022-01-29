@@ -38,18 +38,22 @@ export function SubtitlesViewer({
   );
 }
 
-function CaptionEntryComponent({
+export function CaptionEntryComponent({
   entry,
   currentEntry,
   onClickEntryPlay,
   onClickEntryRepeat,
+  onClickEntrySearch,
   playerState,
+  border = true,
 }: {
   entry: CaptionEntry;
   currentEntry: CaptionEntry | undefined;
   onClickEntryPlay: (entry: CaptionEntry, toggle: boolean) => void;
-  onClickEntryRepeat: (entry: CaptionEntry) => void;
+  onClickEntryRepeat?: (entry: CaptionEntry) => void;
+  onClickEntrySearch?: (entry: CaptionEntry) => void;
   playerState: PlayerState;
+  border?: boolean;
 }) {
   const { begin, end, text1, text2 } = entry;
   const timestamp = [begin, end].map(stringifyTimestamp).join(" - ");
@@ -62,7 +66,7 @@ function CaptionEntryComponent({
       className={classnames(
         `
         flex flex-col
-        border border-solid border-gray-200
+        ${border && "border border-solid border-gray-200"}
         ${isCurrentEntryPlaying ? "border-blue-400" : "border-gray-200"}
         ${isCurrentEntry && "bg-gray-100"}
         p-2
@@ -80,13 +84,22 @@ function CaptionEntryComponent({
         "
       >
         <div>{timestamp}</div>
-        {/* TODO: not implemented */}
-        <span
-          className="font-icon hidden text-base leading-5 cursor-pointer"
-          onClick={() => onClickEntryRepeat(entry)}
-        >
-          repeat
-        </span>
+        {onClickEntrySearch && (
+          <span
+            className="font-icon text-base leading-5 cursor-pointer"
+            onClick={() => onClickEntrySearch(entry)}
+          >
+            search
+          </span>
+        )}
+        {onClickEntryRepeat && (
+          <span
+            className="font-icon hidden text-base leading-5 cursor-pointer"
+            onClick={() => onClickEntryRepeat(entry)}
+          >
+            repeat
+          </span>
+        )}
         <span
           className="font-icon text-base leading-5 cursor-pointer"
           onClick={() => onClickEntryPlay(entry, false)}
