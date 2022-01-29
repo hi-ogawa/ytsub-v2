@@ -62,3 +62,7 @@ export interface BookmarkEntry {
   captionEntry: CaptionEntry;
   bookmarkText: string;
 }
+
+export interface PlayerSettings {
+  autoScroll: boolean;
+}
