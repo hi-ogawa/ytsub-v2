@@ -1,12 +1,7 @@
-import { Box, Icon, IconButton, Paper, Typography } from "@mui/material";
 import * as React from "react";
 import { useBookmarkEntries } from "../utils/storage";
 import { BookmarkEntry } from "../utils/types";
-
-// TODO
-// - polish UI
-// - group by watchParameters
-// - open in mini player
+import { Icon } from "./icon";
 
 export function BookmarkListPage() {
   const [entries, _, removeEntry] = useBookmarkEntries();
@@ -16,62 +11,56 @@ export function BookmarkListPage() {
   }
 
   return (
-    <Box
-      sx={{ padding: 1, height: 1, display: "flex", justifyContent: "center" }}
-    >
-      <Paper
-        variant="outlined"
-        square
-        sx={{
-          height: 1,
-          flex: "1 0 auto",
-          maxWidth: "500px",
-          display: "flex",
-          flexDirection: "column",
-        }}
+    <div className="sm:p-4 h-full flex justify-center">
+      <div
+        className="
+          w-full sm:max-w-lg
+          h-full
+          flex flex-col
+          sm:border border-solid border-gray-200
+        "
       >
-        <Box
-          sx={{
-            flex: "0 0 auto",
-            padding: 1.5,
-            backgroundColor: "grey.100",
-          }}
-        >
-          <Typography fontSize={24}>Bookmarks</Typography>
-        </Box>
-        <Box
-          sx={{
-            flex: "1 0 0",
-            overflowY: "auto",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              padding: 1.5,
-              gap: 1,
-            }}
-          >
+        <div className="p-3 flex-none bg-gray-100">
+          <span className="text-xl">Bookmarks</span>
+        </div>
+        <div className="flex-[1_0_0] overflow-y-auto bg-white">
+          <div className="flex flex-col p-2 gap-2">
             {entries.map((entry) => (
-              <Paper
+              <BookmarkEntryComponent
                 key={entry.bookmarkText}
-                square
-                variant="outlined"
-                sx={{ padding: 1, display: "flex", alignItems: "center" }}
-              >
-                <Box sx={{ flex: "1 0 auto" }}>{entry.bookmarkText}</Box>
-                <IconButton
-                  sx={{ flex: "0 0 auto" }}
-                  onClick={() => onRemoveEntry(entry)}
-                >
-                  <Icon>close</Icon>
-                </IconButton>
-              </Paper>
+                entry={entry}
+                onRemoveEntry={onRemoveEntry}
+              />
             ))}
-          </Box>
-        </Box>
-      </Paper>
-    </Box>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function BookmarkEntryComponent({
+  entry,
+  onRemoveEntry,
+}: {
+  entry: BookmarkEntry;
+  onRemoveEntry: React.Dispatch<BookmarkEntry>;
+}) {
+  return (
+    <div
+      className="
+        border border-solid border-gray-200
+        flex items-center
+        p-2 gap-1
+      "
+    >
+      <div className="grow text-sm">{entry.bookmarkText}</div>
+      <Icon
+        className="flex-none text-gray-500 cursor-pointer"
+        onClick={() => onRemoveEntry(entry)}
+      >
+        close
+      </Icon>
+    </div>
   );
 }

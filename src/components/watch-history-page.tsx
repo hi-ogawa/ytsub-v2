@@ -20,20 +20,20 @@ export function WatchHistoryPage() {
   }
 
   return (
-    <div className="p-4 h-full flex justify-center">
+    <div className="sm:p-4 h-full flex justify-center">
       <div
         className="
-          w-full max-w-lg
+          w-full sm:max-w-lg
           h-full
           flex flex-col
-          border border-solid border-gray-200
+          sm:border border-solid border-gray-200
         "
       >
         <div className="p-3 flex-none bg-gray-100">
           <span className="text-xl">History</span>
         </div>
-        <div className="flex-[1_0_0] overflow-y-auto">
-          <div className="flex flex-col p-3 gap-2">
+        <div className="flex-[1_0_0] overflow-y-auto bg-white">
+          <div className="flex flex-col p-2 gap-2">
             {entries.map((entry) => (
               <HistoryEntryComponent
                 key={JSON.stringify(entry.watchParameters)}
@@ -70,7 +70,7 @@ function HistoryEntryComponent({
    */
   return (
     <div
-      className="w-full flex border border-solid border-gray-300"
+      className="w-full flex border border-solid border-gray-200"
       style={{ aspectRatio: "36 / 9" }}
     >
       <div
