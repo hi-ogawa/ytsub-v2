@@ -4,7 +4,6 @@ import type { Dispatch } from "react";
 import { useHistoryEntries } from "../utils/storage";
 import { HistoryEntry } from "../utils/types";
 import { useNavigateCustom } from "../utils/url";
-import { Icon } from "./icon";
 
 export function WatchHistoryPage() {
   const [entries, addEntry, removeEntry] = useHistoryEntries();
@@ -90,7 +89,7 @@ function HistoryEntryComponent({
           className="absolute right-1 bottom-1 cursor-pointer flex"
           onClick={() => onRemoveEntry(entry)}
         >
-          <Icon>close</Icon>
+          <span className="font-icon">close</span>
         </div>
       </div>
     </div>

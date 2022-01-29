@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useBookmarkEntries } from "../utils/storage";
 import { BookmarkEntry } from "../utils/types";
-import { Icon } from "./icon";
 
 export function BookmarkListPage() {
   const [entries, _, removeEntry] = useBookmarkEntries();
@@ -55,12 +54,12 @@ export function BookmarkEntryComponent({
       "
     >
       <div className="grow text-sm">{entry.bookmarkText}</div>
-      <Icon
-        className="flex-none text-gray-500 cursor-pointer"
+      <span
+        className="font-icon flex-none text-gray-500 cursor-pointer"
         onClick={() => onRemoveEntry(entry)}
       >
         close
-      </Icon>
+      </span>
     </div>
   );
 }

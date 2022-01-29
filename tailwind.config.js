@@ -1,7 +1,9 @@
 module.exports = {
   content: ["./src/**/*.tsx"],
   theme: {
-    extend: {},
+    fontFamily: {
+      icon: ["Material Icons"],
+    },
   },
   plugins: [require("@tailwindcss/line-clamp")],
 };

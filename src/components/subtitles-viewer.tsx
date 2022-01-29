@@ -3,7 +3,6 @@ import classnames from "classnames";
 import * as React from "react";
 import { CaptionEntry } from "../utils/types";
 import { PlayerState, stringifyTimestamp } from "../utils/youtube";
-import { Icon } from "./icon";
 import { BOOKMARKABLE_CLASSNAME } from "./misc";
 
 export function SubtitlesViewer({
@@ -82,18 +81,18 @@ function CaptionEntryComponent({
       >
         <div>{timestamp}</div>
         {/* TODO: not implemented */}
-        <Icon
-          className="hidden text-base leading-5 cursor-pointer"
+        <span
+          className="font-icon hidden text-base leading-5 cursor-pointer"
           onClick={() => onClickEntryRepeat(entry)}
         >
           repeat
-        </Icon>
-        <Icon
-          className="text-base leading-5 cursor-pointer"
+        </span>
+        <span
+          className="font-icon text-base leading-5 cursor-pointer"
           onClick={() => onClickEntryPlay(entry, false)}
         >
           play_circle_outline
-        </Icon>
+        </span>
       </div>
       <div
         className="flex text-gray-700 cursor-pointer"
