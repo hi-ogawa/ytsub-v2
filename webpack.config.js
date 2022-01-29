@@ -7,6 +7,7 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 const MODE = process.env.WEBPACK_MODE ?? "development";
 const PRODUCTION = MODE === "production";
 
+/** @type {import("webpack").Configuration} */
 module.exports = {
   mode: MODE,
   devtool: "inline-source-map",
@@ -37,6 +38,21 @@ module.exports = {
               getCustomTransformers: () => ({
                 before: PRODUCTION ? [] : [ReactRefreshTypeScript()],
               }),
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: ["tailwindcss"],
+              },
             },
           },
         ],
