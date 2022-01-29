@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Fab, Icon, Paper, Zoom } from "@mui/material";
+import { Box, CircularProgress, Fab, Icon, Zoom } from "@mui/material";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate } from "react-router-dom";
@@ -17,11 +17,9 @@ import {
   captionConfigToUrl,
   DEFAULT_PLAYER_STATE,
   Player,
-  PlayerState,
-  stringifyTimestamp,
 } from "../utils/youtube";
-
-// TODO: Split components for better react refresh
+import { BOOKMARKABLE_CLASSNAME } from "./misc";
+import { SubtitlesViewer } from "./subtitles-viewer";
 
 export const WatchPage = withHook3(
   (): Result<WatchParameters, "error" | "loading"> => {
@@ -121,7 +119,6 @@ function useSelection(filter?: (selection: Selection) => boolean) {
 }
 
 const PLAYER_STATE_SYNC_INTERVAL = 200;
-const BOOKMARKABLE_CLASSNAME = "bookmarkable";
 
 function isBookmarkSelection(selection: Selection): boolean {
   return !!(
@@ -161,6 +158,7 @@ function WatchPageOk({
   const currentEntry = findCurrentEntry(captionEntries, currentTime);
 
   function setupPlayerStateSync(player: Player): () => void {
+    // TODO: use youtube iframe api's `onStateChange` to monitor `isPlaying`
     const unsubscribe = setInterval(() => {
       setPlayerState(player.getState());
     }, PLAYER_STATE_SYNC_INTERVAL);
@@ -380,140 +378,4 @@ export function PlayerComponent({
       </Box>
     </Box>
   );
-}
-
-function SubtitlesViewer({
-  captionEntries,
-  currentEntry,
-  onClickEntryPlay,
-  onClickEntryRepeat,
-  playerState,
-}: {
-  captionEntries: CaptionEntry[];
-  currentEntry: CaptionEntry | undefined;
-  onClickEntryPlay: (entry: CaptionEntry, toggle: boolean) => void;
-  onClickEntryRepeat: (entry: CaptionEntry) => void;
-  playerState: PlayerState;
-}) {
-  return (
-    <Paper
-      variant="outlined"
-      square
-      sx={{ display: "flex", flexDirection: "column", padding: 0.8, gap: 0.8 }}
-    >
-      {captionEntries.map((e) => (
-        <CaptionEntryComponent
-          key={toCaptionEntryId(e)}
-          entry={e}
-          currentEntry={currentEntry}
-          onClickEntryPlay={onClickEntryPlay}
-          onClickEntryRepeat={onClickEntryRepeat}
-          playerState={playerState}
-        />
-      ))}
-    </Paper>
-  );
-}
-
-function CaptionEntryComponent({
-  entry,
-  currentEntry,
-  onClickEntryPlay,
-  onClickEntryRepeat,
-  playerState,
-}: {
-  entry: CaptionEntry;
-  currentEntry: CaptionEntry | undefined;
-  onClickEntryPlay: (entry: CaptionEntry, toggle: boolean) => void;
-  onClickEntryRepeat: (entry: CaptionEntry) => void;
-  playerState: PlayerState;
-}) {
-  const { begin, end, text1, text2 } = entry;
-  const timestamp = [begin, end].map(stringifyTimestamp).join(" - ");
-  const { isPlaying } = playerState;
-  const isCurrentEntry = entry === currentEntry;
-  const isCurrentEntryPlaying = isCurrentEntry && isPlaying;
-
-  return (
-    <Paper
-      variant="outlined"
-      square
-      sx={[
-        {
-          display: "flex",
-          flexDirection: "column",
-          padding: 0.8,
-          fontSize: 12,
-        },
-        isCurrentEntry && {
-          backgroundColor: "grey.100",
-        },
-        isCurrentEntryPlaying && {
-          marginLeft: "-1px",
-          borderLeftWidth: "2px",
-          borderLeftStyle: "solid",
-          borderLeftColor: "primary.light",
-        },
-      ]}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "end",
-          alignItems: "center",
-          gap: 0.8,
-        }}
-      >
-        <Box sx={{ fontSize: 12, color: "grey.700" }}>{timestamp}</Box>
-        <Box
-          sx={{ fontSize: 16, color: "grey.500", display: "flex", gap: 0.8 }}
-        >
-          {/* TODO: implement "repeat" action */}
-          <Icon
-            sx={{ fontSize: 16, display: "none", cursor: "pointer" }}
-            onClick={() => onClickEntryRepeat(entry)}
-          >
-            repeat
-          </Icon>
-          <Icon
-            sx={[
-              { fontSize: 16, cursor: "pointer" },
-              isCurrentEntryPlaying && {
-                color: "primary.light",
-              },
-            ]}
-            onClick={() => onClickEntryPlay(entry, false)}
-          >
-            play_circle_outline
-          </Icon>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          "> *": {
-            flex: "1 1 50%",
-            "&:first-of-type": {
-              paddingRight: 0.8,
-              borderRightWidth: "1px",
-              borderRightStyle: "solid",
-              borderRightColor: "grey.300",
-            },
-            "&:not(:first-of-type)": {
-              paddingLeft: 0.8,
-            },
-          },
-          cursor: "pointer",
-        }}
-        onClick={() => onClickEntryPlay(entry, true)}
-      >
-        <Box className={BOOKMARKABLE_CLASSNAME}>{text1}</Box>
-        <Box className={BOOKMARKABLE_CLASSNAME}>{text2}</Box>
-      </Box>
-    </Paper>
-  );
-}
-
-function toCaptionEntryId({ begin, end }: CaptionEntry): string {
-  return `${begin}--${end}`;
 }
