@@ -18,7 +18,7 @@ import {
   DEFAULT_PLAYER_STATE,
   Player,
 } from "../utils/youtube";
-import { BOOKMARKABLE_CLASSNAME } from "./misc";
+import { BOOKMARKABLE_CLASSNAME, PLAYER_STATE_SYNC_INTERVAL } from "./misc";
 import { SubtitlesViewer } from "./subtitles-viewer";
 
 export const WatchPage = withHook3(
@@ -117,8 +117,6 @@ function useSelection(filter?: (selection: Selection) => boolean) {
   }, []);
   return selection;
 }
-
-const PLAYER_STATE_SYNC_INTERVAL = 200;
 
 function isBookmarkSelection(selection: Selection): boolean {
   return !!(
