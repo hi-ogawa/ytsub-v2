@@ -41,24 +41,21 @@ function Header({ openMenu }: { openMenu: () => void }) {
     navigate(`/setup/${videoId}`);
   }
 
-  // TODO: Search box is too wide on mobile layout and it causes horizontal scroll
   return (
     <AppBar position="static">
       <Toolbar variant="dense">
-        <Box sx={{ flex: "1 0 auto", display: "flex", alignItems: "center" }}>
+        <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
           <IconButton
             color="inherit"
-            sx={{ marginRight: 3 }}
+            sx={{ marginRight: 2 }}
             onClick={openMenu}
           >
             <Icon>menu</Icon>
           </IconButton>
-          <Box
-            sx={{ flex: "1 0 auto", display: "flex", justifyContent: "center" }}
-          >
+          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
             <Box
               sx={{
-                flex: "1 0 auto",
+                flexGrow: 1,
                 maxWidth: "400px",
                 display: "flex",
                 borderRadius: 1,
@@ -80,7 +77,7 @@ function Header({ openMenu }: { openMenu: () => void }) {
                 <Icon>search</Icon>
               </Box>
               <InputBase
-                sx={{ color: "inherit", flex: "1 0 auto" }}
+                sx={{ color: "inherit", flexGrow: 1 }}
                 placeholder="Enter URL or ID"
                 value={input}
                 onChange={({ target: { value } }) => setInput(value)}
