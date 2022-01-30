@@ -150,6 +150,13 @@ function findSelectionEntryIndex(selection: Selection): number {
   return index;
 }
 
+function toggleArrayInclusion<T>(container: T[], element: T): T[] {
+  if (container.includes(element)) {
+    return container.filter((other) => other !== element);
+  }
+  return [...container, element];
+}
+
 function WatchPageOk({
   data: [watchParameters, _, captionEntries],
 }: {
@@ -161,6 +168,9 @@ function WatchPageOk({
   const selection = useSelection(isBookmarkSelection);
   const addBookmark = useBookmarkEntries()[1];
   const { autoScroll } = usePlayerSettings()[0];
+  const [repeatingEntries, setRepeatingEntries] = React.useState<
+    CaptionEntry[]
+  >([]);
 
   const { currentTime, isPlaying } = playerState;
   const currentEntry = findCurrentEntry(captionEntries, currentTime);
@@ -173,8 +183,15 @@ function WatchPageOk({
     return () => clearInterval(unsubscribe);
   }
 
-  // TODO
-  function repeatEntry() {}
+  function repeatEntry() {
+    if (!player) return;
+    if (repeatingEntries.length === 0) return;
+    const begin = Math.min(...repeatingEntries.map((entry) => entry.begin));
+    const end = Math.max(...repeatingEntries.map((entry) => entry.end));
+    if (currentTime < begin || end < currentTime) {
+      player.seekTo(begin);
+    }
+  }
 
   function onClickEntryPlay(entry: CaptionEntry, toggle: boolean) {
     if (!player) return;
@@ -194,8 +211,9 @@ function WatchPageOk({
     }
   }
 
-  // TODO
-  function onClickEntryRepeat() {}
+  function onClickEntryRepeat(entry: CaptionEntry) {
+    setRepeatingEntries(toggleArrayInclusion(repeatingEntries, entry));
+  }
 
   function onClickCloseBookmark() {
     if (!selection) return;
@@ -236,7 +254,6 @@ function WatchPageOk({
 
   // Handle repeating entry
   React.useEffect(() => {
-    if (!player || !isPlaying) return;
     repeatEntry();
   }, [currentTime]);
 
@@ -302,29 +319,20 @@ function WatchPageOk({
         <SubtitlesViewer
           captionEntries={captionEntries}
           currentEntry={currentEntry}
+          repeatingEntries={repeatingEntries}
           onClickEntryPlay={onClickEntryPlay}
           onClickEntryRepeat={onClickEntryRepeat}
           playerState={playerState}
         />
         <Zoom in={!!selection}>
-          <Box
-            sx={{
-              position: "absolute",
-              padding: 1.5,
-              paddingTop: 0,
-              bottom: 0,
-              right: 0,
-              display: "flex",
-              gap: 1.5,
-            }}
-          >
+          <div className="absolute p-3 pt-0 bottom-0 right-0 flex gap-3">
             <Fab color="secondary" onClick={onClickCloseBookmark}>
               <Icon>close</Icon>
             </Fab>
             <Fab color="primary" onClick={onClickAddBookmark}>
               <Icon>bookmark</Icon>
             </Fab>
-          </Box>
+          </div>
         </Zoom>
       </Box>
     </Box>

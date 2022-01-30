@@ -8,12 +8,14 @@ import { BOOKMARKABLE_CLASSNAME } from "./misc";
 export function SubtitlesViewer({
   captionEntries,
   currentEntry,
+  repeatingEntries,
   onClickEntryPlay,
   onClickEntryRepeat,
   playerState,
 }: {
   captionEntries: CaptionEntry[];
   currentEntry: CaptionEntry | undefined;
+  repeatingEntries: CaptionEntry[];
   onClickEntryPlay: (entry: CaptionEntry, toggle: boolean) => void;
   onClickEntryRepeat: (entry: CaptionEntry) => void;
   playerState: PlayerState;
@@ -28,7 +30,8 @@ export function SubtitlesViewer({
         <CaptionEntryComponent
           key={toCaptionEntryId(e)}
           entry={e}
-          currentEntry={currentEntry}
+          isCurrentEntry={currentEntry === e}
+          isRepeating={repeatingEntries.includes(e)}
           onClickEntryPlay={onClickEntryPlay}
           onClickEntryRepeat={onClickEntryRepeat}
           playerState={playerState}
@@ -40,7 +43,8 @@ export function SubtitlesViewer({
 
 export function CaptionEntryComponent({
   entry,
-  currentEntry,
+  isCurrentEntry,
+  isRepeating,
   onClickEntryPlay,
   onClickEntryRepeat,
   onClickEntrySearch,
@@ -48,9 +52,10 @@ export function CaptionEntryComponent({
   border = true,
 }: {
   entry: CaptionEntry;
-  currentEntry: CaptionEntry | undefined;
+  isCurrentEntry: boolean;
+  isRepeating: boolean;
   onClickEntryPlay: (entry: CaptionEntry, toggle: boolean) => void;
-  onClickEntryRepeat?: (entry: CaptionEntry) => void;
+  onClickEntryRepeat: (entry: CaptionEntry) => void;
   onClickEntrySearch?: (entry: CaptionEntry) => void;
   playerState: PlayerState;
   border?: boolean;
@@ -58,7 +63,6 @@ export function CaptionEntryComponent({
   const { begin, end, text1, text2 } = entry;
   const timestamp = [begin, end].map(stringifyTimestamp).join(" - ");
   const { isPlaying } = playerState;
-  const isCurrentEntry = entry === currentEntry;
   const isCurrentEntryPlaying = isCurrentEntry && isPlaying;
 
   return (
@@ -94,14 +98,18 @@ export function CaptionEntryComponent({
         )}
         {onClickEntryRepeat && (
           <span
-            className="font-icon hidden text-base leading-5 cursor-pointer"
+            className={`font-icon text-base leading-5 cursor-pointer ${
+              isRepeating && "text-blue-600"
+            }`}
             onClick={() => onClickEntryRepeat(entry)}
           >
             repeat
           </span>
         )}
         <span
-          className="font-icon text-base leading-5 cursor-pointer"
+          className={`font-icon text-base leading-5 cursor-pointer ${
+            isCurrentEntryPlaying && "text-blue-600"
+          }`}
           onClick={() => onClickEntryPlay(entry, false)}
         >
           play_circle_outline
