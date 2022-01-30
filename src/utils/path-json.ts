@@ -1,10 +1,10 @@
 import * as assert from "./assert";
 
-type Primitive = null | boolean | number | string | {} | [];
-type Key = string | number;
-type PathJson = { path: Key[]; primitive: Primitive }[];
+export type Primitive = null | boolean | number | string | {} | [];
+export type Key = string | number;
+export type PathJson = { path: Key[]; primitive: Primitive }[];
 
-function isPrimitive(data: unknown): data is Primitive {
+export function isPrimitive(data: unknown): data is Primitive {
   if (
     data === null ||
     typeof data === "boolean" ||
