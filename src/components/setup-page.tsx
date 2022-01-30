@@ -12,13 +12,15 @@ import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { Err, Ok } from "ts-results";
-import { useVideoMetadata } from "../utils/hooks";
+import { findDemoEntry } from "../utils/demo-entries";
+import { toDemoDataOptions, useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
 import { useHistoryEntries, useLanguageSetting } from "../utils/storage";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
 import { useNavigateCustom, useSearchParamsCustom } from "../utils/url";
 import { withHook } from "../utils/with-hook";
 import { findCaptionConfig } from "../utils/youtube";
+// import {}
 
 export const SetupPage = withHook(
   () => {
@@ -47,7 +49,6 @@ function SetupPageOk({ data: videoId }: { data: string }) {
   const [caption2, setCaption2] = React.useState<CaptionConfig>();
   const addHistoryEntry = useHistoryEntries()[1];
   const watchParameters = useSearchParamsCustom<WatchParameters>();
-
   const {
     data: videoMetadata,
     isSuccess,
@@ -58,6 +59,9 @@ function SetupPageOk({ data: videoId }: { data: string }) {
       console.error(error);
       enqueueSnackbar("Failed to load captions data");
     },
+    ...toDemoDataOptions(
+      watchParameters.ok && findDemoEntry(watchParameters.val)?.videoMetadata
+    ),
   });
 
   React.useEffect(() => {

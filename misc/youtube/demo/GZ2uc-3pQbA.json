@@ -1,0 +1,2709 @@
+{
+  "watchParameters": {
+    "videoId": "GZ2uc-3pQbA",
+    "captions": [
+      {
+        "id": ".ru"
+      },
+      {
+        "id": ".ru",
+        "translation": "en"
+      }
+    ]
+  },
+  "videoMetadata": {
+    "playabilityStatus": {
+      "status": "OK",
+      "playableInEmbed": true,
+      "miniplayer": {
+        "miniplayerRenderer": {
+          "playbackMode": "PLAYBACK_MODE_ALLOW"
+        }
+      },
+      "contextParams": "Q0FFU0FnZ0M="
+    },
+    "videoDetails": {
+      "videoId": "GZ2uc-3pQbA",
+      "title": "Russian Conversations 66. Why listening to podcasts? Russian with Dasha",
+      "lengthSeconds": "953",
+      "keywords": [
+        "how to learn Russian",
+        "how to speak Russian",
+        "how to understand Russian",
+        "Russian for foreigners",
+        "Russian with Anastasia",
+        "Russian Conversations",
+        "уроки русского",
+        "как учить русский"
+      ],
+      "channelId": "UCtZ7CepLxk_dSbsbRFgPaFw",
+      "isOwnerViewing": false,
+      "shortDescription": "PDF script for this video: https://www.patreon.com/posts/56653465\nVocabulary list with translations: https://www.patreon.com/posts/56822497\nDasha's channel: https://www.youtube.com/russianwithdasha\nDasha's Podcast: https://anchor.fm/russianwithdasha\nRussian Twist Podcast: https://anchor.fm/russian-twist-podcast\nPodcasts Dasha mentions in the video (for Russian learners): https://www.russianwithdasha.com/post/russian-podcasts-for-beginners\n\nJoin this channel to get access to perks:\nhttps://www.youtube.com/channel/UCtZ7CepLxk_dSbsbRFgPaFw/join\n\n#RussianConversations #RussianwithAnastasia #RussianLanguageLessons",
+      "isCrawlable": true,
+      "thumbnail": {
+        "thumbnails": [
+          {
+            "url": "https://i.ytimg.com/vi/GZ2uc-3pQbA/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLC6qlff0S2sZ8qNgDehHD506PexRg",
+            "width": 168,
+            "height": 94
+          },
+          {
+            "url": "https://i.ytimg.com/vi/GZ2uc-3pQbA/hqdefault.jpg?sqp=-oaymwEiCMQBEG5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLA5aNvyncn6CztEK5LhJjPDAQKPRw",
+            "width": 196,
+            "height": 110
+          },
+          {
+            "url": "https://i.ytimg.com/vi/GZ2uc-3pQbA/hqdefault.jpg?sqp=-oaymwEjCPYBEIoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLB6VHG6EHMgrJbzMhJQyXvdGriplQ",
+            "width": 246,
+            "height": 138
+          },
+          {
+            "url": "https://i.ytimg.com/vi/GZ2uc-3pQbA/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDD7JGqtBlEbQypQk2sSaOVwJI9pA",
+            "width": 336,
+            "height": 188
+          },
+          {
+            "url": "https://i.ytimg.com/vi/GZ2uc-3pQbA/maxresdefault.jpg",
+            "width": 1920,
+            "height": 1080
+          }
+        ]
+      },
+      "allowRatings": true,
+      "viewCount": "5446",
+      "author": "Russian with Anastasia",
+      "isPrivate": false,
+      "isUnpluggedCorpus": false,
+      "isLiveContent": false
+    },
+    "captions": {
+      "playerCaptionsRenderer": {
+        "baseUrl": "https://www.youtube.com/api/timedtext?v=GZ2uc-3pQbA&asr_langs=de,en,es,fr,id,it,ja,ko,nl,pt,ru,tr,vi&caps=asr&exp=xftt,xctw&xoaf=5&hl=en&ip=0.0.0.0&ipbits=0&expire=1643545779&sparams=ip,ipbits,expire,v,asr_langs,caps,exp,xoaf&signature=73134BED60A92D5A68AE108ED3C8EC562ED7CC86.1CDDCB08551B87DF15612753DC944394D368BAAC&key=yt8",
+        "visibility": "UNKNOWN"
+      },
+      "playerCaptionsTracklistRenderer": {
+        "captionTracks": [
+          {
+            "baseUrl": "https://www.youtube.com/api/timedtext?v=GZ2uc-3pQbA&asr_langs=de,en,es,fr,id,it,ja,ko,nl,pt,ru,tr,vi&caps=asr&exp=xftt,xctw&xoaf=5&hl=en&ip=0.0.0.0&ipbits=0&expire=1643545779&sparams=ip,ipbits,expire,v,asr_langs,caps,exp,xoaf&signature=3C738D40D816895F014D83F6650913B7197F470D.6C72C702E281574C595C8DD776CC548192BE128B&key=yt8&lang=ru",
+            "name": {
+              "simpleText": "Russian"
+            },
+            "vssId": ".ru",
+            "languageCode": "ru",
+            "isTranslatable": true
+          }
+        ],
+        "audioTracks": [
+          {
+            "captionTrackIndices": [
+              0
+            ]
+          }
+        ],
+        "translationLanguages": [
+          {
+            "languageCode": "af",
+            "languageName": {
+              "simpleText": "Afrikaans"
+            }
+          },
+          {
+            "languageCode": "sq",
+            "languageName": {
+              "simpleText": "Albanian"
+            }
+          },
+          {
+            "languageCode": "am",
+            "languageName": {
+              "simpleText": "Amharic"
+            }
+          },
+          {
+            "languageCode": "ar",
+            "languageName": {
+              "simpleText": "Arabic"
+            }
+          },
+          {
+            "languageCode": "hy",
+            "languageName": {
+              "simpleText": "Armenian"
+            }
+          },
+          {
+            "languageCode": "az",
+            "languageName": {
+              "simpleText": "Azerbaijani"
+            }
+          },
+          {
+            "languageCode": "bn",
+            "languageName": {
+              "simpleText": "Bangla"
+            }
+          },
+          {
+            "languageCode": "eu",
+            "languageName": {
+              "simpleText": "Basque"
+            }
+          },
+          {
+            "languageCode": "be",
+            "languageName": {
+              "simpleText": "Belarusian"
+            }
+          },
+          {
+            "languageCode": "bs",
+            "languageName": {
+              "simpleText": "Bosnian"
+            }
+          },
+          {
+            "languageCode": "bg",
+            "languageName": {
+              "simpleText": "Bulgarian"
+            }
+          },
+          {
+            "languageCode": "my",
+            "languageName": {
+              "simpleText": "Burmese"
+            }
+          },
+          {
+            "languageCode": "ca",
+            "languageName": {
+              "simpleText": "Catalan"
+            }
+          },
+          {
+            "languageCode": "ceb",
+            "languageName": {
+              "simpleText": "Cebuano"
+            }
+          },
+          {
+            "languageCode": "zh-Hans",
+            "languageName": {
+              "simpleText": "Chinese (Simplified)"
+            }
+          },
+          {
+            "languageCode": "zh-Hant",
+            "languageName": {
+              "simpleText": "Chinese (Traditional)"
+            }
+          },
+          {
+            "languageCode": "co",
+            "languageName": {
+              "simpleText": "Corsican"
+            }
+          },
+          {
+            "languageCode": "hr",
+            "languageName": {
+              "simpleText": "Croatian"
+            }
+          },
+          {
+            "languageCode": "cs",
+            "languageName": {
+              "simpleText": "Czech"
+            }
+          },
+          {
+            "languageCode": "da",
+            "languageName": {
+              "simpleText": "Danish"
+            }
+          },
+          {
+            "languageCode": "nl",
+            "languageName": {
+              "simpleText": "Dutch"
+            }
+          },
+          {
+            "languageCode": "en",
+            "languageName": {
+              "simpleText": "English"
+            }
+          },
+          {
+            "languageCode": "eo",
+            "languageName": {
+              "simpleText": "Esperanto"
+            }
+          },
+          {
+            "languageCode": "et",
+            "languageName": {
+              "simpleText": "Estonian"
+            }
+          },
+          {
+            "languageCode": "fil",
+            "languageName": {
+              "simpleText": "Filipino"
+            }
+          },
+          {
+            "languageCode": "fi",
+            "languageName": {
+              "simpleText": "Finnish"
+            }
+          },
+          {
+            "languageCode": "fr",
+            "languageName": {
+              "simpleText": "French"
+            }
+          },
+          {
+            "languageCode": "gl",
+            "languageName": {
+              "simpleText": "Galician"
+            }
+          },
+          {
+            "languageCode": "ka",
+            "languageName": {
+              "simpleText": "Georgian"
+            }
+          },
+          {
+            "languageCode": "de",
+            "languageName": {
+              "simpleText": "German"
+            }
+          },
+          {
+            "languageCode": "el",
+            "languageName": {
+              "simpleText": "Greek"
+            }
+          },
+          {
+            "languageCode": "gu",
+            "languageName": {
+              "simpleText": "Gujarati"
+            }
+          },
+          {
+            "languageCode": "ht",
+            "languageName": {
+              "simpleText": "Haitian Creole"
+            }
+          },
+          {
+            "languageCode": "ha",
+            "languageName": {
+              "simpleText": "Hausa"
+            }
+          },
+          {
+            "languageCode": "haw",
+            "languageName": {
+              "simpleText": "Hawaiian"
+            }
+          },
+          {
+            "languageCode": "iw",
+            "languageName": {
+              "simpleText": "Hebrew"
+            }
+          },
+          {
+            "languageCode": "hi",
+            "languageName": {
+              "simpleText": "Hindi"
+            }
+          },
+          {
+            "languageCode": "hmn",
+            "languageName": {
+              "simpleText": "Hmong"
+            }
+          },
+          {
+            "languageCode": "hu",
+            "languageName": {
+              "simpleText": "Hungarian"
+            }
+          },
+          {
+            "languageCode": "is",
+            "languageName": {
+              "simpleText": "Icelandic"
+            }
+          },
+          {
+            "languageCode": "ig",
+            "languageName": {
+              "simpleText": "Igbo"
+            }
+          },
+          {
+            "languageCode": "id",
+            "languageName": {
+              "simpleText": "Indonesian"
+            }
+          },
+          {
+            "languageCode": "ga",
+            "languageName": {
+              "simpleText": "Irish"
+            }
+          },
+          {
+            "languageCode": "it",
+            "languageName": {
+              "simpleText": "Italian"
+            }
+          },
+          {
+            "languageCode": "ja",
+            "languageName": {
+              "simpleText": "Japanese"
+            }
+          },
+          {
+            "languageCode": "jv",
+            "languageName": {
+              "simpleText": "Javanese"
+            }
+          },
+          {
+            "languageCode": "kn",
+            "languageName": {
+              "simpleText": "Kannada"
+            }
+          },
+          {
+            "languageCode": "kk",
+            "languageName": {
+              "simpleText": "Kazakh"
+            }
+          },
+          {
+            "languageCode": "km",
+            "languageName": {
+              "simpleText": "Khmer"
+            }
+          },
+          {
+            "languageCode": "rw",
+            "languageName": {
+              "simpleText": "Kinyarwanda"
+            }
+          },
+          {
+            "languageCode": "ko",
+            "languageName": {
+              "simpleText": "Korean"
+            }
+          },
+          {
+            "languageCode": "ku",
+            "languageName": {
+              "simpleText": "Kurdish"
+            }
+          },
+          {
+            "languageCode": "ky",
+            "languageName": {
+              "simpleText": "Kyrgyz"
+            }
+          },
+          {
+            "languageCode": "lo",
+            "languageName": {
+              "simpleText": "Lao"
+            }
+          },
+          {
+            "languageCode": "la",
+            "languageName": {
+              "simpleText": "Latin"
+            }
+          },
+          {
+            "languageCode": "lv",
+            "languageName": {
+              "simpleText": "Latvian"
+            }
+          },
+          {
+            "languageCode": "lt",
+            "languageName": {
+              "simpleText": "Lithuanian"
+            }
+          },
+          {
+            "languageCode": "lb",
+            "languageName": {
+              "simpleText": "Luxembourgish"
+            }
+          },
+          {
+            "languageCode": "mk",
+            "languageName": {
+              "simpleText": "Macedonian"
+            }
+          },
+          {
+            "languageCode": "mg",
+            "languageName": {
+              "simpleText": "Malagasy"
+            }
+          },
+          {
+            "languageCode": "ms",
+            "languageName": {
+              "simpleText": "Malay"
+            }
+          },
+          {
+            "languageCode": "ml",
+            "languageName": {
+              "simpleText": "Malayalam"
+            }
+          },
+          {
+            "languageCode": "mt",
+            "languageName": {
+              "simpleText": "Maltese"
+            }
+          },
+          {
+            "languageCode": "mi",
+            "languageName": {
+              "simpleText": "Māori"
+            }
+          },
+          {
+            "languageCode": "mr",
+            "languageName": {
+              "simpleText": "Marathi"
+            }
+          },
+          {
+            "languageCode": "mn",
+            "languageName": {
+              "simpleText": "Mongolian"
+            }
+          },
+          {
+            "languageCode": "ne",
+            "languageName": {
+              "simpleText": "Nepali"
+            }
+          },
+          {
+            "languageCode": "no",
+            "languageName": {
+              "simpleText": "Norwegian"
+            }
+          },
+          {
+            "languageCode": "ny",
+            "languageName": {
+              "simpleText": "Nyanja"
+            }
+          },
+          {
+            "languageCode": "or",
+            "languageName": {
+              "simpleText": "Odia"
+            }
+          },
+          {
+            "languageCode": "ps",
+            "languageName": {
+              "simpleText": "Pashto"
+            }
+          },
+          {
+            "languageCode": "fa",
+            "languageName": {
+              "simpleText": "Persian"
+            }
+          },
+          {
+            "languageCode": "pl",
+            "languageName": {
+              "simpleText": "Polish"
+            }
+          },
+          {
+            "languageCode": "pt",
+            "languageName": {
+              "simpleText": "Portuguese"
+            }
+          },
+          {
+            "languageCode": "pa",
+            "languageName": {
+              "simpleText": "Punjabi"
+            }
+          },
+          {
+            "languageCode": "ro",
+            "languageName": {
+              "simpleText": "Romanian"
+            }
+          },
+          {
+            "languageCode": "ru",
+            "languageName": {
+              "simpleText": "Russian"
+            }
+          },
+          {
+            "languageCode": "sm",
+            "languageName": {
+              "simpleText": "Samoan"
+            }
+          },
+          {
+            "languageCode": "gd",
+            "languageName": {
+              "simpleText": "Scottish Gaelic"
+            }
+          },
+          {
+            "languageCode": "sr",
+            "languageName": {
+              "simpleText": "Serbian"
+            }
+          },
+          {
+            "languageCode": "sn",
+            "languageName": {
+              "simpleText": "Shona"
+            }
+          },
+          {
+            "languageCode": "sd",
+            "languageName": {
+              "simpleText": "Sindhi"
+            }
+          },
+          {
+            "languageCode": "si",
+            "languageName": {
+              "simpleText": "Sinhala"
+            }
+          },
+          {
+            "languageCode": "sk",
+            "languageName": {
+              "simpleText": "Slovak"
+            }
+          },
+          {
+            "languageCode": "sl",
+            "languageName": {
+              "simpleText": "Slovenian"
+            }
+          },
+          {
+            "languageCode": "so",
+            "languageName": {
+              "simpleText": "Somali"
+            }
+          },
+          {
+            "languageCode": "st",
+            "languageName": {
+              "simpleText": "Southern Sotho"
+            }
+          },
+          {
+            "languageCode": "es",
+            "languageName": {
+              "simpleText": "Spanish"
+            }
+          },
+          {
+            "languageCode": "su",
+            "languageName": {
+              "simpleText": "Sundanese"
+            }
+          },
+          {
+            "languageCode": "sw",
+            "languageName": {
+              "simpleText": "Swahili"
+            }
+          },
+          {
+            "languageCode": "sv",
+            "languageName": {
+              "simpleText": "Swedish"
+            }
+          },
+          {
+            "languageCode": "tg",
+            "languageName": {
+              "simpleText": "Tajik"
+            }
+          },
+          {
+            "languageCode": "ta",
+            "languageName": {
+              "simpleText": "Tamil"
+            }
+          },
+          {
+            "languageCode": "tt",
+            "languageName": {
+              "simpleText": "Tatar"
+            }
+          },
+          {
+            "languageCode": "te",
+            "languageName": {
+              "simpleText": "Telugu"
+            }
+          },
+          {
+            "languageCode": "th",
+            "languageName": {
+              "simpleText": "Thai"
+            }
+          },
+          {
+            "languageCode": "tr",
+            "languageName": {
+              "simpleText": "Turkish"
+            }
+          },
+          {
+            "languageCode": "tk",
+            "languageName": {
+              "simpleText": "Turkmen"
+            }
+          },
+          {
+            "languageCode": "uk",
+            "languageName": {
+              "simpleText": "Ukrainian"
+            }
+          },
+          {
+            "languageCode": "ur",
+            "languageName": {
+              "simpleText": "Urdu"
+            }
+          },
+          {
+            "languageCode": "ug",
+            "languageName": {
+              "simpleText": "Uyghur"
+            }
+          },
+          {
+            "languageCode": "uz",
+            "languageName": {
+              "simpleText": "Uzbek"
+            }
+          },
+          {
+            "languageCode": "vi",
+            "languageName": {
+              "simpleText": "Vietnamese"
+            }
+          },
+          {
+            "languageCode": "cy",
+            "languageName": {
+              "simpleText": "Welsh"
+            }
+          },
+          {
+            "languageCode": "fy",
+            "languageName": {
+              "simpleText": "Western Frisian"
+            }
+          },
+          {
+            "languageCode": "xh",
+            "languageName": {
+              "simpleText": "Xhosa"
+            }
+          },
+          {
+            "languageCode": "yi",
+            "languageName": {
+              "simpleText": "Yiddish"
+            }
+          },
+          {
+            "languageCode": "yo",
+            "languageName": {
+              "simpleText": "Yoruba"
+            }
+          },
+          {
+            "languageCode": "zu",
+            "languageName": {
+              "simpleText": "Zulu"
+            }
+          }
+        ],
+        "defaultAudioTrackIndex": 0
+      }
+    }
+  },
+  "captionEntries": [
+    {
+      "begin": 0.16,
+      "end": 1.21,
+      "text1": "Всем привет!",
+      "text2": "Hello everyone! "
+    },
+    {
+      "begin": 1.21,
+      "end": 3.03,
+      "text1": "Добро пожаловать на мой канал.",
+      "text2": "Welcome to my channel.  "
+    },
+    {
+      "begin": 3.03,
+      "end": 6.069,
+      "text1": "Сегодня у меня прекрасная гостья Даша.",
+      "text2": "Today I have a wonderful guest Dasha."
+    },
+    {
+      "begin": 6.069,
+      "end": 7.17,
+      "text1": "Даша, привет!",
+      "text2": "Dasha hello! "
+    },
+    {
+      "begin": 7.17,
+      "end": 8.17,
+      "text1": "Привет!",
+      "text2": "Hey! "
+    },
+    {
+      "begin": 8.17,
+      "end": 9.17,
+      "text1": "Всем привет.",
+      "text2": "Hello everyone. "
+    },
+    {
+      "begin": 9.17,
+      "end": 10.2,
+      "text1": "Возможно, вы знаете Дашу.",
+      "text2": "Perhaps you know Dasha."
+    },
+    {
+      "begin": 10.2,
+      "end": 14.22,
+      "text1": "У Даши есть тоже канал на ютубе, и также есть подкаст.",
+      "text2": "Dasha also has a YouTube channel, and also has a podcast."
+    },
+    {
+      "begin": 14.22,
+      "end": 17.8,
+      "text1": "Как называется твой канал, и как называется твой подкаст?",
+      "text2": "What is the name of your channel and what is the name of your podcast?"
+    },
+    {
+      "begin": 17.8,
+      "end": 20.71,
+      "text1": "Мой канал называется не очень оригинально, “Russian",
+      "text2": "My channel is called not very original, “Russian"
+    },
+    {
+      "begin": 20.71,
+      "end": 21.71,
+      "text1": "with Dasha”.",
+      "text2": "with Dasha”."
+    },
+    {
+      "begin": 21.71,
+      "end": 24.539,
+      "text1": "И так же называется один из моих подкастов.",
+      "text2": "And that's the name of one of my podcasts."
+    },
+    {
+      "begin": 24.539,
+      "end": 28.8,
+      "text1": "Второй я записываю вместе с англичанином, его зовут",
+      "text2": "The second one I'm recording with an Englishman, his name is"
+    },
+    {
+      "begin": 28.8,
+      "end": 32.2,
+      "text1": "Том, и подкаст называется “Russian Twist”.",
+      "text2": "Tom, and the podcast is called \"Russian Twist\"."
+    },
+    {
+      "begin": 32.2,
+      "end": 35.1,
+      "text1": "Вот про подкасты мы сегодня и поговорим.",
+      "text2": "That's what we're talking about podcasts today."
+    },
+    {
+      "begin": 35.1,
+      "end": 40.34,
+      "text1": "Раз у Даши два подкаста, грех не поговорить о подкастах.",
+      "text2": "Since Dasha has two podcasts, it’s a sin not to talk about podcasts."
+    },
+    {
+      "begin": 40.34,
+      "end": 44.739,
+      "text1": "Даша, расскажи, пожалуйста, как давно ты начала вести",
+      "text2": "Dasha, please tell us how long ago you started"
+    },
+    {
+      "begin": 44.739,
+      "end": 45.739,
+      "text1": "эти подкасты.",
+      "text2": "these podcasts."
+    },
+    {
+      "begin": 45.739,
+      "end": 47.01,
+      "text1": "Один, или другой, или оба.",
+      "text2": "One, or the other, or both."
+    },
+    {
+      "begin": 47.01,
+      "end": 51.25,
+      "text1": "“Russian Twist” мы начали год назад.",
+      "text2": "“Russian Twist” we started a year ago."
+    },
+    {
+      "begin": 51.25,
+      "end": 54.19,
+      "text1": "Это было буквально случайно.",
+      "text2": "It was literally by accident."
+    },
+    {
+      "begin": 54.19,
+      "end": 56.91,
+      "text1": "Мы просто с Томом решили сделать совместное видео",
+      "text2": "Tom and I just decided to make a video together"
+    },
+    {
+      "begin": 56.91,
+      "end": 58.78,
+      "text1": "и хотели проверить звук.",
+      "text2": "and wanted to test the sound."
+    },
+    {
+      "begin": 58.78,
+      "end": 62.41,
+      "text1": "И просто записывали звук на специальной платформе.",
+      "text2": "And they just recorded the sound on a special platform."
+    },
+    {
+      "begin": 62.41,
+      "end": 64.52,
+      "text1": "И в какой-то момент я сказала: “Том, ты знаешь, мы с тобой",
+      "text2": "And at some point, I said: “Tom, you know, you and I are"
+    },
+    {
+      "begin": 64.52,
+      "end": 66.43,
+      "text1": "записываем подкаст сейчас.",
+      "text2": "recording a podcast right now."
+    },
+    {
+      "begin": 66.43,
+      "end": 67.72,
+      "text1": "Давай попробуем?”",
+      "text2": "Let's try?\" "
+    },
+    {
+      "begin": 67.72,
+      "end": 69.81,
+      "text1": "То есть уже год подкаст “Russian Twist”.",
+      "text2": "That is, the Russian Twist podcast has been on for a year now ."
+    },
+    {
+      "begin": 69.81,
+      "end": 72.55,
+      "text1": "Он выходит почти каждую неделю.",
+      "text2": "It comes out almost every week."
+    },
+    {
+      "begin": 72.55,
+      "end": 74.57,
+      "text1": "А этот подкаст тоже на русском языке, да?",
+      "text2": "And this podcast is also in Russian, right?"
+    },
+    {
+      "begin": 74.57,
+      "end": 76.3,
+      "text1": "Да, он полностью на русском.",
+      "text2": "Yes, it is completely in Russian."
+    },
+    {
+      "begin": 76.3,
+      "end": 80.59,
+      "text1": "Это для тех, кто уже изучает русский язык и владеет",
+      "text2": "This is for those who are already studying Russian and speak"
+    },
+    {
+      "begin": 80.59,
+      "end": 83.06,
+      "text1": "им на достаточно высоком уровне.",
+      "text2": "it at a fairly high level."
+    },
+    {
+      "begin": 83.06,
+      "end": 84.53999999999999,
+      "text1": "То есть B2...",
+      "text2": "That is, B2..."
+    },
+    {
+      "begin": 84.53999999999999,
+      "end": 87.18,
+      "text1": "B1-B2-C1, вот такие уровни.",
+      "text2": "B1-B2-C1, these are the levels."
+    },
+    {
+      "begin": 87.18,
+      "end": 89.77,
+      "text1": "А моему подкасту... ну чуть больше года.",
+      "text2": "And my podcast is... well, a little over a year old."
+    },
+    {
+      "begin": 89.77,
+      "end": 93.13,
+      "text1": "Ну а твой подкаст — он для тех, кто изучает язык, но",
+      "text2": "Well, your podcast is for those who study the language, but"
+    },
+    {
+      "begin": 93.13,
+      "end": 96.82,
+      "text1": "тоже уже на высоком уровне, потому что у тебя тоже только",
+      "text2": "also at a high level, because yours is also only"
+    },
+    {
+      "begin": 96.82,
+      "end": 98.24000000000001,
+      "text1": "на русском языке, правильно?",
+      "text2": "in Russian, right?"
+    },
+    {
+      "begin": 98.24000000000001,
+      "end": 101.78999999999999,
+      "text1": "Да, это подкаст на русском языке, но немного легче,",
+      "text2": "Yes, this is a podcast in Russian, but a little easier"
+    },
+    {
+      "begin": 101.78999999999999,
+      "end": 104.71000000000001,
+      "text1": "чем “Russian Twist”, потому что я всё-таки выбираю слова,",
+      "text2": "than “Russian Twist”, because I still choose the words,"
+    },
+    {
+      "begin": 104.71000000000001,
+      "end": 106.28,
+      "text1": "готовлю заранее текст.",
+      "text2": "prepare the text in advance."
+    },
+    {
+      "begin": 106.28,
+      "end": 109.74000000000001,
+      "text1": "Мой подкаст, наверное, B1-B2, вот так.",
+      "text2": "My podcast is probably B1-B2, like this."
+    },
+    {
+      "begin": 109.74000000000001,
+      "end": 112.47,
+      "text1": "Ну и говоришь ты там медленнее, да?",
+      "text2": "Well, you talk slower there, right?"
+    },
+    {
+      "begin": 112.47,
+      "end": 113.47,
+      "text1": "Да, конечно.",
+      "text2": "Oh sure. "
+    },
+    {
+      "begin": 113.47,
+      "end": 114.47,
+      "text1": "Говорю медленнее.",
+      "text2": "I speak more slowly."
+    },
+    {
+      "begin": 114.47,
+      "end": 116.86,
+      "text1": "Я надеюсь. моё лицо видно из-за волос.",
+      "text2": "I hope.  my face is visible through the hair."
+    },
+    {
+      "begin": 116.86,
+      "end": 117.86,
+      "text1": "Вот.",
+      "text2": "Here. "
+    },
+    {
+      "begin": 117.86,
+      "end": 118.86,
+      "text1": "Да.",
+      "text2": "Yes. "
+    },
+    {
+      "begin": 118.86,
+      "end": 124.21,
+      "text1": "Расскажи, в чём преимущества, в чём плюсы подкастов, если",
+      "text2": "Tell us what are the advantages , what are the advantages of podcasts, when"
+    },
+    {
+      "begin": 124.21,
+      "end": 126.39,
+      "text1": "сравнивать, например, с видео.",
+      "text2": "compared, for example, with video."
+    },
+    {
+      "begin": 126.39,
+      "end": 130.02,
+      "text1": "Почему круто слушать подкасты для изучения языка?",
+      "text2": "Why is it cool to listen to podcasts for language learning?"
+    },
+    {
+      "begin": 130.02,
+      "end": 134.01,
+      "text1": "Во-первых, видео не всегда удобно смотреть, так как",
+      "text2": "Firstly, the video is not always convenient to watch, because"
+    },
+    {
+      "begin": 134.01,
+      "end": 139.69,
+      "text1": "часто вы хотите практиковать русский, например, во время",
+      "text2": "often you want to practice Russian, for example, while"
+    },
+    {
+      "begin": 139.69,
+      "end": 144.14,
+      "text1": "езды на машине или во время пробежки хочется просто",
+      "text2": "driving a car or while jogging, you just want to"
+    },
+    {
+      "begin": 144.14,
+      "end": 145.72,
+      "text1": "слушать русскую речь.",
+      "text2": "listen to Russian speech."
+    },
+    {
+      "begin": 145.72,
+      "end": 150,
+      "text1": "Но видео, если вы смотрите на YouTube без подписки, как",
+      "text2": "But the video, if you watch YouTube without a subscription, as"
+    },
+    {
+      "begin": 150,
+      "end": 152.51,
+      "text1": "только вы выключаете экран, видео пропадает.",
+      "text2": "soon as you turn off the screen, the video disappears."
+    },
+    {
+      "begin": 152.51,
+      "end": 155.79,
+      "text1": "Подкасты в этом плане намного круче.",
+      "text2": "Podcasts are much better in this regard."
+    },
+    {
+      "begin": 155.79,
+      "end": 160.4,
+      "text1": "Вы можете слушать их, делая какое-то другое занятие.",
+      "text2": "You can listen to them while doing some other activity."
+    },
+    {
+      "begin": 160.4,
+      "end": 164.35,
+      "text1": "Например, можно слушать, пока моешь посуду.",
+      "text2": "For example, you can listen while you wash the dishes."
+    },
+    {
+      "begin": 164.35,
+      "end": 166.32,
+      "text1": "Или пока бегаешь в парке.",
+      "text2": "Or while running in the park."
+    },
+    {
+      "begin": 166.32,
+      "end": 168.76,
+      "text1": "И подкасты чем хороши?",
+      "text2": "And how good are podcasts?"
+    },
+    {
+      "begin": 168.76,
+      "end": 172.22,
+      "text1": "Они не только развивают наше понимание речи на",
+      "text2": "They not only develop our listening comprehension"
+    },
+    {
+      "begin": 172.22,
+      "end": 176.04,
+      "text1": "слух, но также помогают нам в практике хорошего",
+      "text2": ", but also help us practice good"
+    },
+    {
+      "begin": 176.04,
+      "end": 177.72,
+      "text1": "произношения.",
+      "text2": "pronunciation."
+    },
+    {
+      "begin": 177.72,
+      "end": 181.87,
+      "text1": "И я даже заметила... у меня очень много учеников, которые",
+      "text2": "And I even noticed... I have a lot of students who"
+    },
+    {
+      "begin": 181.87,
+      "end": 182.87,
+      "text1": "слушают подкасты.",
+      "text2": "listen to podcasts."
+    },
+    {
+      "begin": 182.87,
+      "end": 186.97,
+      "text1": "Я заметила, что у тех, кто слушает подкасты, произношение,",
+      "text2": "I noticed that those who listen to podcasts, pronunciation,"
+    },
+    {
+      "begin": 186.97,
+      "end": 190.6,
+      "text1": "интонации намного ближе к носителям, чем те, кто",
+      "text2": "intonation is much closer to native speakers than those who"
+    },
+    {
+      "begin": 190.6,
+      "end": 191.819,
+      "text1": "вообще мало слушает.",
+      "text2": "do not listen at all."
+    },
+    {
+      "begin": 191.819,
+      "end": 195.47,
+      "text1": "Ну потому что происходит такое, как... Имитация уже,",
+      "text2": "Well, because there is something like... Imitation already,"
+    },
+    {
+      "begin": 195.47,
+      "end": 196.47,
+      "text1": "может быть.",
+      "text2": "maybe."
+    },
+    {
+      "begin": 196.47,
+      "end": 197.47,
+      "text1": "Всё верно.",
+      "text2": "That's right."
+    },
+    {
+      "begin": 197.47,
+      "end": 198.47,
+      "text1": "Если я много слушаю...",
+      "text2": "If I listen a lot..."
+    },
+    {
+      "begin": 198.47,
+      "end": 201.55,
+      "text1": "Как в музыке, да, вот нужно много слушать, чтобы понимать",
+      "text2": "As in music, yes, you need to listen a lot in order to understand"
+    },
+    {
+      "begin": 201.55,
+      "end": 205.31,
+      "text1": "музыку лучше, чтобы самому играть лучше, или, там, писать,",
+      "text2": "music better, to play better yourself, or, there, to write,"
+    },
+    {
+      "begin": 205.31,
+      "end": 206.31,
+      "text1": "например, музыку.",
+      "text2": "for example, music."
+    },
+    {
+      "begin": 206.31,
+      "end": 209.44,
+      "text1": "Расскажи, пожалуйста, сама ты тоже изучала языки при",
+      "text2": "Tell me, please, did you also study languages with the"
+    },
+    {
+      "begin": 209.44,
+      "end": 210.47,
+      "text1": "помощи подкастов?",
+      "text2": "help of podcasts?"
+    },
+    {
+      "begin": 210.47,
+      "end": 215.05,
+      "text1": "При помощи подкастов, кстати, нет, но... я...",
+      "text2": "Not through podcasts, by the way, but... I..."
+    },
+    {
+      "begin": 215.05,
+      "end": 216.53,
+      "text1": "Нет, я... да.",
+      "text2": "No, I... yes."
+    },
+    {
+      "begin": 216.53,
+      "end": 221.16,
+      "text1": "Я иногда слушала подкасты, но я чаще смотрю всё-таки",
+      "text2": "I sometimes listen to podcasts, but I mostly watch"
+    },
+    {
+      "begin": 221.16,
+      "end": 222.16,
+      "text1": "видео.",
+      "text2": "videos."
+    },
+    {
+      "begin": 222.16,
+      "end": 227.05,
+      "text1": "Я достаточно... как... я визуал, поэтому я люблю смотреть",
+      "text2": "I'm quite... like... I'm visual, so I like to look"
+    },
+    {
+      "begin": 227.05,
+      "end": 233.099,
+      "text1": "на то, как двигается рот у человека, его мимику наблюдать,",
+      "text2": "at how a person's mouth moves, watch his facial expressions,"
+    },
+    {
+      "begin": 233.099,
+      "end": 234.099,
+      "text1": "и так далее.",
+      "text2": "and so on."
+    },
+    {
+      "begin": 234.099,
+      "end": 236.71,
+      "text1": "Но подкасты слушаю, когда чем-то другим занимаюсь.",
+      "text2": "But I listen to podcasts when I'm doing something else."
+    },
+    {
+      "begin": 236.71,
+      "end": 240.02,
+      "text1": "И вообще, мне кажется, что это — современный способ",
+      "text2": "And in general, it seems to me that this is a modern way of"
+    },
+    {
+      "begin": 240.02,
+      "end": 241.209,
+      "text1": "изучения языка.",
+      "text2": "learning a language."
+    },
+    {
+      "begin": 241.209,
+      "end": 246.01,
+      "text1": "Сейчас намного меньше людей, чем раньше, чем например",
+      "text2": "Now there are far fewer people than before, than for example"
+    },
+    {
+      "begin": 246.01,
+      "end": 248.44,
+      "text1": "десять-двадцать лет назад, намного меньше людей изучают",
+      "text2": "ten or twenty years ago, much fewer people study"
+    },
+    {
+      "begin": 248.44,
+      "end": 249.68,
+      "text1": "грамматику.",
+      "text2": "grammar."
+    },
+    {
+      "begin": 249.68,
+      "end": 253.59,
+      "text1": "Сейчас многие хотят услышать разговорный язык.",
+      "text2": "Now many people want to hear the spoken language."
+    },
+    {
+      "begin": 253.59,
+      "end": 257.549,
+      "text1": "И подкасты, в этом случае, — очень классная опция.",
+      "text2": "And podcasts, in this case, are a very cool option."
+    },
+    {
+      "begin": 257.549,
+      "end": 262.62,
+      "text1": "А есть какая-то особенная методика, как эффективнее",
+      "text2": "Is there any special technique on how to"
+    },
+    {
+      "begin": 262.62,
+      "end": 265.71,
+      "text1": "всего изучать язык с подкастами?",
+      "text2": "most effectively learn a language with podcasts?"
+    },
+    {
+      "begin": 265.71,
+      "end": 267.86,
+      "text1": "Я знаю, что у тебя есть скрипты.",
+      "text2": "I know you have scripts."
+    },
+    {
+      "begin": 267.86,
+      "end": 270.03,
+      "text1": "У меня тоже есть скрипты к видео.",
+      "text2": "I also have scripts for the video."
+    },
+    {
+      "begin": 270.03,
+      "end": 272.49,
+      "text1": "У тебя есть тоже скрипты к подкастам.",
+      "text2": "You also have scripts for podcasts."
+    },
+    {
+      "begin": 272.49,
+      "end": 276.27,
+      "text1": "Как ты рекомендуешь работать с этим материалом?",
+      "text2": "How do you recommend working with this material?"
+    },
+    {
+      "begin": 276.27,
+      "end": 279.3,
+      "text1": "Во-первых, выбирайте подкаст под ваш уровень.",
+      "text2": "First, choose a podcast for your level."
+    },
+    {
+      "begin": 279.3,
+      "end": 283.56,
+      "text1": "Если вы начинающий, смотрите подкасты, которые подходят",
+      "text2": "If you are a beginner, watch podcasts that suit"
+    },
+    {
+      "begin": 283.56,
+      "end": 284.56,
+      "text1": "вам.",
+      "text2": "you."
+    },
+    {
+      "begin": 284.56,
+      "end": 287.9,
+      "text1": "В идеале, вы должны понимать семьдесят (70) процентов слов.",
+      "text2": "Ideally, you should understand seventy (70) percent of the words."
+    },
+    {
+      "begin": 287.9,
+      "end": 290.3,
+      "text1": "Семьдесят (70), может быть больше.",
+      "text2": "Seventy (70), maybe more."
+    },
+    {
+      "begin": 290.3,
+      "end": 294.62,
+      "text1": "Если вы понимаете меньше, лучше найдите подкаст полегче,",
+      "text2": "If you understand less, better find an easier podcast,"
+    },
+    {
+      "begin": 294.62,
+      "end": 296.65,
+      "text1": "который пониже уровнем.",
+      "text2": "which is lower level."
+    },
+    {
+      "begin": 296.65,
+      "end": 300.27,
+      "text1": "То есть, во-первых, выбирайте подкаст под ваш уровень.",
+      "text2": "That is, firstly, choose a podcast for your level."
+    },
+    {
+      "begin": 300.27,
+      "end": 304.84,
+      "text1": "И в первый раз слушайте без транскрипций, не читая.",
+      "text2": "And for the first time, listen without transcriptions, without reading."
+    },
+    {
+      "begin": 304.84,
+      "end": 309.1,
+      "text1": "Первый раз мы просто слушаем и пытаемся понять основные",
+      "text2": "The first time we just listen and try to understand the main"
+    },
+    {
+      "begin": 309.1,
+      "end": 313.78,
+      "text1": "идеи, основные пункты, которые были затронуты.",
+      "text2": "ideas, the main points that have been raised."
+    },
+    {
+      "begin": 313.78,
+      "end": 321.31,
+      "text1": "Какие вопросы задаёт человек или ведущий, и... в чём главная",
+      "text2": "What questions does the person or host ask, and... what is the main"
+    },
+    {
+      "begin": 321.31,
+      "end": 322.63,
+      "text1": "мысль подкаста.",
+      "text2": "idea of the podcast."
+    },
+    {
+      "begin": 322.63,
+      "end": 326.37,
+      "text1": "И второй раз я рекомендую слушать, уже читая текст.",
+      "text2": "And the second time I recommend listening while reading the text."
+    },
+    {
+      "begin": 326.37,
+      "end": 331,
+      "text1": "Таким образом вы уже находите слова, которые не понимаете.",
+      "text2": "Thus, you already find words that you do not understand."
+    },
+    {
+      "begin": 331,
+      "end": 333.78,
+      "text1": "И, например, можно выделять их каким-то специальным",
+      "text2": "And, for example, you can highlight them with some special"
+    },
+    {
+      "begin": 333.78,
+      "end": 336.38,
+      "text1": "маркером или подчёркивать карандашом.",
+      "text2": "marker or underline with a pencil."
+    },
+    {
+      "begin": 336.38,
+      "end": 340.08,
+      "text1": "И так вы уже понимаете, — ага, вот это слово мне",
+      "text2": "And so you already understand - yeah, I"
+    },
+    {
+      "begin": 340.08,
+      "end": 344.15,
+      "text1": "нужно посмотреть в словаре, как оно переводится.",
+      "text2": "need to look up this word in the dictionary, how it is translated."
+    },
+    {
+      "begin": 344.15,
+      "end": 348.36,
+      "text1": "И где-то себе... и куда-то выписать, чтобы потом его",
+      "text2": "And somewhere for yourself ... and somewhere to write it out, so that you can remember it later"
+    },
+    {
+      "begin": 348.36,
+      "end": 349.36,
+      "text1": "запомнить.",
+      "text2": "."
+    },
+    {
+      "begin": 349.36,
+      "end": 351.963,
+      "text1": "То есть в первый раз слушаем без текста, второй раз — слушаем",
+      "text2": "That is, the first time we listen without text, the second time we listen"
+    },
+    {
+      "begin": 351.963,
+      "end": 352.963,
+      "text1": "с текстом.",
+      "text2": "with text."
+    },
+    {
+      "begin": 352.963,
+      "end": 357.68,
+      "text1": "В третий раз, по-хорошему, можете слушать и пытаться",
+      "text2": "The third time, in a good way, you can listen and try to"
+    },
+    {
+      "begin": 357.68,
+      "end": 359.21,
+      "text1": "читать вслух.",
+      "text2": "read aloud."
+    },
+    {
+      "begin": 359.21,
+      "end": 360.949,
+      "text1": "Читать вслух очень важно.",
+      "text2": "Reading aloud is very important."
+    },
+    {
+      "begin": 360.949,
+      "end": 366.3,
+      "text1": "Таким образом вы копируете верную интонацию и удваиваете",
+      "text2": "In this way, you copy the correct intonation and double the"
+    },
+    {
+      "begin": 366.3,
+      "end": 368.729,
+      "text1": "шансы на запоминание.",
+      "text2": "chances of memorization."
+    },
+    {
+      "begin": 368.729,
+      "end": 372.419,
+      "text1": "Всё-таки когда мы что-то произносим вслух, мы лучше",
+      "text2": "After all, when we say something out loud, we"
+    },
+    {
+      "begin": 372.419,
+      "end": 373.95,
+      "text1": "это запоминаем.",
+      "text2": "remember it better."
+    },
+    {
+      "begin": 373.95,
+      "end": 377.81,
+      "text1": "А нужно ставить на паузу, или прямо делать, как называют,",
+      "text2": "Do you need to pause, or directly do what they call"
+    },
+    {
+      "begin": 377.81,
+      "end": 378.81,
+      "text1": "shadowing, да?",
+      "text2": "shadowing, right?"
+    },
+    {
+      "begin": 378.81,
+      "end": 380.69,
+      "text1": "Или лучше ставить на паузу все-таки?",
+      "text2": "Or is it better to pause after all?"
+    },
+    {
+      "begin": 380.69,
+      "end": 383.78,
+      "text1": "Я думаю, что лучше ставить на паузу.",
+      "text2": "I think it's better to pause."
+    },
+    {
+      "begin": 383.78,
+      "end": 386.48,
+      "text1": "Например, читать отрывками.",
+      "text2": "For example, read in fragments."
+    },
+    {
+      "begin": 386.48,
+      "end": 391.07,
+      "text1": "Потому что, если речь быстрая, то, конечно, будет винегрет,",
+      "text2": "Because if the speech is fast, then, of course, there will be a vinaigrette,"
+    },
+    {
+      "begin": 391.07,
+      "end": 392.07,
+      "text1": "как говорится.",
+      "text2": "as they say."
+    },
+    {
+      "begin": 392.07,
+      "end": 393.85,
+      "text1": "Вы не поймёте, что вы вообще прочитали.",
+      "text2": "You won't understand what you read at all ."
+    },
+    {
+      "begin": 393.85,
+      "end": 397.54,
+      "text1": "Поэтому можно, например, послушать два предложения,",
+      "text2": "Therefore, you can, for example, listen to two sentences,"
+    },
+    {
+      "begin": 397.54,
+      "end": 400.68,
+      "text1": "поставить на паузу, прочитать их вслух, или пытаться это",
+      "text2": "pause, read them aloud, or try to"
+    },
+    {
+      "begin": 400.68,
+      "end": 402.31,
+      "text1": "делать одновременно.",
+      "text2": "do it at the same time."
+    },
+    {
+      "begin": 402.31,
+      "end": 408.27,
+      "text1": "И потом, после прослушивания, некоторые люди слушают",
+      "text2": "And then, after listening, some people listen to the"
+    },
+    {
+      "begin": 408.27,
+      "end": 410.259,
+      "text1": "подкаст по пять, по шесть раз.",
+      "text2": "podcast five, six times."
+    },
+    {
+      "begin": 410.259,
+      "end": 413.639,
+      "text1": "Это не очень удобно, если подкаст длинный, как например",
+      "text2": "This is not very convenient if the podcast is long, like"
+    },
+    {
+      "begin": 413.639,
+      "end": 415.419,
+      "text1": "у нас в Russian Twist.",
+      "text2": "we have in Russian Twist."
+    },
+    {
+      "begin": 415.419,
+      "end": 419,
+      "text1": "Наш подкаст больше для того, чтобы вы узнали что-то",
+      "text2": "Our podcast is more for you to learn something"
+    },
+    {
+      "begin": 419,
+      "end": 421.13,
+      "text1": "новое, и узнали какую-то новую лексику.",
+      "text2": "new and learn some new vocabulary."
+    },
+    {
+      "begin": 421.13,
+      "end": 425.66,
+      "text1": "Но если подкаст короткий, минут на пять-десять, можно",
+      "text2": "But if the podcast is short, five to ten minutes, you can"
+    },
+    {
+      "begin": 425.66,
+      "end": 427.37,
+      "text1": "послушать его несколько раз.",
+      "text2": "listen to it several times."
+    },
+    {
+      "begin": 427.37,
+      "end": 433.45,
+      "text1": "И в конце я всегда рекомендую обсудить подкаст с кем-то,",
+      "text2": "And at the end, I always recommend discussing the podcast with someone,"
+    },
+    {
+      "begin": 433.45,
+      "end": 438.38,
+      "text1": "или, например, просто попробовать пересказать его содержание.",
+      "text2": "or, for example, just trying to retell its content."
+    },
+    {
+      "begin": 438.38,
+      "end": 442.54,
+      "text1": "Если вы хотите, чтобы слова, которые вы узнали, в вашей",
+      "text2": "If you want the words you learned to stay in your"
+    },
+    {
+      "begin": 442.54,
+      "end": 447.81,
+      "text1": "голове остались надолго, попробуйте по плану, глядя",
+      "text2": "head for a long time, try according to the plan, looking"
+    },
+    {
+      "begin": 447.81,
+      "end": 451.58,
+      "text1": "на свои какие-то записи, попробуйте пересказать",
+      "text2": "at some of your notes, try to retell"
+    },
+    {
+      "begin": 451.58,
+      "end": 453.09000000000003,
+      "text1": "то, что вы услышали.",
+      "text2": "what you heard."
+    },
+    {
+      "begin": 453.09000000000003,
+      "end": 459.08,
+      "text1": "И таким образом новая лексика осядет в голове надолго.",
+      "text2": "And thus the new vocabulary will settle in the head for a long time."
+    },
+    {
+      "begin": 459.08,
+      "end": 461.8,
+      "text1": "Из пассивной превратится в активную.",
+      "text2": "Change from passive to active."
+    },
+    {
+      "begin": 461.8,
+      "end": 462.84000000000003,
+      "text1": "Да, здорово.",
+      "text2": "Yes, great."
+    },
+    {
+      "begin": 462.84000000000003,
+      "end": 465.09000000000003,
+      "text1": "Немногие понимают, что делать со скриптом.",
+      "text2": "Few understand what to do with the script."
+    },
+    {
+      "begin": 465.09000000000003,
+      "end": 471.8,
+      "text1": "Я думаю, теперь, после объяснения Даши, вы оцените, как это",
+      "text2": "I think now, after Dasha's explanation, you will appreciate how"
+    },
+    {
+      "begin": 471.8,
+      "end": 475.03,
+      "text1": "вообще круто — заниматься со скриптом.",
+      "text2": "cool it is to work with the script."
+    },
+    {
+      "begin": 475.03,
+      "end": 478.55,
+      "text1": "Неважно, это скрипт к подкасту или скрипт к видео.",
+      "text2": "It doesn't matter if it's a script for a podcast or a script for a video."
+    },
+    {
+      "begin": 478.55,
+      "end": 482.3,
+      "text1": "В любом случае, есть звук и есть текст написанный.",
+      "text2": "In any case, there is sound and there is text written."
+    },
+    {
+      "begin": 482.3,
+      "end": 485.729,
+      "text1": "И работать можно просто бесконечно.",
+      "text2": "And you can just work endlessly."
+    },
+    {
+      "begin": 485.729,
+      "end": 488.729,
+      "text1": "Ещё я хотела добавить свою рекомендацию по поводу",
+      "text2": "I also wanted to add my recommendation about"
+    },
+    {
+      "begin": 488.729,
+      "end": 490.289,
+      "text1": "работы с подкастами.",
+      "text2": "working with podcasts."
+    },
+    {
+      "begin": 490.289,
+      "end": 494.46,
+      "text1": "Не надо расстраиваться, если вы слушаете один эпизод",
+      "text2": "Don't get upset if you're listening to one episode"
+    },
+    {
+      "begin": 494.46,
+      "end": 499.33,
+      "text1": "в первый раз и не понимаете всё, или даже 70 процентов.",
+      "text2": "for the first time and don't understand everything, or even 70 percent."
+    },
+    {
+      "begin": 499.33,
+      "end": 503.1,
+      "text1": "Если вы понимаете только половину, это уже хорошо.",
+      "text2": "If you only understand half of it, that's good."
+    },
+    {
+      "begin": 503.1,
+      "end": 507.98,
+      "text1": "Поверьте, когда вы послушаете один эпизод 2-3-5 раз, вы будете",
+      "text2": "Believe me, when you listen to one episode 2-3-5 times, you will"
+    },
+    {
+      "begin": 507.98,
+      "end": 509.31,
+      "text1": "понимать больше.",
+      "text2": "understand more."
+    },
+    {
+      "begin": 509.31,
+      "end": 512.45,
+      "text1": "То есть здесь, наверное, очень важно терпение.",
+      "text2": "That is, patience is probably very important here."
+    },
+    {
+      "begin": 512.45,
+      "end": 513.45,
+      "text1": "Как ты думаешь?",
+      "text2": "How do you think? "
+    },
+    {
+      "begin": 513.45,
+      "end": 514.45,
+      "text1": "Конечно!",
+      "text2": "Certainly! "
+    },
+    {
+      "begin": 514.45,
+      "end": 517.789,
+      "text1": "Важно терпение и важна наслушанность.",
+      "text2": "Patience is important and listening is important ."
+    },
+    {
+      "begin": 517.789,
+      "end": 519.419,
+      "text1": "Есть “насмотренность”, не знаю, есть ли слово “наслушанность”,",
+      "text2": "There is “watchfulness”, I don’t know if there is a word “listening”,"
+    },
+    {
+      "begin": 519.419,
+      "end": 520.419,
+      "text1": "наверное есть.",
+      "text2": "probably there is."
+    },
+    {
+      "begin": 520.419,
+      "end": 521.419,
+      "text1": "Наверное, есть.",
+      "text2": "Maybe there's. "
+    },
+    {
+      "begin": 521.419,
+      "end": 526.4590000000001,
+      "text1": "Чем больше мы слушаем, особенно носителей с разными акцентами,",
+      "text2": "The more we listen, especially to speakers with different accents,"
+    },
+    {
+      "begin": 526.4590000000001,
+      "end": 527.91,
+      "text1": "тем лучше мы понимаем речь.",
+      "text2": "the better we understand speech."
+    },
+    {
+      "begin": 527.91,
+      "end": 531.829,
+      "text1": "И когда вы приедете в Россию, вы будете с лёгкостью понимать,",
+      "text2": "And when you come to Russia, you will easily understand"
+    },
+    {
+      "begin": 531.829,
+      "end": 533.66,
+      "text1": "что говорят люди вокруг вас.",
+      "text2": "what the people around you are saying."
+    },
+    {
+      "begin": 533.66,
+      "end": 537.29,
+      "text1": "Просто потому что вы привыкли слушать русский язык — не",
+      "text2": "Just because you are used to listening to Russian - not"
+    },
+    {
+      "begin": 537.29,
+      "end": 542.92,
+      "text1": "тот, который подготовлен для вас учебным материалом,",
+      "text2": "the one prepared for you by educational material,"
+    },
+    {
+      "begin": 542.92,
+      "end": 544.949,
+      "text1": "да, например, аудио из книжки.",
+      "text2": "yes, for example, audio from a book."
+    },
+    {
+      "begin": 544.949,
+      "end": 547.009,
+      "text1": "А именно живая русская речь.",
+      "text2": "Namely, live Russian speech."
+    },
+    {
+      "begin": 547.009,
+      "end": 551.79,
+      "text1": "А у тебя есть еще какие-то подкасты, которые ты рекомендуешь",
+      "text2": "Do you have any other podcasts that you recommend to"
+    },
+    {
+      "begin": 551.79,
+      "end": 552.79,
+      "text1": "своим студентам?",
+      "text2": "your students?"
+    },
+    {
+      "begin": 552.79,
+      "end": 554.99,
+      "text1": "Помимо твоего, конечно?",
+      "text2": "Besides yours, of course?"
+    },
+    {
+      "begin": 554.99,
+      "end": 558.48,
+      "text1": "Ну вообще свой подкаст я редко рекомендую...",
+      "text2": "Well, in general, I rarely recommend my podcast ..."
+    },
+    {
+      "begin": 558.48,
+      "end": 559.66,
+      "text1": "Почему?",
+      "text2": "Why?"
+    },
+    {
+      "begin": 559.66,
+      "end": 562.373,
+      "text1": "Обычно ко мне приходят из подкастов, да, меня уже",
+      "text2": "Usually they come to me from podcasts, yes, they"
+    },
+    {
+      "begin": 562.373,
+      "end": 565.41,
+      "text1": "обычно знают.",
+      "text2": "usually already know me."
+    },
+    {
+      "begin": 565.41,
+      "end": 566.559,
+      "text1": "Конечно, зависит от уровня.",
+      "text2": "Of course it depends on the level."
+    },
+    {
+      "begin": 566.559,
+      "end": 569.449,
+      "text1": "И у меня даже есть небольшой список.",
+      "text2": "And I even have a small list."
+    },
+    {
+      "begin": 569.449,
+      "end": 570.449,
+      "text1": "Давай я...",
+      "text2": "Let me..."
+    },
+    {
+      "begin": 570.449,
+      "end": 571.449,
+      "text1": "На твоем сайте?",
+      "text2": "On your site?"
+    },
+    {
+      "begin": 571.449,
+      "end": 572.449,
+      "text1": "Да.",
+      "text2": "Yes. "
+    },
+    {
+      "begin": 572.449,
+      "end": 574.829,
+      "text1": "Ну я думаю, что мы оставим ссылку на твой сайт как",
+      "text2": "Well, I think that we will leave a link to your site"
+    },
+    {
+      "begin": 574.829,
+      "end": 577.45,
+      "text1": "раз, на список этих подкастов.",
+      "text2": "just for the list of these podcasts."
+    },
+    {
+      "begin": 577.45,
+      "end": 578.79,
+      "text1": "Но назови свои самые любимые.",
+      "text2": "But name your favourites."
+    },
+    {
+      "begin": 578.79,
+      "end": 581.769,
+      "text1": "Ну, во-первых, я очень люблю то, что делает Дарья — “Real",
+      "text2": "Well, firstly, I really love what Daria does - “Real"
+    },
+    {
+      "begin": 581.769,
+      "end": 582.769,
+      "text1": "Russian Club”.",
+      "text2": "Russian Club”."
+    },
+    {
+      "begin": 582.769,
+      "end": 587.569,
+      "text1": "У неё есть подкаст “Slow russian” — для начинающих,",
+      "text2": "She has a podcast \"Slow russian\" - for beginners,"
+    },
+    {
+      "begin": 587.569,
+      "end": 590.009,
+      "text1": "для уровня A1-A2, очень классный.",
+      "text2": "for levels A1-A2, very cool."
+    },
+    {
+      "begin": 590.009,
+      "end": 594.579,
+      "text1": "Вы можете изучать и лексику, и узнавать о русской культуре.",
+      "text2": "You can study vocabulary and learn about Russian culture."
+    },
+    {
+      "begin": 594.579,
+      "end": 598,
+      "text1": "Дальше, классный подкаст это “Russian with Sasha”.",
+      "text2": "Next, a cool podcast is “Russian with Sasha”."
+    },
+    {
+      "begin": 598,
+      "end": 602.97,
+      "text1": "Тоже богатый разными темами.",
+      "text2": "Also rich in different themes."
+    },
+    {
+      "begin": 602.97,
+      "end": 607.879,
+      "text1": "Вы узнаете и о русской культуре, и о, например, разных композиторах,",
+      "text2": "You will learn about Russian culture, and about, for example, different composers,"
+    },
+    {
+      "begin": 607.879,
+      "end": 609.589,
+      "text1": "писателях, вот.",
+      "text2": "writers, here."
+    },
+    {
+      "begin": 609.589,
+      "end": 613.689,
+      "text1": "Татьяна Климова давно делает подкаст, многие её знают.",
+      "text2": "Tatyana Klimova has been making a podcast for a long time, many people know her."
+    },
+    {
+      "begin": 613.689,
+      "end": 616.939,
+      "text1": "Да, я даже снимала с ней тоже интервью, в этой серии",
+      "text2": "Yes, I even filmed an interview with her too, in this"
+    },
+    {
+      "begin": 616.939,
+      "end": 619.009,
+      "text1": "“Russian Conversations”, вы можете его посмотреть.",
+      "text2": "Russian Conversations series, you can watch it."
+    },
+    {
+      "begin": 619.009,
+      "end": 622.889,
+      "text1": "Она прямо такой пионер, наверное, можно так сказать?",
+      "text2": "She's just such a pioneer, maybe you can say so?"
+    },
+    {
+      "begin": 622.889,
+      "end": 623.889,
+      "text1": "Можно, да.",
+      "text2": "Yes, you can. "
+    },
+    {
+      "begin": 623.889,
+      "end": 625.66,
+      "text1": "Пионер вот в этой теме.",
+      "text2": "Pioneer in this thread."
+    },
+    {
+      "begin": 625.66,
+      "end": 626.66,
+      "text1": "Да.",
+      "text2": "Yes. "
+    },
+    {
+      "begin": 626.66,
+      "end": 630.86,
+      "text1": "То есть она уже, наверное, ведёт лет десять свой проект.",
+      "text2": "That is, she has probably been leading her project for ten years."
+    },
+    {
+      "begin": 630.86,
+      "end": 633.29,
+      "text1": "Конечно, все знают Макса — “Russian with Max”.",
+      "text2": "Of course, everyone knows Max - “Russian with Max”."
+    },
+    {
+      "begin": 633.29,
+      "end": 637.67,
+      "text1": "Позитивный чувак, у нас с ним тоже есть выпуск.",
+      "text2": "Positive dude, we also have a release with him."
+    },
+    {
+      "begin": 637.67,
+      "end": 641.949,
+      "text1": "И Макс очень известен, у него очень хорошая энергия,",
+      "text2": "And Max is very famous, he has a very good energy"
+    },
+    {
+      "begin": 641.949,
+      "end": 645.179,
+      "text1": "и он говорит о многих темах.",
+      "text2": "and he talks about many topics."
+    },
+    {
+      "begin": 645.179,
+      "end": 649.269,
+      "text1": "О политике, о культуре, всегда выражает своё мнение.",
+      "text2": "About politics, about culture, he always expresses his opinion."
+    },
+    {
+      "begin": 649.269,
+      "end": 655.05,
+      "text1": "Также для тех, кто любит острые темы и любит говорить",
+      "text2": "Also for those who love sharp topics and like to talk"
+    },
+    {
+      "begin": 655.05,
+      "end": 659.119,
+      "text1": "обо всем, то “Russian progress” с Артёмом Назаровым.",
+      "text2": "about everything, then “Russian progress” with Artyom Nazarov."
+    },
+    {
+      "begin": 659.119,
+      "end": 663.24,
+      "text1": "Артём очень много путешествует, и всегда приглашает каких-нибудь",
+      "text2": "Artyom travels a lot and always invites some"
+    },
+    {
+      "begin": 663.24,
+      "end": 664.519,
+      "text1": "интересных гостей.",
+      "text2": "interesting guests."
+    },
+    {
+      "begin": 664.519,
+      "end": 670.54,
+      "text1": "И еще мне очень нравится “Russian connection”, подкаст Юли,",
+      "text2": "And I also really like “Russian connection”, Julia's podcast,"
+    },
+    {
+      "begin": 670.54,
+      "end": 672.509,
+      "text1": "она живет в Барселоне.",
+      "text2": "she lives in Barcelona."
+    },
+    {
+      "begin": 672.509,
+      "end": 674.72,
+      "text1": "Мы с ней тоже записывали совместный выпуск.",
+      "text2": "We also recorded a joint release with her."
+    },
+    {
+      "begin": 674.72,
+      "end": 680.86,
+      "text1": "И также, по-моему, называется “Russian verbs from Russia”... что-то",
+      "text2": "And also, I think, it's called \"Russian verbs from Russia\"... something"
+    },
+    {
+      "begin": 680.86,
+      "end": 682.22,
+      "text1": "типа того.",
+      "text2": "like that."
+    },
+    {
+      "begin": 682.22,
+      "end": 683.579,
+      "text1": "“Russian verbs”?",
+      "text2": "“Russian verbs”?"
+    },
+    {
+      "begin": 683.579,
+      "end": 684.579,
+      "text1": "Глаголы.",
+      "text2": "Verbs. "
+    },
+    {
+      "begin": 684.579,
+      "end": 685.619,
+      "text1": "По-моему, да.",
+      "text2": "Yes, I think so. "
+    },
+    {
+      "begin": 685.619,
+      "end": 690.61,
+      "text1": "Это как раз “Russian from Russia” есть YouTube канал, и по-моему",
+      "text2": "This is just “Russian from Russia” there is a YouTube channel, and in my opinion the"
+    },
+    {
+      "begin": 690.61,
+      "end": 692.639,
+      "text1": "подкаст называется “Russian verbs”.",
+      "text2": "podcast is called “Russian verbs”."
+    },
+    {
+      "begin": 692.639,
+      "end": 697.85,
+      "text1": "Там можно изучать разные глаголы, формы глаголов.",
+      "text2": "There you can learn different verbs, forms of verbs."
+    },
+    {
+      "begin": 697.85,
+      "end": 700.629,
+      "text1": "Для тех, кто хочет расширить свой словарный запас.",
+      "text2": "For those who want to expand their vocabulary."
+    },
+    {
+      "begin": 700.629,
+      "end": 702.94,
+      "text1": "Я никогда не слышала про этот подкаст.",
+      "text2": "I have never heard of this podcast."
+    },
+    {
+      "begin": 702.94,
+      "end": 708.8,
+      "text1": "Ну а мой подкаст о чём? Я записываю аудио и видео",
+      "text2": "So what is my podcast about?  I record audio and video"
+    },
+    {
+      "begin": 708.8,
+      "end": 710.269,
+      "text1": "на разные темы.",
+      "text2": "on various topics."
+    },
+    {
+      "begin": 710.269,
+      "end": 714.189,
+      "text1": "В основном рассказываю какие-то истории из жизни,",
+      "text2": "Basically I tell some stories from life, I"
+    },
+    {
+      "begin": 714.189,
+      "end": 716.48,
+      "text1": "стараюсь расширить вашу лексику.",
+      "text2": "try to expand your vocabulary."
+    },
+    {
+      "begin": 716.48,
+      "end": 723.42,
+      "text1": "А Russian Twist — это подкаст с гостями из совершенно",
+      "text2": "And Russian Twist is a podcast with guests from completely"
+    },
+    {
+      "begin": 723.42,
+      "end": 724.579,
+      "text1": "разных стран.",
+      "text2": "different countries."
+    },
+    {
+      "begin": 724.579,
+      "end": 730.72,
+      "text1": "И мы обсуждаем темы расизма, харассмента, например.",
+      "text2": "And we discuss topics of racism, harassment, for example."
+    },
+    {
+      "begin": 730.72,
+      "end": 734.42,
+      "text1": "Говорим о журналистике, говорим о том, как изучать",
+      "text2": "We talk about journalism, we talk about how to learn"
+    },
+    {
+      "begin": 734.42,
+      "end": 735.93,
+      "text1": "иностранные языки.",
+      "text2": "foreign languages."
+    },
+    {
+      "begin": 735.93,
+      "end": 739.819,
+      "text1": "То есть это подкаст, который, возможно, даже будет интересен",
+      "text2": "That is, this is a podcast, which, perhaps, will even be of interest"
+    },
+    {
+      "begin": 739.819,
+      "end": 745.379,
+      "text1": "не только новичкам в языке, не только иностранцам,",
+      "text2": "not only to beginners in the language, not only to foreigners,"
+    },
+    {
+      "begin": 745.379,
+      "end": 746.81,
+      "text1": "но и носителям русского, поэтому да.",
+      "text2": "but also to native speakers of Russian, so yes."
+    },
+    {
+      "begin": 746.81,
+      "end": 749.149,
+      "text1": "Ну темы абсолютно разные, интересные.",
+      "text2": "Well, the topics are completely different, interesting."
+    },
+    {
+      "begin": 749.149,
+      "end": 751.209,
+      "text1": "Не про язык, а на языке.",
+      "text2": "Not about the language, but in the language."
+    },
+    {
+      "begin": 751.209,
+      "end": 752.2090000000001,
+      "text1": "Да.",
+      "text2": "Yes. "
+    },
+    {
+      "begin": 752.2090000000001,
+      "end": 754.73,
+      "text1": "Это, на самом деле, как мне кажется, самое важное.",
+      "text2": "This is, in fact, what I think is the most important thing."
+    },
+    {
+      "begin": 754.73,
+      "end": 759.279,
+      "text1": "Чтобы язык стал инструментом в итоге, чтобы узнавать",
+      "text2": "So that the language becomes a tool in the end, to"
+    },
+    {
+      "begin": 759.279,
+      "end": 762.92,
+      "text1": "ещё и какие-то классные новые вещи вообще из жизни.",
+      "text2": "learn some cool new things from life in general."
+    },
+    {
+      "begin": 762.92,
+      "end": 766.999,
+      "text1": "Ну и если вы владеете русским на очень высоком уровне,",
+      "text2": "Well, if you speak Russian at a very high level,"
+    },
+    {
+      "begin": 766.999,
+      "end": 769.23,
+      "text1": "на хорошем уровне, можете попробовать послушать",
+      "text2": "at a good level, you can try listening to"
+    },
+    {
+      "begin": 769.23,
+      "end": 771.629,
+      "text1": "подкасты Медузы.",
+      "text2": "Medusa's podcasts."
+    },
+    {
+      "begin": 771.629,
+      "end": 778.629,
+      "text1": "Это иноагент в России, так что... такая будет помарочка...",
+      "text2": "This is a foreign agent in Russia, so... this will be a blot..."
+    },
+    {
+      "begin": 778.629,
+      "end": 781.529,
+      "text1": "Ну и также очень хорошие подкасты делает",
+      "text2": "Well, also very good podcasts are made by"
+    },
+    {
+      "begin": 781.529,
+      "end": 783.239,
+      "text1": "Кристина Вазовски.",
+      "text2": "Christina Wazowski."
+    },
+    {
+      "begin": 783.239,
+      "end": 787.79,
+      "text1": "У неё есть студия, по-моему, “Talk-talk” называется.",
+      "text2": "She has a studio, I think it 's called \"Talk-talk\"."
+    },
+    {
+      "begin": 787.79,
+      "end": 789.88,
+      "text1": "Тоже классные подкасты.",
+      "text2": "Also great podcasts."
+    },
+    {
+      "begin": 789.88,
+      "end": 794.329,
+      "text1": "Вообще смотрите, что делает русскоязычная аудитория,",
+      "text2": "In general, look at what the Russian-speaking audience is doing,"
+    },
+    {
+      "begin": 794.329,
+      "end": 796.3389999999999,
+      "text1": "потому что рынок подкастов очень-очень вырос.",
+      "text2": "because the podcast market has grown very, very much."
+    },
+    {
+      "begin": 796.3389999999999,
+      "end": 803.149,
+      "text1": "И вы можете найти подкасты на любую тему, просто смотрите",
+      "text2": "And you can find podcasts on any topic, just watch"
+    },
+    {
+      "begin": 803.149,
+      "end": 804.399,
+      "text1": "то, что вам интересно.",
+      "text2": "what interests you."
+    },
+    {
+      "begin": 804.399,
+      "end": 805.399,
+      "text1": "Да, забыла сказать.",
+      "text2": "Yes, I forgot to say."
+    },
+    {
+      "begin": 805.399,
+      "end": 809.1,
+      "text1": "Важно, чтобы вам было интересно, что вы слушаете.",
+      "text2": "It is important that you are interested in what you are listening to."
+    },
+    {
+      "begin": 809.1,
+      "end": 812.67,
+      "text1": "Поэтому, если вы любите кулинарию, ищите подкасты",
+      "text2": "So if you love cooking, look for podcasts"
+    },
+    {
+      "begin": 812.67,
+      "end": 813.769,
+      "text1": "про кулинарию.",
+      "text2": "about cooking."
+    },
+    {
+      "begin": 813.769,
+      "end": 816.5889999999999,
+      "text1": "Про путешествия, и так далее.",
+      "text2": "About travel and so on."
+    },
+    {
+      "begin": 816.5889999999999,
+      "end": 819.11,
+      "text1": "И тогда изучение русского будет приносить удовольствие.",
+      "text2": "And then learning Russian will bring pleasure."
+    },
+    {
+      "begin": 819.11,
+      "end": 823.16,
+      "text1": "Ну то же касается и видео, и любых материалов, фильмов",
+      "text2": "Well, the same applies to video, and any materials,"
+    },
+    {
+      "begin": 823.16,
+      "end": 824.16,
+      "text1": "даже.",
+      "text2": "even films."
+    },
+    {
+      "begin": 824.16,
+      "end": 826.819,
+      "text1": "Чтобы вам было интересно, да.",
+      "text2": "For your interest, yes."
+    },
+    {
+      "begin": 826.819,
+      "end": 828.009,
+      "text1": "Это очень важно!",
+      "text2": "It is very important! "
+    },
+    {
+      "begin": 828.009,
+      "end": 829.189,
+      "text1": "Спасибо большое, Даша!",
+      "text2": "Thank you very much, Dasha!"
+    },
+    {
+      "begin": 829.189,
+      "end": 832.509,
+      "text1": "Я думаю, что, если вы ещё не знали про её подкаст",
+      "text2": "I think that if you didn't know about her podcast"
+    },
+    {
+      "begin": 832.509,
+      "end": 836.61,
+      "text1": "вдруг, до этого видео, вы обязательно посмотрите,",
+      "text2": "all of a sudden, before this video, you will definitely watch,"
+    },
+    {
+      "begin": 836.61,
+      "end": 839.309,
+      "text1": "проверите её сайт, проверите её подкаст, будете слушать.",
+      "text2": "check her website, check her podcast, you will listen."
+    },
+    {
+      "begin": 839.309,
+      "end": 843.1,
+      "text1": "Со скриптами, с транскрипциями, как она рассказывала, при",
+      "text2": "With scripts, with transcriptions, as she said, with the"
+    },
+    {
+      "begin": 843.1,
+      "end": 845.549,
+      "text1": "помощи разных цветных текстовыделителей.",
+      "text2": "help of different colored highlighters."
+    },
+    {
+      "begin": 845.549,
+      "end": 847.139,
+      "text1": "Я лично обожаю это дело.",
+      "text2": "I personally love this business."
+    },
+    {
+      "begin": 847.139,
+      "end": 850.16,
+      "text1": "Вот меня вдохновляет на изучение языков даже когда",
+      "text2": "It inspires me to learn languages even when"
+    },
+    {
+      "begin": 850.16,
+      "end": 853.959,
+      "text1": "я вот просто вижу, как человек по бумажке водит цветными",
+      "text2": "I just see how a person moves colored pens, highlighters on a piece of paper"
+    },
+    {
+      "begin": 853.959,
+      "end": 857.42,
+      "text1": "ручками, текстовыделителями, для меня это просто какое-то",
+      "text2": ", for me it's just some kind of"
+    },
+    {
+      "begin": 857.42,
+      "end": 858.459,
+      "text1": "вдохновение.",
+      "text2": "inspiration."
+    },
+    {
+      "begin": 858.459,
+      "end": 861.42,
+      "text1": "Хочется вернуться, видимо, в школу, я не знаю.",
+      "text2": "I want to go back to school, I don't know."
+    },
+    {
+      "begin": 861.42,
+      "end": 865.949,
+      "text1": "Да, я тоже читаю сейчас книгу “Thinking fast and slow”.",
+      "text2": "Yes, I am also reading the book “Thinking fast and slow” right now."
+    },
+    {
+      "begin": 865.949,
+      "end": 869.119,
+      "text1": "Это достаточно сложная книга с высоким уровнем",
+      "text2": "This is a fairly complex book with a high level of"
+    },
+    {
+      "begin": 869.119,
+      "end": 870.309,
+      "text1": "английского.",
+      "text2": "English."
+    },
+    {
+      "begin": 870.309,
+      "end": 873.112,
+      "text1": "И я просто взяла разные цветные маркеры, и выделяю",
+      "text2": "And I just took different colored markers and highlight"
+    },
+    {
+      "begin": 873.112,
+      "end": 877.689,
+      "text1": "те мысли, которые мне важны, которые я хочу запомнить",
+      "text2": "those thoughts that are important to me, that I want to remember"
+    },
+    {
+      "begin": 877.689,
+      "end": 880.939,
+      "text1": "— и с точки зрения лексики, и с точки зрения просто",
+      "text2": "- both in terms of vocabulary and in terms of just"
+    },
+    {
+      "begin": 880.939,
+      "end": 882.399,
+      "text1": "жизненных советов.",
+      "text2": "life advice."
+    },
+    {
+      "begin": 882.399,
+      "end": 887.29,
+      "text1": "И, кстати, если интересно, о чём будут мои будущие",
+      "text2": "And by the way, if you 're wondering what my future releases will be about"
+    },
+    {
+      "begin": 887.29,
+      "end": 888.54,
+      "text1": "выпуски.",
+      "text2": "."
+    },
+    {
+      "begin": 888.54,
+      "end": 891.809,
+      "text1": "Я уже говорила с мамой о жизни в Советском Союзе,",
+      "text2": "I already spoke with my mother about life in the Soviet Union,"
+    },
+    {
+      "begin": 891.809,
+      "end": 893.059,
+      "text1": "о жизни в девяностых (90-х).",
+      "text2": "about life in the nineties (90s)."
+    },
+    {
+      "begin": 893.059,
+      "end": 895.749,
+      "text1": "И в скором времени у меня появятся выпуски с моей",
+      "text2": "And soon I will have issues with my"
+    },
+    {
+      "begin": 895.749,
+      "end": 898.679,
+      "text1": "подругой, которая работает в ЦЕРНе.",
+      "text2": "friend who works at CERN."
+    },
+    {
+      "begin": 898.679,
+      "end": 903.109,
+      "text1": "Это научный институт, где стоит адронный коллайдер,",
+      "text2": "This is the scientific institute where the Hadron Collider stands"
+    },
+    {
+      "begin": 903.109,
+      "end": 904.36,
+      "text1": "в Женеве.",
+      "text2": "in Geneva."
+    },
+    {
+      "begin": 904.36,
+      "end": 907.48,
+      "text1": "Она расскажет о том, как она туда попала.",
+      "text2": "She will talk about how she got there."
+    },
+    {
+      "begin": 907.48,
+      "end": 911.339,
+      "text1": "Также у меня есть подруга, которая работает патологоанатомом,",
+      "text2": "I also have a friend who works as a pathologist, a"
+    },
+    {
+      "begin": 911.339,
+      "end": 913.47,
+      "text1": "очень классный креативный человек.",
+      "text2": "very cool creative person."
+    },
+    {
+      "begin": 913.47,
+      "end": 917.32,
+      "text1": "То есть будут темы не только интересные с точки зрения",
+      "text2": "That is, there will be topics not only interesting from the point of view of the"
+    },
+    {
+      "begin": 917.32,
+      "end": 921.45,
+      "text1": "языка, но и просто крутые гости.",
+      "text2": "language, but also simply cool guests."
+    },
+    {
+      "begin": 921.45,
+      "end": 926.67,
+      "text1": "И я думаю, что именно так можно и нужно изучать русский",
+      "text2": "And I think that this is how you can and should learn"
+    },
+    {
+      "begin": 926.67,
+      "end": 927.67,
+      "text1": "язык.",
+      "text2": "Russian."
+    },
+    {
+      "begin": 927.67,
+      "end": 929.85,
+      "text1": "Спасибо большое, Даша!",
+      "text2": "Thank you very much, Dasha!"
+    },
+    {
+      "begin": 929.85,
+      "end": 931.629,
+      "text1": "Спасибо вам за внимание.",
+      "text2": "Thank you for attention. "
+    },
+    {
+      "begin": 931.629,
+      "end": 933.689,
+      "text1": "Мы надеемся, вам понравилось это видео.",
+      "text2": "We hope you enjoyed this video."
+    },
+    {
+      "begin": 933.689,
+      "end": 936.559,
+      "text1": "Ставьте лайки и подписывайтесь на канал, если вы еще не",
+      "text2": "Like and subscribe to the channel if you haven't already"
+    },
+    {
+      "begin": 936.559,
+      "end": 937.559,
+      "text1": "подписаны.",
+      "text2": "."
+    },
+    {
+      "begin": 937.559,
+      "end": 940.169,
+      "text1": "И увидимся в следующих видео.",
+      "text2": "And see you in the next video."
+    },
+    {
+      "begin": 940.169,
+      "end": 943.379,
+      "text1": "Пока-пока!",
+      "text2": "Bye Bye! "
+    },
+    {
+      "begin": 943.379,
+      "end": 946.5889999999999,
+      "text1": "Спасибо!",
+      "text2": "Thanks! "
+    },
+    {
+      "begin": 946.5889999999999,
+      "end": 949.809,
+      "text1": "Пока-пока!",
+      "text2": "Bye Bye!"
+    }
+  ]
+}

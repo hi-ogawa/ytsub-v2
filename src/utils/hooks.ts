@@ -7,7 +7,7 @@ function createUseQuery<TQueryFnArg, TQueryFnData>(
   key: any,
   queryFnWithArg: (arg: TQueryFnArg) => Promise<TQueryFnData>,
   defaultOptions?: Pick<
-    UseQueryOptions<TQueryFnData, Error, null>,
+    UseQueryOptions<TQueryFnData, Error, unknown>,
     "staleTime" | "cacheTime"
   >
 ) {
@@ -59,3 +59,15 @@ export const useYoutubeApi = createUseQuery("youtube-api", loadYoutubeApi, {
   staleTime: Infinity,
   cacheTime: Infinity,
 });
+
+export function toDemoDataOptions(initialData: any): any {
+  return initialData
+    ? {
+        // Rely on the given data completely during the hook call,
+        // but don't let it affect other calls using the same key
+        initialData,
+        staleTime: Infinity,
+        cacheTime: 0,
+      }
+    : {};
+}

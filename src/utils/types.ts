@@ -67,3 +67,9 @@ export interface BookmarkEntry {
 export interface PlayerSettings {
   autoScroll: boolean;
 }
+
+export interface DemoEntry {
+  watchParameters: WatchParameters;
+  videoMetadata: VideoMetadata;
+  captionEntries: CaptionEntry[];
+}
