@@ -1,5 +1,5 @@
 module.exports = {
   testEnvironment: "jsdom",
   roots: ["src"],
-  testPathIgnorePatterns: ["<rootDir>/src/__playwright__"],
+  testMatch: ["**/__tests__/**/*.test.ts?(x)"],
 };

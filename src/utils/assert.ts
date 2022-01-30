@@ -6,3 +6,5 @@ export function ok(value: unknown, message?: string | Error): asserts value {
     throw new Error(message);
   }
 }
+
+export function type<T>(_: unknown): asserts _ is T {}
