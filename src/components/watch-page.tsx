@@ -12,8 +12,13 @@ import {
   useYoutubeApi,
 } from "../utils/hooks";
 import { useBookmarkEntries, usePlayerSettings } from "../utils/storage";
-import { CaptionEntry, VideoMetadata, WatchParameters } from "../utils/types";
-import { useSearchParamsCustom } from "../utils/url";
+import {
+  CaptionEntry,
+  VideoMetadata,
+  WatchParameters,
+  WatchParametersSchema,
+} from "../utils/types";
+import { useSearchParamsSchema } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
 import {
   captionConfigToUrl,
@@ -29,8 +34,7 @@ export const WatchPage = withHook3(
     // Load youtube api script as early as possible
     useYoutubeApi(null);
 
-    // TODO: validate
-    const watchParameters = useSearchParamsCustom<WatchParameters>();
+    const watchParameters = useSearchParamsSchema(WatchParametersSchema);
     if (!watchParameters.ok) {
       console.error(watchParameters.val);
       return Err("error");

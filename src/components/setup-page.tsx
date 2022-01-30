@@ -16,8 +16,13 @@ import { findDemoEntry } from "../utils/demo-entries";
 import { toDemoDataOptions, useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
 import { useHistoryEntries, useLanguageSetting } from "../utils/storage";
-import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
-import { useNavigateCustom, useSearchParamsCustom } from "../utils/url";
+import {
+  CaptionConfig,
+  VideoMetadata,
+  WatchParameters,
+  WatchParametersSchema,
+} from "../utils/types";
+import { useNavigateCustom, useSearchParamsSchema } from "../utils/url";
 import { withHook } from "../utils/with-hook";
 import { findCaptionConfig } from "../utils/youtube";
 
@@ -47,7 +52,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
   const [caption1, setCaption1] = React.useState<CaptionConfig>();
   const [caption2, setCaption2] = React.useState<CaptionConfig>();
   const addHistoryEntry = useHistoryEntries()[1];
-  const watchParameters = useSearchParamsCustom<WatchParameters>();
+  const watchParameters = useSearchParamsSchema(WatchParametersSchema);
   const {
     data: videoMetadata,
     isSuccess,
