@@ -1,19 +1,11 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Err, Ok, Result } from "ts-results";
-import { fromFlatJson, toFlatJson } from "./flat-json";
+import { fromJsonSearchParams, toJsonSearchParams } from "./json-search-params";
 
 export function useNavigateCustom() {
   const navigate = useNavigate();
   function navigateExtra(pathname: string, data: any) {
-    let search = "";
-    try {
-      const flatJson = toFlatJson(data);
-      if (typeof flatJson !== "string") {
-        search = "?" + new URLSearchParams(flatJson).toString();
-      }
-    } catch (e) {
-      console.error(e);
-    }
+    const search = wrapError(() => "?" + toJsonSearchParams(data)).unwrapOr("");
     navigate({ pathname, search });
   }
   return navigateExtra;
@@ -21,13 +13,16 @@ export function useNavigateCustom() {
 
 export function useSearchParamsCustom<T>(): Result<T, Error> {
   const [searchParams] = useSearchParams();
+  return wrapError(() => fromJsonSearchParams(searchParams));
+}
+
+function wrapError<T>(f: () => T): Result<T, Error> {
   try {
-    const flatJson = Object.fromEntries((searchParams as any).entries());
-    return Ok(fromFlatJson(flatJson));
+    return Ok(f());
   } catch (e) {
     if (e instanceof Error) {
       return Err(e);
     }
-    return Err(new Error());
+    return Err(new Error(String(e)));
   }
 }
