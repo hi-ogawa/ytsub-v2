@@ -20,7 +20,6 @@ import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
 import { useNavigateCustom, useSearchParamsCustom } from "../utils/url";
 import { withHook } from "../utils/with-hook";
 import { findCaptionConfig } from "../utils/youtube";
-// import {}
 
 export const SetupPage = withHook(
   () => {
