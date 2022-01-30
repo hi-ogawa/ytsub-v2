@@ -94,10 +94,14 @@ function MiniPlayer({ entry }: { entry: BookmarkEntry }) {
   const navigate = useNavigateCustom();
   const [player, setPlayer] = React.useState<Player>();
   const [playerState, setPlayerState] = React.useState(DEFAULT_PLAYER_STATE);
+  const [isRepeating, setIsRepeating] = React.useState(false);
 
   const { captionEntry, watchParameters } = entry;
   const { videoId } = watchParameters;
-  const { isPlaying } = playerState;
+  const { currentTime, isPlaying } = playerState;
+
+  const { begin, end } = entry.captionEntry;
+  const beginFloor = Math.max(0, Math.floor(begin) - 1);
 
   function setupPlayerStateSync(player: Player): () => void {
     // TODO: use youtube iframe api's `onStateChange` to monitor `isPlaying`
@@ -105,6 +109,13 @@ function MiniPlayer({ entry }: { entry: BookmarkEntry }) {
       setPlayerState(player.getState());
     }, PLAYER_STATE_SYNC_INTERVAL);
     return () => clearInterval(unsubscribe);
+  }
+
+  function repeatEntry() {
+    if (!player || !isRepeating) return;
+    if (currentTime < beginFloor || end < currentTime) {
+      player.seekTo(beginFloor);
+    }
   }
 
   function onClickEntryPlay(entry: CaptionEntry, toggle: boolean) {
@@ -122,6 +133,13 @@ function MiniPlayer({ entry }: { entry: BookmarkEntry }) {
     }
   }
 
+  function onClickEntryRepeat() {
+    setIsRepeating(!isRepeating);
+    if (player && !isPlaying) {
+      player.playVideo();
+    }
+  }
+
   function onClickEntrySearch(_: CaptionEntry) {
     navigate("/watch", watchParameters);
   }
@@ -132,17 +150,24 @@ function MiniPlayer({ entry }: { entry: BookmarkEntry }) {
     return setupPlayerStateSync(player);
   }, [!!player]);
 
+  // Handle repeating entry
+  React.useEffect(() => {
+    repeatEntry();
+  }, [currentTime]);
+
   return (
     <div className="flex flex-col w-full">
       <PlayerComponent
         videoId={videoId}
         setPlayer={setPlayer}
-        start={Math.max(0, Math.floor(captionEntry.begin) - 1)}
+        start={beginFloor}
       />
       <CaptionEntryComponent
         entry={captionEntry}
-        currentEntry={undefined}
+        isCurrentEntry={false}
+        isRepeating={isRepeating}
         onClickEntryPlay={onClickEntryPlay}
+        onClickEntryRepeat={onClickEntryRepeat}
         onClickEntrySearch={onClickEntrySearch}
         playerState={playerState}
         border={false}
