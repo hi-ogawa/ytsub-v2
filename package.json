@@ -54,6 +54,7 @@
     "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^10.2.0",
     "css-loader": "^6.5.1",
+    "fast-check": "^2.21.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "jsdom": "^19.0.0",
