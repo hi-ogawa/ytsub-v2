@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import fc from "fast-check";
 import { fromPathJson, toPathJson } from "../path-json";
-import { describeOnlyEnv } from "./helpers";
 
 describe("path-json", () => {
   describe("simple", () => {
@@ -23,13 +22,13 @@ describe("path-json", () => {
       expect(pathJson).toMatchInlineSnapshot(`
         Array [
           Object {
-            "path": Array [
+            "keys": Array [
               "videoId",
             ],
             "primitive": "MoH8Fk2K9bc",
           },
           Object {
-            "path": Array [
+            "keys": Array [
               "captionConfigs",
               0,
               "id",
@@ -37,7 +36,7 @@ describe("path-json", () => {
             "primitive": "a.fr",
           },
           Object {
-            "path": Array [
+            "keys": Array [
               "captionConfigs",
               1,
               "id",
@@ -45,7 +44,7 @@ describe("path-json", () => {
             "primitive": "a.fr",
           },
           Object {
-            "path": Array [
+            "keys": Array [
               "captionConfigs",
               1,
               "translation",
@@ -58,14 +57,13 @@ describe("path-json", () => {
     });
   });
 
-  // DESCRIBE=fuzz npm run test -- -t path-json
-  describeOnlyEnv("fuzz", () => {
+  describe("fuzz", () => {
     it("works", () => {
       fc.assert(
         fc.property(fc.jsonValue(), (data) =>
           expect(fromPathJson(toPathJson(data))).toStrictEqual(data)
         ),
-        { verbose: true, numRuns: 10 ** 4 }
+        { verbose: true, numRuns: Number(process.env.FUZZ_NUM_RUNS) ?? 10 ** 3 }
       );
     });
   });

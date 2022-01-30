@@ -2,7 +2,7 @@ import * as assert from "./assert";
 
 export type Primitive = null | boolean | number | string | {} | [];
 export type Key = string | number;
-export type PathJson = { path: Key[]; primitive: Primitive }[];
+export type PathJson = { keys: Key[]; primitive: Primitive }[];
 
 export function isPrimitive(data: unknown): data is Primitive {
   if (
@@ -24,21 +24,21 @@ export function isPrimitive(data: unknown): data is Primitive {
 
 export function toPathJson(data: unknown): PathJson {
   const pathJson: PathJson = [];
-  function recurse(path: Key[], data: unknown) {
+  function recurse(keys: Key[], data: unknown) {
     if (isPrimitive(data)) {
-      pathJson.push({ path, primitive: data });
+      pathJson.push({ keys: keys, primitive: data });
       return;
     }
     if (Array.isArray(data)) {
       data.forEach((v, k) => {
-        recurse([...path, k], v);
+        recurse([...keys, k], v);
       });
       return;
     }
     if (typeof data === "object") {
       assert.type<object>(data);
       for (const [k, v] of Object.entries(data)) {
-        recurse([...path, k], v);
+        recurse([...keys, k], v);
       }
       return;
     }
@@ -56,9 +56,9 @@ export function fromPathJson(pathJson: PathJson): unknown {
 
   // Reconstruct as Node
   const root: Node = { children: new Map() };
-  for (const { path, primitive } of pathJson) {
+  for (const { keys, primitive } of pathJson) {
     let node = root;
-    for (const key of path) {
+    for (const key of keys) {
       if (!node.children.has(key)) {
         node.children.set(key, { children: new Map() });
       }

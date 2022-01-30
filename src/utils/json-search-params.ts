@@ -16,7 +16,7 @@ export function fromJsonSearchParams(params: URLSearchParams): any {
   return fromPathJson(decodePathJson(entries));
 }
 
-type EncodedPathJson = [path: string, primitive: string][];
+type EncodedPathJson = [keys: string, primitive: string][];
 
 function encodeKey(key: Key): string {
   if (typeof key === "string") {
@@ -52,15 +52,15 @@ function decodePrimitive(encoded: string): Primitive {
 }
 
 function encodePathJson(pathJson: PathJson): EncodedPathJson {
-  return pathJson.map(({ path, primitive }) => [
-    encodeKeys(path),
+  return pathJson.map(({ keys, primitive }) => [
+    encodeKeys(keys),
     encodePrimitive(primitive),
   ]);
 }
 
 function decodePathJson(encoded: EncodedPathJson): PathJson {
-  return encoded.map(([path, primitive]) => ({
-    path: decodeKeys(path),
+  return encoded.map(([keys, primitive]) => ({
+    keys: decodeKeys(keys),
     primitive: decodePrimitive(primitive),
   }));
 }
