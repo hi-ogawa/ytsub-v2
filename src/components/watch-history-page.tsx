@@ -48,14 +48,14 @@ export function WatchHistoryPage() {
   );
 }
 
-function HistoryEntryComponent({
+export function HistoryEntryComponent({
   entry,
   onPlayEntry,
   onRemoveEntry,
 }: {
   entry: HistoryEntry;
   onPlayEntry: Dispatch<HistoryEntry>;
-  onRemoveEntry: Dispatch<HistoryEntry>;
+  onRemoveEntry?: Dispatch<HistoryEntry>;
 }) {
   const { title, author, thumbnail } = entry.videoDetails;
 
@@ -67,6 +67,8 @@ function HistoryEntryComponent({
     9 (cover)|
     ↓        ↓
    */
+
+  // TODO: Use <Link> instead of `onClick` event (https://github.com/hi-ogawa/ytsub-v2/issues/22)
   return (
     <div
       className="w-full flex border border-solid border-gray-200"
@@ -79,18 +81,23 @@ function HistoryEntryComponent({
         <img className="absolute top-0" src={last(thumbnail.thumbnails)!.url} />
       </div>
       <div className="p-2 flex flex-col relative text-sm">
-        <div className="line-clamp-2 mb-1" onClick={() => onPlayEntry(entry)}>
+        <div
+          className="line-clamp-2 mb-1 cursor-pointer"
+          onClick={() => onPlayEntry(entry)}
+        >
           {title}
         </div>
         <div className="w-11/12 line-clamp-1 text-gray-600 text-xs">
           {author}
         </div>
-        <div
-          className="absolute right-1 bottom-1 cursor-pointer flex"
-          onClick={() => onRemoveEntry(entry)}
-        >
-          <span className="font-icon">close</span>
-        </div>
+        {onRemoveEntry && (
+          <div
+            className="absolute right-1 bottom-1 cursor-pointer flex"
+            onClick={() => onRemoveEntry(entry)}
+          >
+            <span className="font-icon">close</span>
+          </div>
+        )}
       </div>
     </div>
   );

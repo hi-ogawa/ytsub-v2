@@ -38,6 +38,7 @@ export type VideoMetadata = {
         languageCode: string;
         kind?: string;
       }[];
+      // TODO: Remove and use only FILTERED_LANGUAGE_CODES
       translationLanguages: {
         languageCode: string;
       }[];

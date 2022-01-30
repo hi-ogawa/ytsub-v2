@@ -14,10 +14,8 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Paper,
   Switch,
   Toolbar,
-  Typography,
 } from "@mui/material";
 import { memoize } from "lodash";
 import { useSnackbar } from "notistack";
@@ -26,6 +24,8 @@ import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { usePlayerSettings } from "../utils/storage";
 import { parseVideoId } from "../utils/youtube";
 import { BookmarkListPage } from "./bookmark-list-page";
+import { DevPage } from "./dev-page";
+import { HomePage } from "./home-page";
 import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
 import { ShareTargetPage } from "./share-target";
@@ -191,36 +191,6 @@ function Menu({ closeDrawer }: { closeDrawer: () => void }) {
   );
 }
 
-function HomePage() {
-  const videoIds = [
-    "XrhqJmQnKAs",
-    "MoH8Fk2K9bc",
-    "vCb8iA4SjOI",
-    "GZ2uc-3pQbA",
-    "FSYe9GQc9Ow",
-    "EnPYXckiUVg",
-  ];
-
-  return (
-    <Box
-      sx={{ padding: 1, height: 1, display: "flex", justifyContent: "center" }}
-    >
-      <Paper
-        sx={{ padding: 1, height: 1, flex: "1 0 auto", maxWidth: "500px" }}
-      >
-        <Typography variant="h5">Examples</Typography>
-        <List>
-          {videoIds.map((videoId) => (
-            <ListItem key={videoId}>
-              <Link to={`/setup/${videoId}`}>{videoId}</Link>
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-    </Box>
-  );
-}
-
 export function App() {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
@@ -254,6 +224,7 @@ export function App() {
           <Route path="watch-history" element={<WatchHistoryPage />} />
           <Route path="bookmarks" element={<BookmarkListPage />} />
           <Route path="share-target" element={<ShareTargetPage />} />
+          <Route path="dev" element={<DevPage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Box>
