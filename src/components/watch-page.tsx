@@ -4,7 +4,9 @@ import * as React from "react";
 import { Navigate } from "react-router-dom";
 import { Err, Ok, Result } from "ts-results";
 import * as assert from "../utils/assert";
+import { findDemoEntry } from "../utils/demo-entries";
 import {
+  toDemoDataOptions,
   useCaptionEntries,
   useVideoMetadata,
   useYoutubeApi,
@@ -49,7 +51,10 @@ export const WatchPage = withHook3(
       data: videoMetadata,
       isLoading,
       isError,
-    } = useVideoMetadata(videoId);
+    } = useVideoMetadata(
+      videoId,
+      toDemoDataOptions(findDemoEntry(watchParameters)?.videoMetadata)
+    );
     if (isError) {
       return Err("error");
     }
@@ -77,7 +82,10 @@ export const WatchPage = withHook3(
       data: captionEntries,
       isLoading,
       isError,
-    } = useCaptionEntries([url1, url2]);
+    } = useCaptionEntries(
+      [url1, url2],
+      toDemoDataOptions(findDemoEntry(watchParameters)?.captionEntries)
+    );
     if (isError) {
       return Err("error");
     }

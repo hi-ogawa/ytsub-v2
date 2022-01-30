@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const ReactRefreshTypeScript = require("react-refresh-typescript");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 const MODE = process.env.WEBPACK_MODE ?? "development";
@@ -32,12 +31,9 @@ module.exports = {
         include: [path.resolve(__dirname, "src")],
         use: [
           {
-            loader: "ts-loader",
+            loader: "babel-loader",
             options: {
-              transpileOnly: true,
-              getCustomTransformers: () => ({
-                before: PRODUCTION ? [] : [ReactRefreshTypeScript()],
-              }),
+              plugins: PRODUCTION ? [] : ["react-refresh/babel"],
             },
           },
         ],

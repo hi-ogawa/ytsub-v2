@@ -1,0 +1,694 @@
+{
+  "watchParameters": {
+    "videoId": "vCb8iA4SjOI",
+    "captions": [
+      {
+        "id": "a.fr"
+      },
+      {
+        "id": "a.fr",
+        "translation": "en"
+      }
+    ]
+  },
+  "videoMetadata": {
+    "playabilityStatus": {
+      "status": "OK"
+    },
+    "videoDetails": {
+      "videoId": "vCb8iA4SjOI",
+      "title": "How To Talk About Your Emotions and Feelings in French | Super Easy French 110",
+      "lengthSeconds": "302",
+      "keywords": [
+        "language",
+        "language school",
+        "school",
+        "language lesson",
+        "lesson",
+        "teacher",
+        "learn",
+        "native",
+        "native speaker",
+        "languages",
+        "street",
+        "street interview",
+        "interviews",
+        "education",
+        "teachers",
+        "student",
+        "free",
+        "tutorial",
+        "tutorials",
+        "language learning",
+        "easy languages",
+        "easy french",
+        "learn french",
+        "french",
+        "french language",
+        "french with subtitles",
+        "french native",
+        "french lesson"
+      ],
+      "channelId": "UCoUWq2QawqdC3-nRXKk-JUw",
+      "isOwnerViewing": false,
+      "shortDescription": "BECOME A MEMBER OF EASY FRENCH: https://www.patreon.com/easyfrench\nSUBSCRIBE TO THE EASY FRENCH CHANNEL: http://bit.ly/EasyFrenchsub\nFOLLOW EASY FRENCH ON FACEBOOK: https://www.facebook.com/EasyFrenchVideos/\nFOLLOW EASY FRENCH ON INSTAGRAM: https://www.instagram.com/easyfrenchvideos/\n\n---\nPLAYLIST WITH ALL EASY FRENCH STREET INTERVIEWS: http://bit.ly/EasyFrenchPlaylist\nPLAYLIST WITH ALL SUPER EASY FRENCH VIDEOS FOR BEGINNERS: http://bit.ly/SuperEasyFrenchPlaylist\n\n---\nSUBSCRIBE TO EASY LANGUAGES: http://bit.ly/elsub\nFACEBOOK: https://www.facebook.com/easylanguagesstreetinterviews/\nBECOME A CO-PRODUCER: https://bit.ly/2kyB9nM\n\n---\nEasy Languages is an international video project aiming at supporting people worldwide to learn languages through authentic street interviews and expose the street culture of participating partner countries abroad. Episodes are produced in local languages and contain subtitles in both the original language as well as in English.\nhttp://www.easy-languages.org/\n\n---\nCo-producers of Easy French: Rita Nassif, Judith Benzadon, Hélène Moisset\n\n#learnfrench #easyfrench #easylanguages",
+      "isCrawlable": true,
+      "thumbnail": {
+        "thumbnails": [
+          {
+            "url": "https://i.ytimg.com/vi/vCb8iA4SjOI/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLDl9GqPo9HG8YESxWG1FckzArUfag",
+            "width": 168,
+            "height": 94
+          },
+          {
+            "url": "https://i.ytimg.com/vi/vCb8iA4SjOI/hqdefault.jpg?sqp=-oaymwEiCMQBEG5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLDDciucXvA0b_SOBGX9F60sSeOjqA",
+            "width": 196,
+            "height": 110
+          },
+          {
+            "url": "https://i.ytimg.com/vi/vCb8iA4SjOI/hqdefault.jpg?sqp=-oaymwEjCPYBEIoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCHDOhayYA-wXC4i1gs3ps4Y1fF_A",
+            "width": 246,
+            "height": 138
+          },
+          {
+            "url": "https://i.ytimg.com/vi/vCb8iA4SjOI/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBunS-qWjYQOsk8vH6V1xMMuxGSKA",
+            "width": 336,
+            "height": 188
+          }
+        ]
+      },
+      "allowRatings": true,
+      "viewCount": "55318",
+      "author": "Easy French",
+      "isPrivate": false,
+      "isUnpluggedCorpus": false,
+      "isLiveContent": false
+    },
+    "captions": {
+      "playerCaptionsTracklistRenderer": {
+        "captionTracks": [
+          {
+            "baseUrl": "https://www.youtube.com/api/timedtext?v=vCb8iA4SjOI&asr_langs=de,en,es,fr,id,it,ja,ko,nl,pt,ru,tr,vi&caps=asr&exp=xftt,xctw&xoaf=5&hl=en&ip=0.0.0.0&ipbits=0&expire=1643550808&sparams=ip,ipbits,expire,v,asr_langs,caps,exp,xoaf&signature=68CADF6DDEFBE3EE2CDE0B2A5BD69B7EC9DF7846.CDD21079D280A26222DDA6A535E478E78B8E59D8&key=yt8&kind=asr&lang=fr",
+            "name": {
+              "simpleText": "French (auto-generated)"
+            },
+            "vssId": "a.fr",
+            "languageCode": "fr",
+            "kind": "asr",
+            "isTranslatable": true
+          }
+        ]
+      }
+    }
+  },
+  "captionEntries": [
+    {
+      "begin": 0,
+      "end": 5.759,
+      "text1": "salut les amis comment ça va aujourd'hui",
+      "text2": "hi friends how"
+    },
+    {
+      "begin": 1.77,
+      "end": 8.67,
+      "text1": "vous êtes plutôt détendu heureux ou",
+      "text2": "are you today are you pretty relaxed happy or"
+    },
+    {
+      "begin": 5.759,
+      "end": 10.469,
+      "text1": "stressé aujourd'hui vous l'avez deviné",
+      "text2": "stressed today you guessed it"
+    },
+    {
+      "begin": 8.67,
+      "end": 12.74,
+      "text1": "nous allons parler des émissions en",
+      "text2": "we are going to talk about the shows in french let's go"
+    },
+    {
+      "begin": 10.469,
+      "end": 15.999,
+      "text1": "français c'est parti",
+      "text2": ""
+    },
+    {
+      "begin": 12.74,
+      "end": 15.999,
+      "text1": "[Musique]",
+      "text2": "[Music]"
+    },
+    {
+      "begin": 17.2,
+      "end": 23.689,
+      "text1": "jb ça va non je suis en colère qu'est ce",
+      "text2": "jb how are you no i'm mad what is this"
+    },
+    {
+      "begin": 21.5,
+      "end": 25.279,
+      "text1": "qui se passe je devais recevoir un",
+      "text2": "what's happening I was supposed to receive a"
+    },
+    {
+      "begin": 23.689,
+      "end": 27.23,
+      "text1": "paquet pour l'anniversaire d'une amie et",
+      "text2": "package for a friend's birthday and"
+    },
+    {
+      "begin": 25.279,
+      "end": 28.18,
+      "text1": "il n'est pas arrivé elle va être trop",
+      "text2": "it didn't arrive she's going to be too"
+    },
+    {
+      "begin": 27.23,
+      "end": 31.189,
+      "text1": "déçu",
+      "text2": "disappointed"
+    },
+    {
+      "begin": 28.18,
+      "end": 34,
+      "text1": "c'est pas la peine de s'énerver je sûr",
+      "text2": "it's not worth getting upset I'm sure"
+    },
+    {
+      "begin": 31.189,
+      "end": 37.57,
+      "text1": "qu'elle ne sera pas fâché",
+      "text2": "she won't"
+    },
+    {
+      "begin": 34,
+      "end": 37.57,
+      "text1": "être en colère",
+      "text2": "be angry be angry"
+    },
+    {
+      "begin": 38.23,
+      "end": 42.07,
+      "text1": "être déçu",
+      "text2": "be disappointed"
+    },
+    {
+      "begin": 42.25,
+      "end": 47.57,
+      "text1": "s'énerver",
+      "text2": "get upset"
+    },
+    {
+      "begin": 45.22,
+      "end": 50.03,
+      "text1": "on peut savoir pourquoi tu es aussi",
+      "text2": "we can know why you're so"
+    },
+    {
+      "begin": 47.57,
+      "end": 53.51,
+      "text1": "contente mais je ne suis pas contente je",
+      "text2": "happy but I'm not happy I"
+    },
+    {
+      "begin": 50.03,
+      "end": 55.58,
+      "text1": "suis heureuse la vie est si belle je",
+      "text2": "'m happy life is so beautiful"
+    },
+    {
+      "begin": 53.51,
+      "end": 57.229,
+      "text1": "t'ai connu moins joyeux mais pour quoi",
+      "text2": "I knew you less happy but why get"
+    },
+    {
+      "begin": 55.58,
+      "end": 59.409,
+      "text1": "déprimer quand il n'y a aucune raison",
+      "text2": "depressed when there's no reason"
+    },
+    {
+      "begin": 57.229,
+      "end": 67.119,
+      "text1": "d'être malheureux",
+      "text2": "to be unhappy"
+    },
+    {
+      "begin": 59.409,
+      "end": 67.119,
+      "text1": "être content quand être heureux heureuse",
+      "text2": "be happy when be happy happy"
+    },
+    {
+      "begin": 67.57,
+      "end": 72.159,
+      "text1": "être malheureux",
+      "text2": "be unhappy"
+    },
+    {
+      "begin": 70.63,
+      "end": 77.14,
+      "text1": "malheureuse",
+      "text2": "unhappy"
+    },
+    {
+      "begin": 72.159,
+      "end": 77.14,
+      "text1": "être joyeux joyeuse",
+      "text2": "be happy happy"
+    },
+    {
+      "begin": 77.74,
+      "end": 80.74,
+      "text1": "déprimé",
+      "text2": "depressed"
+    },
+    {
+      "begin": 82.539,
+      "end": 89.03999999999999,
+      "text1": "mais pourquoi tu pleures tu es triste",
+      "text2": "but why are you crying you're sad"
+    },
+    {
+      "begin": 85.99,
+      "end": 94.619,
+      "text1": "déprimé tu as le coeur brisé",
+      "text2": "depressed you're heartbroken"
+    },
+    {
+      "begin": 89.03999999999999,
+      "end": 98.439,
+      "text1": "non je suis ému je viens de voir un film",
+      "text2": "no I'm moved I just saw a movie"
+    },
+    {
+      "begin": 94.619,
+      "end": 100.38,
+      "text1": "qui m'a trop touchés si ce n'est que ça",
+      "text2": "that touched me too much if it's just"
+    },
+    {
+      "begin": 98.439,
+      "end": 104.02000000000001,
+      "text1": "ça va aller",
+      "text2": "that  gonna be okay"
+    },
+    {
+      "begin": 100.38,
+      "end": 106.259,
+      "text1": "je ne suis pas sûr je suis vraiment",
+      "text2": "i'm not sure i'm really"
+    },
+    {
+      "begin": 104.02000000000001,
+      "end": 106.259,
+      "text1": "bouleversé",
+      "text2": "upset"
+    },
+    {
+      "begin": 106.5,
+      "end": 109.979,
+      "text1": "être triste",
+      "text2": "be sad  be"
+    },
+    {
+      "begin": 110.22,
+      "end": 114.149,
+      "text1": "être",
+      "text2": ""
+    },
+    {
+      "begin": 111.869,
+      "end": 117.75,
+      "text1": "déprimé",
+      "text2": "depressed"
+    },
+    {
+      "begin": 114.149,
+      "end": 117.75,
+      "text1": "être ému",
+      "text2": "be moved"
+    },
+    {
+      "begin": 118.44,
+      "end": 124.35,
+      "text1": "être touchés être bouleversée",
+      "text2": "be touched be upset"
+    },
+    {
+      "begin": 127.56,
+      "end": 133.209,
+      "text1": "avoir le coeur brisé",
+      "text2": "be heartbroken"
+    },
+    {
+      "begin": 131.68,
+      "end": 135.94,
+      "text1": "tu savais que je m'étais inscrite à un",
+      "text2": "you knew that I had signed up for a"
+    },
+    {
+      "begin": 133.209,
+      "end": 138.85,
+      "text1": "cours de néerlandais bravo tu es",
+      "text2": "Dutch course congratulations you are"
+    },
+    {
+      "begin": 135.94,
+      "end": 141.13,
+      "text1": "vraiment déterminé d'ailleurs les amis",
+      "text2": "really determined by the way friends"
+    },
+    {
+      "begin": 138.85,
+      "end": 143.26,
+      "text1": "si vous aussi vous êtes motivés pour",
+      "text2": "if you too are motivated to"
+    },
+    {
+      "begin": 141.13,
+      "end": 145.72,
+      "text1": "apprendre le français rejoignez vite",
+      "text2": "learn French join"
+    },
+    {
+      "begin": 143.26,
+      "end": 148.42000000000002,
+      "text1": "notre communauté d'apprenants le lien",
+      "text2": "our community quickly  learners the link"
+    },
+    {
+      "begin": 145.72,
+      "end": 150.28,
+      "text1": "est en barre d'infos en tant que membre",
+      "text2": "is in the info bar as a member"
+    },
+    {
+      "begin": 148.42000000000002,
+      "end": 152.59,
+      "text1": "d' easy french vous recevrez chaque",
+      "text2": "of easy french you will receive"
+    },
+    {
+      "begin": 150.28,
+      "end": 154.989,
+      "text1": "semaine du matériel supplémentaire comme",
+      "text2": "additional material every week such"
+    },
+    {
+      "begin": 152.59,
+      "end": 156.579,
+      "text1": "des exercices pour travailler le contenu",
+      "text2": "as exercises to work on the content"
+    },
+    {
+      "begin": 154.989,
+      "end": 159.37,
+      "text1": "de nos vidéos et vous aurez également",
+      "text2": "of our videos and you will also have"
+    },
+    {
+      "begin": 156.579,
+      "end": 161.35,
+      "text1": "accès à notre page sur tikrit fiq où",
+      "text2": "access to our page on tikrit fiq where"
+    },
+    {
+      "begin": 159.37,
+      "end": 163.45,
+      "text1": "vous trouverez des leçons et des quizz",
+      "text2": "you will find  lessons and quizzes"
+    },
+    {
+      "begin": 161.35,
+      "end": 164.579,
+      "text1": "pour enfin maîtriser la grammaire",
+      "text2": "to finally master French grammar"
+    },
+    {
+      "begin": 163.45,
+      "end": 167.94,
+      "text1": "française",
+      "text2": ""
+    },
+    {
+      "begin": 164.579,
+      "end": 172.09,
+      "text1": "être motivée",
+      "text2": "be motivated"
+    },
+    {
+      "begin": 167.94,
+      "end": 177.39,
+      "text1": "être déterminée tu savais que caroline",
+      "text2": "be determined you knew that caroline"
+    },
+    {
+      "begin": 172.09,
+      "end": 180.25,
+      "text1": "et paul ali se marier oui je suis choqué",
+      "text2": "and paul ali are getting married yes I'm shocked"
+    },
+    {
+      "begin": 177.39,
+      "end": 184.03,
+      "text1": "choquée tu exagère un peu non plutôt",
+      "text2": "shocked you're exaggerating a bit no rather"
+    },
+    {
+      "begin": 180.25,
+      "end": 186.25,
+      "text1": "étonnés ou surprise non non non choqués",
+      "text2": "surprised or surprised no no no shocked"
+    },
+    {
+      "begin": 184.03,
+      "end": 189.9,
+      "text1": "ils ne se connaissent que depuis un an",
+      "text2": "they've only known each other for a year"
+    },
+    {
+      "begin": 186.25,
+      "end": 193.5,
+      "text1": "mais ils sont vraiment amoureux",
+      "text2": "but they're really in love"
+    },
+    {
+      "begin": 189.9,
+      "end": 193.5,
+      "text1": "être choqué",
+      "text2": "be shocked"
+    },
+    {
+      "begin": 194.88,
+      "end": 201.72,
+      "text1": "être étonné",
+      "text2": "be surprised"
+    },
+    {
+      "begin": 197.25,
+      "end": 201.72,
+      "text1": "être surpris surprise",
+      "text2": "be surprised surprise"
+    },
+    {
+      "begin": 202.14,
+      "end": 207,
+      "text1": "être amoureux",
+      "text2": "be in love in"
+    },
+    {
+      "begin": 204.51,
+      "end": 210.49,
+      "text1": "amoureuse",
+      "text2": "love"
+    },
+    {
+      "begin": 207,
+      "end": 214.07999999999998,
+      "text1": "oh lalala lalala tu ne devineras jamais",
+      "text2": "oh lalala lalala you'll never guess"
+    },
+    {
+      "begin": 210.49,
+      "end": 217.68,
+      "text1": "ce que j'ai fait c'est tellement honte",
+      "text2": "it  e what I did it's so ashamed"
+    },
+    {
+      "begin": 214.07999999999998,
+      "end": 217.68,
+      "text1": "mais pourquoi",
+      "text2": "but why"
+    },
+    {
+      "begin": 218.22,
+      "end": 223.15,
+      "text1": "je me suis moqué de quelqu'un par",
+      "text2": "I made fun of someone by"
+    },
+    {
+      "begin": 220.42000000000002,
+      "end": 227.55,
+      "text1": "message et sans faire exprès c'est à lui",
+      "text2": "message and without doing it on purpose it was to him"
+    },
+    {
+      "begin": 223.15,
+      "end": 229.66,
+      "text1": "que j'ai envoyé le message je suis gêné",
+      "text2": "that I sent the message I'm embarrassed"
+    },
+    {
+      "begin": 227.55,
+      "end": 233.56,
+      "text1": "c'est vrai qu'il n'ya pas de quoi être",
+      "text2": "it's true that he n  it's nothing to be"
+    },
+    {
+      "begin": 229.66,
+      "end": 237.66,
+      "text1": "fier mais ce n'est pas si grave",
+      "text2": "proud of but it's not that bad"
+    },
+    {
+      "begin": 233.56,
+      "end": 240.43,
+      "text1": "mais si je suis mortifié",
+      "text2": "but if i'm mortified"
+    },
+    {
+      "begin": 237.66,
+      "end": 243.49,
+      "text1": "excuse-toi simplement et il ne t'en",
+      "text2": "just apologize and he"
+    },
+    {
+      "begin": 240.43,
+      "end": 246.209,
+      "text1": "voudra pas je serais tellement soulagée",
+      "text2": "won't blame you i'd be so relieved"
+    },
+    {
+      "begin": 243.49,
+      "end": 246.209,
+      "text1": "si c'était le cas",
+      "text2": "if he was"
+    },
+    {
+      "begin": 246.24,
+      "end": 252.06,
+      "text1": "avoir honte être mortifié",
+      "text2": "be ashamed be mortified"
+    },
+    {
+      "begin": 252.63,
+      "end": 259.62,
+      "text1": "être fier",
+      "text2": "be proud"
+    },
+    {
+      "begin": 255.87,
+      "end": 259.62,
+      "text1": "être gêné",
+      "text2": "be embarrassed"
+    },
+    {
+      "begin": 262.02,
+      "end": 266.83,
+      "text1": "être soulagé",
+      "text2": "be relieved"
+    },
+    {
+      "begin": 264.48,
+      "end": 269.05,
+      "text1": "voilà les amis c'est tout pour",
+      "text2": "that's it friends that's all for"
+    },
+    {
+      "begin": 266.83,
+      "end": 270.88,
+      "text1": "aujourd'hui écrivez nous en commentaires",
+      "text2": "today write us in comments"
+    },
+    {
+      "begin": 269.05,
+      "end": 273.34000000000003,
+      "text1": "les émotions que vous avez ressenti",
+      "text2": "the emotions you felt"
+    },
+    {
+      "begin": 270.88,
+      "end": 276.15999999999997,
+      "text1": "aujourd'hui et ce qui les a provoquées",
+      "text2": "today and what caused them"
+    },
+    {
+      "begin": 273.34000000000003,
+      "end": 278.58,
+      "text1": "et surtout abonnez-vous à la chaîne est",
+      "text2": "and above all subscribe to the channel"
+    },
+    {
+      "begin": 276.15999999999997,
+      "end": 280.56,
+      "text1": "resté motivé pour apprendre le français",
+      "text2": "remained motivated to learn French see"
+    },
+    {
+      "begin": 278.58,
+      "end": 282.7,
+      "text1": "à bientôt",
+      "text2": "you soon"
+    },
+    {
+      "begin": 280.56,
+      "end": 285.3,
+      "text1": "mais pourquoi être malheureux quand il",
+      "text2": "but  why be unhappy when"
+    },
+    {
+      "begin": 282.7,
+      "end": 288.06,
+      "text1": "n'y a aucune raison d'être mais",
+      "text2": "there is no reason to be but"
+    },
+    {
+      "begin": 285.3,
+      "end": 290.08,
+      "text1": "pourquoi des privés coloniale merkel",
+      "text2": "why private colonial merkel"
+    },
+    {
+      "begin": 288.06,
+      "end": 291.37,
+      "text1": "devait recevoir un paquet pour",
+      "text2": "was to receive a package for"
+    },
+    {
+      "begin": 290.08,
+      "end": 293.59000000000003,
+      "text1": "l'anniversaire d'une amie et il n'est",
+      "text2": "a friend's birthday and it did"
+    },
+    {
+      "begin": 291.37,
+      "end": 295.95,
+      "text1": "pas arrivé à temps sûr qu'elle sera",
+      "text2": "not arrive in time for sure that it will be"
+    },
+    {
+      "begin": 293.59000000000003,
+      "end": 295.95,
+      "text1": "dissipée",
+      "text2": "dissipated"
+    },
+    {
+      "begin": 297.8,
+      "end": 302.22,
+      "text1": "[Rires]",
+      "text2": "[Laughs]"
+    }
+  ]
+}

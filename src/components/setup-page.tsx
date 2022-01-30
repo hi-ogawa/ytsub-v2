@@ -12,7 +12,8 @@ import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { Err, Ok } from "ts-results";
-import { useVideoMetadata } from "../utils/hooks";
+import { findDemoEntry } from "../utils/demo-entries";
+import { toDemoDataOptions, useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
 import { useHistoryEntries, useLanguageSetting } from "../utils/storage";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
@@ -47,7 +48,6 @@ function SetupPageOk({ data: videoId }: { data: string }) {
   const [caption2, setCaption2] = React.useState<CaptionConfig>();
   const addHistoryEntry = useHistoryEntries()[1];
   const watchParameters = useSearchParamsCustom<WatchParameters>();
-
   const {
     data: videoMetadata,
     isSuccess,
@@ -58,6 +58,9 @@ function SetupPageOk({ data: videoId }: { data: string }) {
       console.error(error);
       enqueueSnackbar("Failed to load captions data");
     },
+    ...toDemoDataOptions(
+      watchParameters.map(findDemoEntry).unwrapOr(undefined)?.videoMetadata
+    ),
   });
 
   React.useEffect(() => {
@@ -177,7 +180,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
 function renderCaptionConfigSelectOptions(
   videoMetadata: VideoMetadata
 ): React.ReactNode[] {
-  const { captionTracks, translationLanguages } =
+  const { captionTracks } =
     videoMetadata.captions.playerCaptionsTracklistRenderer;
 
   const children: React.ReactNode[] = [];
@@ -205,8 +208,7 @@ function renderCaptionConfigSelectOptions(
     const value = JSON.stringify({ vssId });
 
     const translationOptions: React.ReactNode[] = [];
-    for (const translation of translationLanguages) {
-      const code = translation.languageCode;
+    for (const code of FILTERED_LANGUAGE_CODES) {
       const config: CaptionConfig = { id: vssId, translation: code };
       if (!FILTERED_LANGUAGE_CODES.includes(code as any)) {
         continue;

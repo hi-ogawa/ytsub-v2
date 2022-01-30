@@ -97,6 +97,7 @@ export function ttmlsToCaptionEntries(
   const entries1 = ttmlToEntries(ttml1);
   const entries2 = ttmlToEntries(ttml2);
   return entries1.map(({ begin, end, text }) => {
+    // TODO: allow non exact timestamp (it happens for manually added captions)
     const e2 = entries2.find((e2) => e2.begin === begin);
     return {
       begin,
