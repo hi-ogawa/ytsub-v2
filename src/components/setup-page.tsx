@@ -180,7 +180,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
 function renderCaptionConfigSelectOptions(
   videoMetadata: VideoMetadata
 ): React.ReactNode[] {
-  const { captionTracks, translationLanguages } =
+  const { captionTracks } =
     videoMetadata.captions.playerCaptionsTracklistRenderer;
 
   const children: React.ReactNode[] = [];
@@ -208,8 +208,7 @@ function renderCaptionConfigSelectOptions(
     const value = JSON.stringify({ vssId });
 
     const translationOptions: React.ReactNode[] = [];
-    for (const translation of translationLanguages) {
-      const code = translation.languageCode;
+    for (const code of FILTERED_LANGUAGE_CODES) {
       const config: CaptionConfig = { id: vssId, translation: code };
       if (!FILTERED_LANGUAGE_CODES.includes(code as any)) {
         continue;

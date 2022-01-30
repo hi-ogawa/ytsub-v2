@@ -1,8 +1,7 @@
 import * as fs from "fs/promises";
-import { pick } from "lodash";
 import * as yargs from "yargs";
 import * as assert from "../utils/assert";
-import { DemoEntry, WatchParameters } from "../utils/types";
+import { DemoEntry, stripVideoMetadata, WatchParameters } from "../utils/types";
 import {
   captionConfigToUrl,
   parseVideoMetadata,
@@ -41,11 +40,7 @@ async function generateDemoEntry(
 
   return {
     watchParameters,
-    videoMetadata: pick(videoMetadata, [
-      "playabilityStatus",
-      "videoDetails",
-      "captions",
-    ]),
+    videoMetadata: stripVideoMetadata(videoMetadata),
     captionEntries,
   };
 }

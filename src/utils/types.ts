@@ -38,13 +38,21 @@ export type VideoMetadata = {
         languageCode: string;
         kind?: string;
       }[];
-      // TODO: Remove and use only FILTERED_LANGUAGE_CODES
-      translationLanguages: {
-        languageCode: string;
-      }[];
     };
   };
 };
+
+export function stripVideoMetadata(x: VideoMetadata): VideoMetadata {
+  return {
+    playabilityStatus: { status: x.playabilityStatus.status },
+    videoDetails: x.videoDetails,
+    captions: {
+      playerCaptionsTracklistRenderer: {
+        captionTracks: x.captions.playerCaptionsTracklistRenderer.captionTracks,
+      },
+    },
+  };
+}
 
 export interface CaptionEntry {
   begin: number;
