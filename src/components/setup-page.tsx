@@ -59,7 +59,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
       enqueueSnackbar("Failed to load captions data");
     },
     ...toDemoDataOptions(
-      watchParameters.ok && findDemoEntry(watchParameters.val)?.videoMetadata
+      watchParameters.map(findDemoEntry).unwrapOr(undefined)?.videoMetadata
     ),
   });
 
