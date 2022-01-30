@@ -47,7 +47,7 @@ const LANGUAGE_TO_EXAMPLE_ENTRIES: Partial<
       historyEntry: {
         watchParameters: {
           videoId: "vCb8iA4SjOI",
-          captions: [{ id: "a.fr" }, { id: "a.en", translation: "en" }],
+          captions: [{ id: "a.fr" }, { id: "a.fr", translation: "en" }],
         },
         videoDetails: require("../../misc/youtube/video-details/vCb8iA4SjOI.json"),
       },
@@ -79,8 +79,7 @@ export function HomePage() {
   const navigate = useNavigateCustom();
 
   function onPlayEntry(entry: HistoryEntry) {
-    // TODO: Jump to "/setup" page with pre-filled `captionConfigs`
-    navigate("/watch", entry.watchParameters);
+    navigate(`/setup/${entry.watchParameters.videoId}`, entry.watchParameters);
   }
 
   return (

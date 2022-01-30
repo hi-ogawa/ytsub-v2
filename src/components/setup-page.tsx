@@ -16,7 +16,7 @@ import { useVideoMetadata } from "../utils/hooks";
 import { FILTERED_LANGUAGE_CODES, languageCodeToName } from "../utils/language";
 import { useHistoryEntries, useLanguageSetting } from "../utils/storage";
 import { CaptionConfig, VideoMetadata, WatchParameters } from "../utils/types";
-import { useNavigateCustom } from "../utils/url";
+import { useNavigateCustom, useSearchParamsCustom } from "../utils/url";
 import { withHook } from "../utils/with-hook";
 import { findCaptionConfig } from "../utils/youtube";
 
@@ -46,6 +46,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
   const [caption1, setCaption1] = React.useState<CaptionConfig>();
   const [caption2, setCaption2] = React.useState<CaptionConfig>();
   const addHistoryEntry = useHistoryEntries()[1];
+  const watchParameters = useSearchParamsCustom<WatchParameters>();
 
   const {
     data: videoMetadata,
@@ -61,6 +62,13 @@ function SetupPageOk({ data: videoId }: { data: string }) {
 
   React.useEffect(() => {
     if (videoMetadata) {
+      // Pre fill by search params
+      if (watchParameters.ok) {
+        setCaption1(watchParameters.val.captions[0]);
+        setCaption2(watchParameters.val.captions[1]);
+        return;
+      }
+      // Pre fill by language setting
       if (language1 && language2) {
         const found1 = findCaptionConfig(videoMetadata, language1);
         let found2 = findCaptionConfig(videoMetadata, language2);
@@ -69,6 +77,7 @@ function SetupPageOk({ data: videoId }: { data: string }) {
         }
         setCaption1(found1);
         setCaption2(found2);
+        return;
       }
     }
   }, [videoMetadata]);
@@ -173,23 +182,11 @@ function renderCaptionConfigSelectOptions(
 
   const children: React.ReactNode[] = [];
 
-  // children.push(
-  //   <ListSubheader key={`group-captions`}>
-  //     <Box sx={{ opacity: 0.8, textTransform: "uppercase" }}>Captions</Box>
-  //   </ListSubheader>
-  // );
-
   const captionOptions: React.ReactNode[] = [];
-
   for (const track of captionTracks) {
     const { vssId, languageCode, kind } = track;
     const config: CaptionConfig = { id: vssId };
     const value = JSON.stringify(config);
-    // children.push(
-    //   <option key={value} value={value}>
-    //     {languageCodeToName(languageCode, kind)}
-    //   </option>
-    // );
     captionOptions.push(
       <option key={value} value={value}>
         {languageCodeToName(languageCode, kind)}
@@ -206,16 +203,8 @@ function renderCaptionConfigSelectOptions(
   for (const track of captionTracks) {
     const { vssId, languageCode, kind } = track;
     const value = JSON.stringify({ vssId });
-    // children.push(
-    //   <ListSubheader key={`group-translations-${value}`}>
-    //     <Box sx={{ opacity: 0.8, textTransform: "uppercase" }}>
-    //       Auto Translations ({languageCodeToName(languageCode, kind)})
-    //     </Box>
-    //   </ListSubheader>
-    // );
 
     const translationOptions: React.ReactNode[] = [];
-
     for (const translation of translationLanguages) {
       const code = translation.languageCode;
       const config: CaptionConfig = { id: vssId, translation: code };
@@ -223,11 +212,6 @@ function renderCaptionConfigSelectOptions(
         continue;
       }
       const value = JSON.stringify(config);
-      // children.push(
-      //   <option key={value} value={value}>
-      //     {languageCodeToName(code)}
-      //   </option>
-      // );
       translationOptions.push(
         <option key={value} value={value}>
           {languageCodeToName(code)}
