@@ -21,6 +21,7 @@ import {
 import { BOOKMARKABLE_CLASSNAME, PLAYER_STATE_SYNC_INTERVAL } from "./misc";
 import { SubtitlesViewer } from "./subtitles-viewer";
 
+// TODO: update watch history when success
 export const WatchPage = withHook3(
   (): Result<WatchParameters, "error" | "loading"> => {
     // Load youtube api script as early as possible
