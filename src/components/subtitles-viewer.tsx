@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import classnames from "classnames";
 import * as React from "react";
 import { CaptionEntry } from "../utils/types";

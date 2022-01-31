@@ -1,13 +1,10 @@
-import {
-  Box,
-  Button,
-  Card,
-  CircularProgress,
-  InputAdornment,
-  TextField,
-  TextFieldProps,
-  Typography,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CircularProgress from "@mui/material/CircularProgress";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField, { TextFieldProps } from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate, useParams } from "react-router-dom";
