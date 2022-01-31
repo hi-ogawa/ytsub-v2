@@ -18,7 +18,7 @@ import {
   WatchParameters,
   WatchParametersSchema,
 } from "../utils/types";
-import { useSearchParamsSchema } from "../utils/url";
+import { useJsonSearchParams } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
 import {
   captionConfigToUrl,
@@ -34,7 +34,7 @@ export const WatchPage = withHook3(
     // Load youtube api script as early as possible
     useYoutubeApi(null);
 
-    const watchParameters = useSearchParamsSchema(WatchParametersSchema);
+    const watchParameters = useJsonSearchParams(WatchParametersSchema);
     if (!watchParameters.ok) {
       console.error(watchParameters.val);
       return Err("error");

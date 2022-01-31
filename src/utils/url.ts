@@ -12,7 +12,7 @@ export function useNavigateCustom() {
   return navigateExtra;
 }
 
-export function useSearchParamsSchema<T extends TSchema>(
+export function useJsonSearchParams<T extends TSchema>(
   schema: T
 ): Result<Static<T>, Error> {
   const [searchParams] = useSearchParams();
