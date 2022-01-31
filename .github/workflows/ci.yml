@@ -13,9 +13,9 @@ jobs:
         with:
           node-version: "16.13.2"
           cache: pnpm
-      - run: npm ci
-      - run: npm run prettier:check
-      - run: npm run isort:check
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run prettier:check
+      - run: pnpm run isort:check
 
   tsc:
     runs-on: ubuntu-20.04
@@ -28,8 +28,8 @@ jobs:
         with:
           node-version: "16.13.2"
           cache: pnpm
-      - run: npm ci
-      - run: npm run tsc
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run tsc
 
   test:
     runs-on: ubuntu-20.04
@@ -42,8 +42,8 @@ jobs:
         with:
           node-version: "16.13.2"
           cache: pnpm
-      - run: npm ci
-      - run: npm run test
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run test
 
   webpack:
     runs-on: ubuntu-20.04
@@ -56,8 +56,8 @@ jobs:
         with:
           node-version: "16.13.2"
           cache: pnpm
-      - run: npm ci
-      - run: npm run webpack
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run webpack
 
   playwright:
     runs-on: ubuntu-20.04
@@ -70,6 +70,6 @@ jobs:
         with:
           node-version: "16.13.2"
           cache: pnpm
-      - run: npm ci
-      - run: npx playwright install --with-deps
-      - run: npm run test:playwright
+      - run: pnpm install --frozen-lockfile
+      - run: pnpx playwright install --with-deps
+      - run: pnpm run test:playwright
