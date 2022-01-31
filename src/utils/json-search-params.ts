@@ -7,11 +7,11 @@ import {
   toPathJson,
 } from "./path-json";
 
-export function toJsonSearchParams(data: any): URLSearchParams {
+export function toJsonSearchParams(data: unknown): URLSearchParams {
   return new URLSearchParams(encodePathJson(toPathJson(data)));
 }
 
-export function fromJsonSearchParams(params: URLSearchParams): any {
+export function fromJsonSearchParams(params: URLSearchParams): unknown {
   const entries = Array.from((params as any).entries()) as any;
   return fromPathJson(decodePathJson(entries));
 }
@@ -20,8 +20,11 @@ type EncodedPathJson = [keys: string, primitive: string][];
 
 function encodeKey(key: Key): string {
   if (typeof key === "string") {
+    // Disallow key separator
+    assert.ok(!key.includes("."));
     // Disallow number-like string
     assert.ok(!Number.isInteger(Number(key)));
+    return key;
   }
   return String(key);
 }

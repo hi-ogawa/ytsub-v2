@@ -1,14 +1,18 @@
-export interface CaptionConfig {
-  // e.g. ".en", ".fr", (manual caption) "a.fr" (auto caption)
-  id: string;
-  // e.g. "en", "fr"
-  translation?: string;
-}
+import { Static, Type as t } from "@sinclair/typebox";
 
-export interface WatchParameters {
-  videoId: string;
-  captions: [CaptionConfig, CaptionConfig];
-}
+export const CaptionConfigSchema = t.Object({
+  // e.g. ".en", ".fr", (manual caption) "a.fr" (auto caption)
+  id: t.String(),
+  // e.g. "en", "fr"
+  translation: t.Optional(t.String()),
+});
+export type CaptionConfig = Static<typeof CaptionConfigSchema>;
+
+export const WatchParametersSchema = t.Object({
+  videoId: t.String(),
+  captions: t.Tuple([CaptionConfigSchema, CaptionConfigSchema]),
+});
+export type WatchParameters = Static<typeof WatchParametersSchema>;
 
 export interface VideoDetails {
   videoId: string;
