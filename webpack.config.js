@@ -47,7 +47,7 @@ module.exports = {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: ["tailwindcss"],
+                plugins: ["tailwindcss", "autoprefixer"],
               },
             },
           },

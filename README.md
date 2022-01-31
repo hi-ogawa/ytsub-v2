@@ -1,25 +1,27 @@
 # ytsub-v2
 
 ```sh
+# install dependencies
+pnpm install
+
 # development server
-npm run webpack:dev
+pnpm run webpack:dev
 
 # type check
-npm run tsc:dev
+pnpm run tsc:dev
 
 # format
-npm run prettier
+pnpm run prettier
 
 # testing
-npm run test
-npm run test:playwright
+pnpm run test
+pnpm run test:playwright
 
 # deployment
 # - initialize
-npm install -g netlify-cli
-netlify login
-netlify sites:create --name ytsub-hiro18181
-netlify link --name ytsub-hiro18181
+pnpx netlify login
+pnpx netlify sites:create --name ytsub-hiro18181
+pnpx netlify link --name ytsub-hiro18181
 # - deploy
-npm run deploy
+pnpm run deploy
 ```
