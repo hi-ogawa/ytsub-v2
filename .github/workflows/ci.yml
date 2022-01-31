@@ -6,9 +6,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
+          cache: pnpm
       - run: npm ci
       - run: npm run prettier:check
       - run: npm run isort:check
@@ -17,9 +21,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
+          cache: pnpm
       - run: npm ci
       - run: npm run tsc
 
@@ -27,9 +35,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
+          cache: pnpm
       - run: npm ci
       - run: npm run test
 
@@ -37,9 +49,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
+          cache: pnpm
       - run: npm ci
       - run: npm run webpack
 
@@ -47,9 +63,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
+          cache: pnpm
       - run: npm ci
       - run: npx playwright install --with-deps
       - run: npm run test:playwright
