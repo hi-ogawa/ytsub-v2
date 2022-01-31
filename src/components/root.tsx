@@ -1,4 +1,5 @@
-import { Icon, IconButton } from "@mui/material";
+import Icon from "@mui/material/Icon";
+import IconButton from "@mui/material/IconButton";
 import { ProviderContext, SnackbarKey, SnackbarProvider } from "notistack";
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";

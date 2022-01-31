@@ -1,4 +1,8 @@
-import { Box, CircularProgress, Fab, Icon, Zoom } from "@mui/material";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Fab from "@mui/material/Fab";
+import Icon from "@mui/material/Icon";
+import Zoom from "@mui/material/Zoom";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate } from "react-router-dom";
