@@ -69,7 +69,7 @@ function BookmarkEntryComponent({
           className="font-icon flex-none text-gray-500 cursor-pointer"
           onClick={() => setOpen(!open)}
         >
-          {open ? "unfold_less" : "unfold_more"}
+          {open ? "expand_less" : "expand_more"}
         </span>
         <div
           className="grow text-sm cursor-pointer"
