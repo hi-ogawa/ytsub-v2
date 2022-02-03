@@ -1,4 +1,15 @@
-import { Box, CircularProgress, Fab, Icon, Zoom } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Fab,
+  Icon,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  MenuList,
+  Zoom,
+} from "@mui/material";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate } from "react-router-dom";
@@ -11,7 +22,7 @@ import {
   useVideoMetadata,
   useYoutubeApi,
 } from "../utils/hooks";
-import { useBookmarkEntries, usePlayerSettings } from "../utils/storage";
+import { useAutoScroll, useBookmarkEntries } from "../utils/storage";
 import {
   CaptionEntry,
   VideoMetadata,
@@ -171,7 +182,7 @@ function WatchPageOk({
   const [playerState, setPlayerState] = React.useState(DEFAULT_PLAYER_STATE);
   const selection = useSelection(isBookmarkSelection);
   const addBookmark = useBookmarkEntries()[1];
-  const { autoScroll } = usePlayerSettings()[0];
+  const autoScroll = useAutoScroll()[0];
   const [repeatingEntries, setRepeatingEntries] = React.useState<
     CaptionEntry[]
   >([]);
@@ -420,5 +431,68 @@ export function PlayerComponent({
         </Box>
       </Box>
     </Box>
+  );
+}
+
+export function WatchPageMenu() {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement>();
+  const [autoScroll, setAutoScroll] = useAutoScroll();
+
+  function handleClick(event: React.MouseEvent) {
+    setAnchorEl(event.currentTarget as HTMLElement);
+  }
+
+  function handleClose() {
+    setAnchorEl(undefined);
+  }
+
+  // TODO
+  function clearRepeat() {}
+
+  // TODO
+  function chooseLanguage() {}
+
+  return (
+    <>
+      <IconButton color="inherit" sx={{ marginLeft: 1 }} onClick={handleClick}>
+        <Icon>more_vert</Icon>
+      </IconButton>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        sx={{ padding: 0 }}
+      >
+        <MenuList dense>
+          <MenuItem onClick={() => setAutoScroll(!autoScroll)}>
+            <ListItemIcon>
+              <Icon
+                fontSize="small"
+                sx={[autoScroll && { color: "primary.main" }]}
+              >
+                {autoScroll
+                  ? "check_box_outline"
+                  : "check_box_outline_blank_outline"}
+              </Icon>
+            </ListItemIcon>
+            Auto scroll
+          </MenuItem>
+          <MenuItem onClick={clearRepeat} sx={{ display: "none" }}>
+            <ListItemIcon>
+              <Icon fontSize="small">
+                {autoScroll
+                  ? "check_box_outline"
+                  : "check_box_outline_blank_outline"}
+              </Icon>
+            </ListItemIcon>
+            Clear repeat
+          </MenuItem>
+          <MenuItem onClick={chooseLanguage} sx={{ display: "none" }}>
+            Choose language
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </>
   );
 }
