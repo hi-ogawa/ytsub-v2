@@ -4,15 +4,13 @@ import {
   Fab,
   Icon,
   IconButton,
-  ListItemIcon,
   Menu,
-  MenuItem,
-  MenuList,
   Zoom,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Navigate } from "react-router-dom";
+import { createGlobalState } from "react-use/lib/factory/createGlobalState";
 import { Err, Ok, Result } from "ts-results";
 import * as assert from "../utils/assert";
 import { findDemoEntry } from "../utils/demo-entries";
@@ -22,14 +20,14 @@ import {
   useVideoMetadata,
   useYoutubeApi,
 } from "../utils/hooks";
-import { useAutoScroll, useBookmarkEntries } from "../utils/storage";
+import { useBookmarkEntries } from "../utils/storage";
 import {
   CaptionEntry,
   VideoMetadata,
   WatchParameters,
   WatchParametersSchema,
 } from "../utils/types";
-import { useJsonSearchParams } from "../utils/url";
+import { useJsonSearchParams, useNavigateCustom } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
 import {
   captionConfigToUrl,
@@ -38,6 +36,9 @@ import {
 } from "../utils/youtube";
 import { BOOKMARKABLE_CLASSNAME, PLAYER_STATE_SYNC_INTERVAL } from "./misc";
 import { SubtitlesViewer } from "./subtitles-viewer";
+
+const useAutoScroll = createGlobalState(false);
+const useRepeatingEntries = createGlobalState<CaptionEntry[]>([]);
 
 // TODO: update watch history when success
 export const WatchPage = withHook3(
@@ -182,10 +183,8 @@ function WatchPageOk({
   const [playerState, setPlayerState] = React.useState(DEFAULT_PLAYER_STATE);
   const selection = useSelection(isBookmarkSelection);
   const addBookmark = useBookmarkEntries()[1];
-  const autoScroll = useAutoScroll()[0];
-  const [repeatingEntries, setRepeatingEntries] = React.useState<
-    CaptionEntry[]
-  >([]);
+  const [autoScroll, setAutoScroll] = useAutoScroll();
+  const [repeatingEntries, setRepeatingEntries] = useRepeatingEntries();
 
   const { currentTime, isPlaying } = playerState;
   const currentEntry = findCurrentEntry(captionEntries, currentTime);
@@ -278,6 +277,12 @@ function WatchPageOk({
       scrollToEntry(currentEntry);
     }
   }, [autoScroll, currentEntry]);
+
+  // Reset page global states
+  React.useEffect(() => {
+    setAutoScroll(false);
+    setRepeatingEntries([]);
+  }, []);
 
   return (
     <Box
@@ -437,61 +442,69 @@ export function PlayerComponent({
 export function WatchPageMenu() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement>();
   const [autoScroll, setAutoScroll] = useAutoScroll();
+  const watchParameters = useJsonSearchParams(WatchParametersSchema);
+  const navigate = useNavigateCustom();
+  const [repeatingEntries, setRepeatingEntries] = useRepeatingEntries();
 
-  function handleClick(event: React.MouseEvent) {
+  function openMenuOnClick(event: any) {
     setAnchorEl(event.currentTarget as HTMLElement);
   }
 
-  function handleClose() {
+  function closeMenu() {
     setAnchorEl(undefined);
   }
 
-  // TODO
-  function clearRepeat() {}
+  function clearRepeats() {
+    closeMenu();
+    setRepeatingEntries([]);
+  }
 
-  // TODO
-  function chooseLanguage() {}
+  function chooseLanguage() {
+    if (watchParameters.ok) {
+      navigate(`/setup/${watchParameters.val.videoId}`, watchParameters.val);
+    }
+  }
 
   return (
     <>
-      <IconButton color="inherit" sx={{ marginLeft: 1 }} onClick={handleClick}>
+      <IconButton
+        color="inherit"
+        sx={{ marginLeft: 1 }}
+        onClick={openMenuOnClick}
+      >
         <Icon>more_vert</Icon>
       </IconButton>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
-        onClose={handleClose}
+        onClose={closeMenu}
         sx={{ padding: 0 }}
+        className="text-sm"
       >
-        <MenuList dense>
-          <MenuItem onClick={() => setAutoScroll(!autoScroll)}>
-            <ListItemIcon>
-              <Icon
-                fontSize="small"
-                sx={[autoScroll && { color: "primary.main" }]}
-              >
-                {autoScroll
-                  ? "check_box_outline"
-                  : "check_box_outline_blank_outline"}
-              </Icon>
-            </ListItemIcon>
-            Auto scroll
-          </MenuItem>
-          <MenuItem onClick={clearRepeat} sx={{ display: "none" }}>
-            <ListItemIcon>
-              <Icon fontSize="small">
-                {autoScroll
-                  ? "check_box_outline"
-                  : "check_box_outline_blank_outline"}
-              </Icon>
-            </ListItemIcon>
-            Clear repeat
-          </MenuItem>
-          <MenuItem onClick={chooseLanguage} sx={{ display: "none" }}>
-            Choose language
-          </MenuItem>
-        </MenuList>
+        <li
+          className="px-4 py-2 flex items-center justify-content cursor-pointer"
+          onClick={() => setAutoScroll(!autoScroll)}
+        >
+          <input className="mr-3" type="checkbox" checked={autoScroll} />
+          <span>Auto scroll</span>
+        </li>
+        <li
+          className={`px-4 py-2 flex items-center justify-content cursor-pointer ${
+            repeatingEntries.length === 0 && "text-gray-400"
+          }`}
+          onClick={clearRepeats}
+        >
+          Clear repeats
+        </li>
+        <li
+          className={`px-4 py-2 flex items-center justify-content cursor-pointer ${
+            !watchParameters.ok && "text-gray-400"
+          }`}
+          onClick={chooseLanguage}
+        >
+          Choose language
+        </li>
       </Menu>
     </>
   );

@@ -63,7 +63,3 @@ export function useBookmarkEntries(): [
 
   return [entries, add, remove];
 }
-
-export function useAutoScroll(): LocalStorageReturnValue<boolean> {
-  return useLocalStorage<boolean>(toKey("auto-scroll"), false);
-}
