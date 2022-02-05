@@ -92,7 +92,7 @@ export function HistoryEntryComponent({
             className="absolute right-1 bottom-1 cursor-pointer flex"
             onClick={() => onRemoveEntry(entry)}
           >
-            <span className="font-icon">close</span>
+            <span className="font-icon text-sm text-gray-500">close</span>
           </div>
         )}
       </div>
