@@ -30,19 +30,21 @@ function HeaderSearchInput() {
   const [input, setInput] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const ref = React.useRef<HTMLInputElement>(null);
 
   function openInput() {
+    ref.current?.focus();
     setInput("");
     setOpen(true);
   }
 
   function closeInput() {
+    ref.current?.blur();
     setInput("");
     setOpen(false);
   }
 
   function onEnter() {
-    closeInput();
     const videoId = parseVideoId(input);
     if (!videoId) {
       enqueueSnackbar("Input is invalid", { variant: "error" });
@@ -51,30 +53,43 @@ function HeaderSearchInput() {
     navigate(`/setup/${videoId}`);
   }
 
-  // TODO: animation
-  return open ? (
-    <label className="relative items-center flex items-center bg-white/50 hover:bg-white/60 focus-within:bg-white/60">
-      <div className="font-icon text-2xl px-2">search</div>
+  return (
+    <div
+      className={`
+        relative items-center flex items-center
+        transition-[background-color] duration-700 ease-in-out
+        ${open ? "bg-white/60" : "bg-white/0"}
+      `}
+    >
+      <div
+        className="font-icon text-2xl px-2 select-none"
+        onClick={() => (open ? closeInput() : openInput())}
+      >
+        search
+      </div>
       <input
-        className="flex-1 min-w-0 w-full text-base bg-transparent placeholder:text-white/80 outline-0 mr-6"
+        ref={ref}
+        className={`
+          flex-1 min-w-0 w-full text-base bg-transparent placeholder:text-white/70 outline-0
+          transition-[padding,width] duration-700 ease-in-out
+          ${open ? "w-40 pr-8" : "w-0 pr-0"}
+        `}
         placeholder="Enter URL or ID"
         value={input}
         onChange={({ target: { value } }) => setInput(value)}
         onKeyUp={({ key }) => key === "Enter" && onEnter()}
       />
-      <div
-        className="absolute right-0 font-icon text-base px-2 cursor-pointer"
-        onClick={closeInput}
-      >
-        close
-      </div>
-    </label>
-  ) : (
-    <div
-      className="items-center flex items-center cursor-pointer"
-      onClick={openInput}
-    >
-      <div className="font-icon text-2xl px-2">search</div>
+      {open && input && (
+        <div
+          className={`
+              absolute right-0 px-2
+              font-icon text-base cursor-pointer select-none
+            `}
+          onClick={() => setInput("")}
+        >
+          close
+        </div>
+      )}
     </div>
   );
 }
