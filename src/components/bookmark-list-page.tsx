@@ -84,12 +84,12 @@ export function BookmarkListPage() {
   );
 }
 
-function BookmarkEntryComponent({
+export function BookmarkEntryComponent({
   entry,
   onRemoveEntry,
 }: {
   entry: BookmarkEntry;
-  onRemoveEntry: React.Dispatch<BookmarkEntry>;
+  onRemoveEntry?: React.Dispatch<BookmarkEntry>;
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -118,12 +118,14 @@ function BookmarkEntryComponent({
         >
           {entry.bookmarkText}
         </div>
-        <span
-          className="font-icon flex-none text-gray-500 cursor-pointer"
-          onClick={() => onRemoveEntry(entry)}
-        >
-          close
-        </span>
+        {onRemoveEntry && (
+          <span
+            className="font-icon flex-none text-gray-500 cursor-pointer"
+            onClick={() => onRemoveEntry(entry)}
+          >
+            close
+          </span>
+        )}
       </div>
       {open && <MiniPlayer entry={entry} />}
     </div>

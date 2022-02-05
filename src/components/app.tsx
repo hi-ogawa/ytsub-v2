@@ -19,6 +19,7 @@ import { parseVideoId } from "../utils/youtube";
 import { BookmarkListPage } from "./bookmark-list-page";
 import { DevPage } from "./dev-page";
 import { HomePage } from "./home-page";
+import { PracticePage } from "./practice-page";
 import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
 import { ShareTargetPage } from "./share-target";
@@ -95,6 +96,7 @@ function HeaderSearchInput() {
 }
 
 function Header({ openMenu }: { openMenu: () => void }) {
+  // TODO: refactor with `MENU_ENTRIES` below
   const title = (
     <Routes>
       <Route
@@ -105,7 +107,20 @@ function Header({ openMenu }: { openMenu: () => void }) {
         path="bookmarks"
         element={<div className="text-lg">Bookmarks</div>}
       />
+      <Route
+        path="practice"
+        element={<div className="text-lg">Practice (WIP)</div>}
+      />
       <Route path="*" element={null} />
+    </Routes>
+  );
+
+  const search = (
+    <Routes>
+      <Route path="watch-history" element={null} />
+      <Route path="bookmarks" element={null} />
+      <Route path="practice" element={null} />
+      <Route path="*" element={<HeaderSearchInput />} />
     </Routes>
   );
 
@@ -129,8 +144,7 @@ function Header({ openMenu }: { openMenu: () => void }) {
           </IconButton>
           {title}
           <div className="flex-1"></div>
-          {/* TODO: not enough space with `title` */}
-          <HeaderSearchInput />
+          {search}
           {menu}
         </Box>
       </Toolbar>
@@ -170,6 +184,11 @@ const MENU_ENTRIES: MenuEntry[] = [
     to: "/bookmarks",
     icon: "bookmarks",
     title: "Bookmarks",
+  },
+  {
+    to: "/practice",
+    icon: "school",
+    title: "Practice",
   },
 ];
 
@@ -226,6 +245,7 @@ export function App() {
           <Route path="watch" element={<WatchPage />} />
           <Route path="watch-history" element={<WatchHistoryPage />} />
           <Route path="bookmarks" element={<BookmarkListPage />} />
+          <Route path="practice" element={<PracticePage />} />
           <Route path="share-target" element={<ShareTargetPage />} />
           <Route path="dev" element={<DevPage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
