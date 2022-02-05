@@ -5,7 +5,6 @@ import {
   Drawer,
   Icon,
   IconButton,
-  InputBase,
   List,
   ListItemButton,
   ListItemIcon,
@@ -29,7 +28,21 @@ import { WatchPage, WatchPageMenu } from "./watch-page";
 function HeaderSearchInput() {
   const navigate = useNavigate();
   const [input, setInput] = React.useState("");
+  const [open, setOpen] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const ref = React.useRef<HTMLInputElement>(null);
+
+  function openInput() {
+    ref.current?.focus();
+    setInput("");
+    setOpen(true);
+  }
+
+  function closeInput() {
+    ref.current?.blur();
+    setInput("");
+    setOpen(false);
+  }
 
   function onEnter() {
     const videoId = parseVideoId(input);
@@ -41,58 +54,43 @@ function HeaderSearchInput() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
-      <Box
-        sx={{
-          flexGrow: 1,
-          maxWidth: "400px",
-          display: "flex",
-          borderRadius: 1,
-          background: "hsl(0, 100%, 100%, 0.25)",
-          transition: "background 200ms",
-          ":focus-within, :hover": {
-            background: "hsl(0, 100%, 100%, 0.35)",
-          },
-        }}
+    <div
+      className={`
+        relative items-center flex items-center
+        transition-[background-color] duration-700 ease-in-out
+        ${open ? "bg-white/60" : "bg-white/0"}
+      `}
+    >
+      <div
+        className="font-icon text-2xl px-2 select-none"
+        onClick={() => (open ? closeInput() : openInput())}
       >
-        <Box
-          sx={{
-            flex: "0 0 40px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Icon>search</Icon>
-        </Box>
-        <InputBase
-          sx={{ color: "inherit", flexGrow: 1 }}
-          placeholder="Enter URL or ID"
-          value={input}
-          onChange={({ target: { value } }) => setInput(value)}
-          inputProps={{
-            onKeyUp: ({ key }) => key === "Enter" && onEnter(),
-          }}
-        />
-        <Box
-          sx={{
-            flex: "0 0 40px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            cursor: "pointer",
-            transition: "opacity 200ms",
-            opacity: input ? 0.8 : 0,
-            ":hover": {
-              opacity: 1,
-            },
-          }}
+        search
+      </div>
+      <input
+        ref={ref}
+        className={`
+          flex-1 min-w-0 w-full text-base bg-transparent placeholder:text-white/70 outline-0
+          transition-[padding,width] duration-700 ease-in-out
+          ${open ? "w-40 pr-8" : "w-0 pr-0"}
+        `}
+        placeholder="Enter URL or ID"
+        value={input}
+        onChange={({ target: { value } }) => setInput(value)}
+        onKeyUp={({ key }) => key === "Enter" && onEnter()}
+      />
+      {open && input && (
+        <div
+          className={`
+              absolute right-0 px-2
+              font-icon text-base cursor-pointer select-none
+            `}
           onClick={() => setInput("")}
         >
-          <Icon fontSize="small">close</Icon>
-        </Box>
-      </Box>
-    </Box>
+          close
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -123,6 +121,7 @@ function Header({ openMenu }: { openMenu: () => void }) {
           >
             <Icon>menu</Icon>
           </IconButton>
+          <div className="flex-1"></div>
           {title}
           {menu}
         </Box>
