@@ -95,11 +95,17 @@ function HeaderSearchInput() {
 }
 
 function Header({ openMenu }: { openMenu: () => void }) {
-  // TODO: Is there something better than ad-hoc Routes/Route?
-
   const title = (
     <Routes>
-      <Route path="*" element={<HeaderSearchInput />} />
+      <Route
+        path="watch-history"
+        element={<div className="text-lg">History</div>}
+      />
+      <Route
+        path="bookmarks"
+        element={<div className="text-lg">Bookmarks</div>}
+      />
+      <Route path="*" element={null} />
     </Routes>
   );
 
@@ -121,8 +127,10 @@ function Header({ openMenu }: { openMenu: () => void }) {
           >
             <Icon>menu</Icon>
           </IconButton>
-          <div className="flex-1"></div>
           {title}
+          <div className="flex-1"></div>
+          {/* TODO: not enough space with `title` */}
+          <HeaderSearchInput />
           {menu}
         </Box>
       </Toolbar>
