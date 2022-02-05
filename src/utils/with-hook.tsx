@@ -3,6 +3,7 @@ import { Result } from "ts-results";
 
 // TODO: overload all the variants by a single function
 // TODO: testing
+// TODO: `ErrComponent` in a different branche will be remounted (e.g. CircularProgress resets its state)
 
 export function withHookX<T0, S, E>(
   hook: (data: T0) => Result<S, E>,

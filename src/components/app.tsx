@@ -2,26 +2,20 @@ import {
   AppBar,
   Box,
   CssBaseline,
-  Divider,
   Drawer,
-  FormControlLabel,
   Icon,
   IconButton,
   InputBase,
   List,
-  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
-  Switch,
   Toolbar,
 } from "@mui/material";
 import { memoize } from "lodash";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import { usePlayerSettings } from "../utils/storage";
 import { parseVideoId } from "../utils/youtube";
 import { BookmarkListPage } from "./bookmark-list-page";
 import { DevPage } from "./dev-page";
@@ -30,9 +24,9 @@ import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
 import { ShareTargetPage } from "./share-target";
 import { WatchHistoryPage } from "./watch-history-page";
-import { WatchPage } from "./watch-page";
+import { WatchPage, WatchPageMenu } from "./watch-page";
 
-function Header({ openMenu }: { openMenu: () => void }) {
+function HeaderSearchInput() {
   const navigate = useNavigate();
   const [input, setInput] = React.useState("");
   const { enqueueSnackbar } = useSnackbar();
@@ -47,68 +41,90 @@ function Header({ openMenu }: { openMenu: () => void }) {
   }
 
   return (
+    <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          maxWidth: "400px",
+          display: "flex",
+          borderRadius: 1,
+          background: "hsl(0, 100%, 100%, 0.25)",
+          transition: "background 200ms",
+          ":focus-within, :hover": {
+            background: "hsl(0, 100%, 100%, 0.35)",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            flex: "0 0 40px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Icon>search</Icon>
+        </Box>
+        <InputBase
+          sx={{ color: "inherit", flexGrow: 1 }}
+          placeholder="Enter URL or ID"
+          value={input}
+          onChange={({ target: { value } }) => setInput(value)}
+          inputProps={{
+            onKeyUp: ({ key }) => key === "Enter" && onEnter(),
+          }}
+        />
+        <Box
+          sx={{
+            flex: "0 0 40px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+            transition: "opacity 200ms",
+            opacity: input ? 0.8 : 0,
+            ":hover": {
+              opacity: 1,
+            },
+          }}
+          onClick={() => setInput("")}
+        >
+          <Icon fontSize="small">close</Icon>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+function Header({ openMenu }: { openMenu: () => void }) {
+  // TODO: Is there something better than ad-hoc Routes/Route?
+
+  const title = (
+    <Routes>
+      <Route path="*" element={<HeaderSearchInput />} />
+    </Routes>
+  );
+
+  const menu = (
+    <Routes>
+      <Route path="watch" element={<WatchPageMenu />} />
+      <Route path="*" element={null} />
+    </Routes>
+  );
+
+  return (
     <AppBar position="static">
       <Toolbar variant="dense">
         <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
           <IconButton
             color="inherit"
-            sx={{ marginRight: 2 }}
+            sx={{ marginRight: 1 }}
             onClick={openMenu}
           >
             <Icon>menu</Icon>
           </IconButton>
-          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
-            <Box
-              sx={{
-                flexGrow: 1,
-                maxWidth: "400px",
-                display: "flex",
-                borderRadius: 1,
-                background: "hsl(0, 100%, 100%, 0.25)",
-                transition: "background 200ms",
-                ":focus-within, :hover": {
-                  background: "hsl(0, 100%, 100%, 0.35)",
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  flex: "0 0 40px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Icon>search</Icon>
-              </Box>
-              <InputBase
-                sx={{ color: "inherit", flexGrow: 1 }}
-                placeholder="Enter URL or ID"
-                value={input}
-                onChange={({ target: { value } }) => setInput(value)}
-                inputProps={{
-                  onKeyUp: ({ key }) => key === "Enter" && onEnter(),
-                }}
-              />
-              <Box
-                sx={{
-                  flex: "0 0 40px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  transition: "opacity 200ms",
-                  opacity: input ? 0.8 : 0,
-                  ":hover": {
-                    opacity: 1,
-                  },
-                }}
-                onClick={() => setInput("")}
-              >
-                <Icon fontSize="small">close</Icon>
-              </Box>
-            </Box>
-          </Box>
+          {title}
+          {menu}
         </Box>
       </Toolbar>
     </AppBar>
@@ -151,8 +167,6 @@ const MENU_ENTRIES: MenuEntry[] = [
 ];
 
 function Menu({ closeDrawer }: { closeDrawer: () => void }) {
-  const [playerSettings, setPlayerSettings] = usePlayerSettings();
-
   return (
     <Box sx={{ width: "200px" }}>
       <List>
@@ -168,24 +182,6 @@ function Menu({ closeDrawer }: { closeDrawer: () => void }) {
             <ListItemText primary={entry.title} />
           </ListItemButton>
         ))}
-        <Divider />
-        <ListSubheader>Player Settings</ListSubheader>
-        <ListItem sx={{ pl: 4 }}>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={playerSettings.autoScroll}
-                onChange={(event) =>
-                  setPlayerSettings({
-                    ...playerSettings,
-                    autoScroll: event.target.checked,
-                  })
-                }
-              />
-            }
-            label="Auto Scroll"
-          />
-        </ListItem>
       </List>
     </Box>
   );
@@ -213,7 +209,7 @@ export function App() {
           backgroundColor: "grey.50",
         }}
       >
-        <Box sx={{ flex: "0 0 auto" }}>
+        <Box sx={{ flex: "0 0 auto", zIndex: 1 }}>
           <Header openMenu={() => setIsDrawerOpen(true)} />
         </Box>
         <Routes>
