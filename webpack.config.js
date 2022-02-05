@@ -11,15 +11,32 @@ module.exports = {
   mode: MODE,
   devtool: "inline-source-map",
   entry: {
-    index: "./src/index.ts",
+    index: {
+      import: "./src/index.ts",
+      dependOn: "split"
+    },
     serviceWorker: {
       import: "./src/service-worker/index.ts",
       filename: "service-worker.js",
     },
+    split: {
+      import: [
+        "react",
+        "react-dom",
+        "react-router-dom",
+        "@mui/material",
+        "@emotion/react",
+        "@emotion/styled",
+        "./src/utils/demo-entries.ts"
+      ],
+    }
   },
   output: {
     filename: "[name].[fullhash].js",
     path: path.resolve(__dirname, "build", "webpack", MODE),
+  },
+  optimization: {
+    runtimeChunk: 'single',
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
