@@ -19,6 +19,7 @@ export interface VideoDetails {
   title: string;
   author: string;
   channelId: string;
+  // TODO: Might be better to hard code "https://i.ytimg.com/vi/URQMSN1sbq8/hqdefault.jpg" and avoid using "maxresdefault.jpg"
   thumbnail: {
     thumbnails: {
       url: string;
