@@ -24,9 +24,6 @@ export function BookmarkListPage() {
           sm:border border-solid border-gray-200
         "
       >
-        <div className="p-3 flex-none bg-gray-100">
-          <span className="text-xl">Bookmarks</span>
-        </div>
         <div className="flex-[1_0_0] overflow-y-auto bg-white">
           <div className="flex flex-col p-2 gap-2">
             {entries.map((entry) => (
