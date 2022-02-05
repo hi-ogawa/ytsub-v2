@@ -5,7 +5,6 @@ import {
   Drawer,
   Icon,
   IconButton,
-  InputBase,
   List,
   ListItemButton,
   ListItemIcon,
@@ -29,9 +28,21 @@ import { WatchPage, WatchPageMenu } from "./watch-page";
 function HeaderSearchInput() {
   const navigate = useNavigate();
   const [input, setInput] = React.useState("");
+  const [open, setOpen] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
+  function openInput() {
+    setInput("");
+    setOpen(true);
+  }
+
+  function closeInput() {
+    setInput("");
+    setOpen(false);
+  }
+
   function onEnter() {
+    closeInput();
     const videoId = parseVideoId(input);
     if (!videoId) {
       enqueueSnackbar("Input is invalid", { variant: "error" });
@@ -40,59 +51,31 @@ function HeaderSearchInput() {
     navigate(`/setup/${videoId}`);
   }
 
-  return (
-    <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
-      <Box
-        sx={{
-          flexGrow: 1,
-          maxWidth: "400px",
-          display: "flex",
-          borderRadius: 1,
-          background: "hsl(0, 100%, 100%, 0.25)",
-          transition: "background 200ms",
-          ":focus-within, :hover": {
-            background: "hsl(0, 100%, 100%, 0.35)",
-          },
-        }}
+  // TODO: animation
+  return open ? (
+    <label className="relative items-center flex items-center bg-white/50 hover:bg-white/60 focus-within:bg-white/60">
+      <div className="font-icon text-2xl px-2">search</div>
+      <input
+        className="flex-1 min-w-0 w-full text-base bg-transparent placeholder:text-white/80 outline-0 mr-6"
+        placeholder="Enter URL or ID"
+        value={input}
+        onChange={({ target: { value } }) => setInput(value)}
+        onKeyUp={({ key }) => key === "Enter" && onEnter()}
+      />
+      <div
+        className="absolute right-0 font-icon text-base px-2 cursor-pointer"
+        onClick={closeInput}
       >
-        <Box
-          sx={{
-            flex: "0 0 40px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Icon>search</Icon>
-        </Box>
-        <InputBase
-          sx={{ color: "inherit", flexGrow: 1 }}
-          placeholder="Enter URL or ID"
-          value={input}
-          onChange={({ target: { value } }) => setInput(value)}
-          inputProps={{
-            onKeyUp: ({ key }) => key === "Enter" && onEnter(),
-          }}
-        />
-        <Box
-          sx={{
-            flex: "0 0 40px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            cursor: "pointer",
-            transition: "opacity 200ms",
-            opacity: input ? 0.8 : 0,
-            ":hover": {
-              opacity: 1,
-            },
-          }}
-          onClick={() => setInput("")}
-        >
-          <Icon fontSize="small">close</Icon>
-        </Box>
-      </Box>
-    </Box>
+        close
+      </div>
+    </label>
+  ) : (
+    <div
+      className="items-center flex items-center cursor-pointer"
+      onClick={openInput}
+    >
+      <div className="font-icon text-2xl px-2">search</div>
+    </div>
   );
 }
 
@@ -123,6 +106,7 @@ function Header({ openMenu }: { openMenu: () => void }) {
           >
             <Icon>menu</Icon>
           </IconButton>
+          <div className="flex-1"></div>
           {title}
           {menu}
         </Box>
