@@ -1,5 +1,7 @@
+import { groupBy, sortBy } from "lodash";
 import * as React from "react";
 import * as assert from "../utils/assert";
+import { keys } from "../utils/lodash-extra";
 import { useBookmarkEntries } from "../utils/storage";
 import { BookmarkEntry, CaptionEntry } from "../utils/types";
 import { useNavigateCustom } from "../utils/url";
@@ -7,8 +9,31 @@ import { DEFAULT_PLAYER_STATE, Player } from "../utils/youtube";
 import { PLAYER_STATE_SYNC_INTERVAL } from "./misc";
 import { CaptionEntryComponent } from "./subtitles-viewer";
 
+type VideoId = string;
+type GroupedEntries = Record<VideoId, BookmarkEntry[]>;
+
+// TODO: restructure schema for bookmark entry
+function groupEntries(entries: BookmarkEntry[]): GroupedEntries {
+  const groups: GroupedEntries = groupBy(
+    entries,
+    (entry) => entry.watchParameters.videoId
+  );
+  for (const videoId in groups) {
+    groups[videoId] = sortBy(
+      groups[videoId],
+      (entry) => entry.captionEntry.begin
+    );
+  }
+  return groups;
+}
+
+// TODO: Show guide when there's no bookmark
 export function BookmarkListPage() {
   const [entries, _, removeEntry] = useBookmarkEntries();
+  const [selected, selectVideoId] = React.useState<VideoId>();
+  const groupedEntries = groupEntries(entries);
+  const videoIds = keys(groupedEntries);
+  const entriesToList = (selected && groupedEntries[selected]) || entries;
 
   function onRemoveEntry(entry: BookmarkEntry) {
     removeEntry(entry);
@@ -24,9 +49,28 @@ export function BookmarkListPage() {
           sm:border border-solid border-gray-200
         "
       >
+        <div className="p-2 flex-none bg-gray-50 flex items-center justify-content gap-2 overflow-x-auto">
+          {videoIds.map((videoId) => (
+            <div
+              key={videoId}
+              className={`
+                flex-none w-40 aspect-video relative overflow-hidden cursor-pointer
+                ${selected && selected !== videoId && "opacity-40"}
+              `}
+              onClick={() =>
+                selectVideoId(selected === videoId ? undefined : videoId)
+              }
+            >
+              <img
+                className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+              />
+            </div>
+          ))}
+        </div>
         <div className="flex-[1_0_0] overflow-y-auto bg-white">
           <div className="flex flex-col p-2 gap-2">
-            {entries.map((entry) => (
+            {entriesToList.map((entry) => (
               <BookmarkEntryComponent
                 key={entry.bookmarkText}
                 entry={entry}
