@@ -7,6 +7,7 @@ test("Enter Youtube Video URL", async ({ page }) => {
 
   const selector = '[placeholder="Enter\\ URL\\ or\\ ID"]';
   const value = "https://www.youtube.com/watch?v=MoH8Fk2K9bc";
+  await page.click("text=search");
   await page.fill(selector, value);
   await page.press(selector, "Enter");
   await page.waitForURL("/setup/MoH8Fk2K9bc");
