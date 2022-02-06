@@ -16,7 +16,7 @@ import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { parseVideoId } from "../utils/youtube";
-import { BookmarkListPage } from "./bookmark-list-page";
+import { BookmarkListPage, BookmarkListPageMenu } from "./bookmark-list-page";
 import { DevPage } from "./dev-page";
 import { HomePage } from "./home-page";
 import { PracticePage } from "./practice-page";
@@ -128,6 +128,7 @@ function Header({ openMenu }: { openMenu: () => void }) {
   const menu = (
     <Routes>
       <Route path="watch" element={<WatchPageMenu />} />
+      <Route path="bookmarks" element={<BookmarkListPageMenu />} />
       <Route path="*" element={null} />
     </Routes>
   );

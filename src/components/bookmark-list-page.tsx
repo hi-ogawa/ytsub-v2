@@ -1,7 +1,10 @@
+import { Icon, IconButton, Menu } from "@mui/material";
+import { useSnackbar } from "notistack";
 import * as React from "react";
+import { createGlobalState } from "react-use";
 import * as assert from "../utils/assert";
 import { keys } from "../utils/lodash-extra";
-import { useBookmarkEntries } from "../utils/storage";
+import { useBookmarkEntries, usePracticeSystem } from "../utils/storage";
 import {
   BookmarkEntry,
   CaptionEntry,
@@ -13,10 +16,12 @@ import { DEFAULT_PLAYER_STATE, Player } from "../utils/youtube";
 import { PLAYER_STATE_SYNC_INTERVAL } from "./misc";
 import { CaptionEntryComponent } from "./subtitles-viewer";
 
+const useSelectedVideoId = createGlobalState<VideoId | undefined>();
+
 // TODO: Show guide when there's no bookmark
 export function BookmarkListPage() {
   const [entries, _, removeEntry] = useBookmarkEntries();
-  const [selected, selectVideoId] = React.useState<VideoId>();
+  const [selected, selectVideoId] = useSelectedVideoId();
   const groupedEntries = groupBookmarkEntries(entries);
   const videoIds = keys(groupedEntries);
   const entriesToList = (selected && groupedEntries[selected]) || entries;
@@ -24,6 +29,10 @@ export function BookmarkListPage() {
   function onRemoveEntry(entry: BookmarkEntry) {
     removeEntry(entry);
   }
+
+  React.useEffect(() => {
+    selectVideoId(undefined);
+  }, []);
 
   return (
     <div className="sm:p-4 h-full flex justify-center">
@@ -278,5 +287,66 @@ export function PlayerComponent({
       {/* Mutated by youtube iframe api */}
       <div className="absolute w-full h-full top-0" ref={playerEl as any} />
     </div>
+  );
+}
+
+export function BookmarkListPageMenu() {
+  const [entries] = useBookmarkEntries();
+  const [system, setSystem] = usePracticeSystem();
+  const [selected] = useSelectedVideoId();
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement>();
+  const { enqueueSnackbar } = useSnackbar();
+
+  function openMenuOnClick(event: any) {
+    setAnchorEl(event.currentTarget as HTMLElement);
+  }
+
+  function closeMenu() {
+    setAnchorEl(undefined);
+  }
+
+  // TODO: prevent adding duplicates
+  function addToDeck() {
+    if (!selected) return;
+
+    const selectedEntries = groupBookmarkEntries(entries)[selected];
+    if (!selectedEntries) return;
+
+    for (const entry of selectedEntries) {
+      system.addNewEntry(entry);
+    }
+    setSystem(system);
+    enqueueSnackbar("Added bookmarks to a deck", { variant: "success" });
+    closeMenu();
+  }
+
+  return (
+    <>
+      <IconButton
+        color="inherit"
+        sx={{ marginLeft: 1 }}
+        onClick={openMenuOnClick}
+      >
+        <Icon>more_vert</Icon>
+      </IconButton>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={closeMenu}
+        sx={{ padding: 0 }}
+        className="text-sm"
+      >
+        <li
+          className={`
+            px-4 py-2 flex items-center justify-content cursor-pointer
+            ${!selected && "text-gray-400"}
+          `}
+          onClick={addToDeck}
+        >
+          Add to Deck
+        </li>
+      </Menu>
+    </>
   );
 }
