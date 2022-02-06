@@ -20,6 +20,7 @@ import { BookmarkListPage, BookmarkListPageMenu } from "./bookmark-list-page";
 import { DevPage } from "./dev-page";
 import { HomePage } from "./home-page";
 import { PracticePage } from "./practice-page";
+import { RescuePage } from "./rescue-page";
 import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
 import { ShareTargetPage } from "./share-target";
@@ -255,6 +256,7 @@ export function App() {
           <Route path="practice" element={<PracticePage />} />
           <Route path="share-target" element={<ShareTargetPage />} />
           <Route path="dev" element={<DevPage />} />
+          <Route path="rescue" element={<RescuePage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Box>
