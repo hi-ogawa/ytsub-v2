@@ -192,7 +192,7 @@ describe("practice/PracticeSystem", () => {
             "NEW": 1,
             "REVIEW": 0,
           },
-          "lastAnsweredAt": 1970-01-01T00:00:00.000Z,
+          "lastAnsweredAt": 2022-02-06T04:18:23.000Z,
           "options": Object {
             "easeBonus": 1.5,
             "easeMultiplier": 2,
