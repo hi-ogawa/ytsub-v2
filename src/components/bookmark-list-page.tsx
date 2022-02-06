@@ -63,6 +63,8 @@ export function BookmarkListPage() {
                     key={entry.bookmarkText}
                     entry={entry}
                     onRemoveEntry={onRemoveEntry}
+                    autoplay={false}
+                    defaultIsRepeating={false}
                   />
                 ))}
               </div>
@@ -82,13 +84,18 @@ export function BookmarkEntryComponent({
   entry,
   onRemoveEntry,
   openOverride,
+  autoplay,
+  defaultIsRepeating,
 }: {
   entry: BookmarkEntry;
   onRemoveEntry?: React.Dispatch<BookmarkEntry>;
   openOverride?: boolean;
+  autoplay: boolean;
+  defaultIsRepeating: boolean;
 }) {
   let [open, setOpen] = React.useState(false);
   const isOpenOverride = typeof openOverride === "boolean";
+
   if (isOpenOverride) {
     open = openOverride;
   }
@@ -129,17 +136,31 @@ export function BookmarkEntryComponent({
           </span>
         )}
       </div>
-      {open && <MiniPlayer entry={entry} />}
+      {open && (
+        <MiniPlayer
+          entry={entry}
+          autoplay={autoplay}
+          defaultIsRepeating={defaultIsRepeating}
+        />
+      )}
     </div>
   );
 }
 
 // TODO: refactor with WatchPageOk
-function MiniPlayer({ entry }: { entry: BookmarkEntry }) {
+function MiniPlayer({
+  entry,
+  autoplay,
+  defaultIsRepeating,
+}: {
+  entry: BookmarkEntry;
+  autoplay: boolean;
+  defaultIsRepeating: boolean;
+}) {
   const navigate = useNavigateCustom();
   const [player, setPlayer] = React.useState<Player>();
   const [playerState, setPlayerState] = React.useState(DEFAULT_PLAYER_STATE);
-  const [isRepeating, setIsRepeating] = React.useState(false);
+  const [isRepeating, setIsRepeating] = React.useState(defaultIsRepeating);
 
   const { captionEntry, watchParameters } = entry;
   const { videoId } = watchParameters;
@@ -153,6 +174,10 @@ function MiniPlayer({ entry }: { entry: BookmarkEntry }) {
     const unsubscribe = setInterval(() => {
       setPlayerState(player.getState());
     }, PLAYER_STATE_SYNC_INTERVAL);
+    if (autoplay) {
+      // autoplay option of iframe doesn't seem to work
+      player.playVideo();
+    }
     return () => clearInterval(unsubscribe);
   }
 

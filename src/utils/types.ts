@@ -76,7 +76,8 @@ export interface BookmarkEntry {
   watchParameters: WatchParameters;
   captionEntry: CaptionEntry;
   bookmarkText: string;
-  practiceEntryId?: PracticeEntryId;
+  // TODO: relation between BookmarkEntry and PracticeEntry
+  // practiceEntryId?: PracticeEntryId;
 }
 
 export interface DemoEntry {

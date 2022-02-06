@@ -124,7 +124,6 @@ export function PracticeSessionComponent({
   entry: PracticeEntry;
   answerEntry: (entry: PracticeEntry, type: AnswerType) => void;
 }) {
-  // TODO: auto play audio/video as a first hint
   const [isAnswerShown, setIsAnswerShown] = React.useState(false);
 
   function answerEntryAndReset(type: AnswerType): void {
@@ -139,6 +138,9 @@ export function PracticeSessionComponent({
         <BookmarkEntryComponent
           entry={entry.bookmark}
           openOverride={isAnswerShown}
+          // TODO: autoplay/repeat as practice option
+          autoplay={false}
+          defaultIsRepeating={false}
         />
       </div>
       <div className="h-12 flex-none flex items-center justify-center text-sm">

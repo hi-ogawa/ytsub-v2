@@ -178,10 +178,7 @@ export class PracticeSystem {
     this.scheduleEntry(entry, preQueueType, { type, createdAt: now });
   }
 
-  addNewEntry(
-    bookmark: BookmarkEntry /* mutate */,
-    now: Date = new Date()
-  ): PracticeEntry {
+  addNewEntry(bookmark: BookmarkEntry, now: Date = new Date()): PracticeEntry {
     const entry = {
       id: this.rng.id(now.getTime()),
       bookmark: bookmark,
@@ -190,8 +187,6 @@ export class PracticeSystem {
       answers: [],
       easeFactor: 1,
     };
-    assert.ok(typeof bookmark.practiceEntryId === "undefined");
-    bookmark.practiceEntryId = entry.id;
     this.insertEntry(entry, "NEW");
     return entry;
   }

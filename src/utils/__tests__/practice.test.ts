@@ -31,7 +31,6 @@ describe("practice/PracticeSystem", () => {
           "bookmark": Object {
             "bookmarkText": "hello",
             "captionEntry": Object {},
-            "practiceEntryId": "0x163bcb4b33ce694b",
             "watchParameters": Object {},
           },
           "createdAt": 2022-02-06T04:18:23.000Z,
@@ -49,7 +48,6 @@ describe("practice/PracticeSystem", () => {
               "bookmark": Object {
                 "bookmarkText": "hello",
                 "captionEntry": Object {},
-                "practiceEntryId": "0x163bcb4b33ce694b",
                 "watchParameters": Object {},
               },
               "createdAt": 2022-02-06T04:18:23.000Z,
@@ -89,7 +87,6 @@ describe("practice/PracticeSystem", () => {
               "bookmark": Object {
                 "bookmarkText": "hello",
                 "captionEntry": Object {},
-                "practiceEntryId": "0x163bcb4b33ce694b",
                 "watchParameters": Object {},
               },
               "createdAt": 2022-02-06T04:18:23.000Z,
@@ -142,7 +139,6 @@ describe("practice/PracticeSystem", () => {
                     "bookmark": Object {
                       "bookmarkText": "hello",
                       "captionEntry": Object {},
-                      "practiceEntryId": "0x163bcb4b33ce694b",
                       "watchParameters": Object {},
                     },
                     "createdAt": "2022-02-06T04:18:23.000Z",
@@ -211,7 +207,6 @@ describe("practice/PracticeSystem", () => {
                 "bookmark": Object {
                   "bookmarkText": "hello",
                   "captionEntry": Object {},
-                  "practiceEntryId": "0x163bcb4b33ce694b",
                   "watchParameters": Object {},
                 },
                 "createdAt": 2022-02-06T04:18:23.000Z,
