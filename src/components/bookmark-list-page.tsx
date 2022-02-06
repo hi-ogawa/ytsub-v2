@@ -49,36 +49,44 @@ export function BookmarkListPage() {
           sm:border border-solid border-gray-200
         "
       >
-        <div className="p-2 flex-none bg-gray-50 flex items-center justify-content gap-2 overflow-x-auto">
-          {videoIds.map((videoId) => (
-            <div
-              key={videoId}
-              className={`
-                flex-none w-40 aspect-video relative overflow-hidden cursor-pointer
-                ${selected && selected !== videoId && "opacity-40"}
-              `}
-              onClick={() =>
-                selectVideoId(selected === videoId ? undefined : videoId)
-              }
-            >
-              <img
-                className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-                src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
-              />
+        {videoIds.length > 0 ? (
+          <>
+            <div className="p-2 flex-none bg-gray-50 flex items-center justify-content gap-2 overflow-x-auto">
+              {videoIds.map((videoId) => (
+                <div
+                  key={videoId}
+                  className={`
+                      flex-none w-40 aspect-video relative overflow-hidden cursor-pointer
+                      ${selected && selected !== videoId && "opacity-40"}
+                    `}
+                  onClick={() =>
+                    selectVideoId(selected === videoId ? undefined : videoId)
+                  }
+                >
+                  <img
+                    className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                    src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="flex-[1_0_0] overflow-y-auto bg-white">
-          <div className="flex flex-col p-2 gap-2">
-            {entriesToList.map((entry) => (
-              <BookmarkEntryComponent
-                key={entry.bookmarkText}
-                entry={entry}
-                onRemoveEntry={onRemoveEntry}
-              />
-            ))}
+            <div className="flex-[1_0_0] overflow-y-auto bg-white">
+              <div className="flex flex-col p-2 gap-2">
+                {entriesToList.map((entry) => (
+                  <BookmarkEntryComponent
+                    key={entry.bookmarkText}
+                    entry={entry}
+                    onRemoveEntry={onRemoveEntry}
+                  />
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="h-full flex items-center justify-center bg-white text-xl text-gray-500">
+            Empty Bookmark
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

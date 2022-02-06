@@ -28,18 +28,24 @@ export function WatchHistoryPage() {
           sm:border border-solid border-gray-200
         "
       >
-        <div className="flex-[1_0_0] overflow-y-auto bg-white">
-          <div className="flex flex-col p-2 gap-2">
-            {entries.map((entry) => (
-              <HistoryEntryComponent
-                key={JSON.stringify(entry.watchParameters)}
-                entry={entry}
-                onPlayEntry={onPlayEntry}
-                onRemoveEntry={onRemoveEntry}
-              />
-            ))}
+        {entries.length > 0 ? (
+          <div className="flex-[1_0_0] overflow-y-auto bg-white">
+            <div className="flex flex-col p-2 gap-2">
+              {entries.map((entry) => (
+                <HistoryEntryComponent
+                  key={JSON.stringify(entry.watchParameters)}
+                  entry={entry}
+                  onPlayEntry={onPlayEntry}
+                  onRemoveEntry={onRemoveEntry}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="h-full flex items-center justify-center bg-white text-xl text-gray-500">
+            Empty History
+          </div>
+        )}
       </div>
     </div>
   );
