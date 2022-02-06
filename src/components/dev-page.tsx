@@ -76,12 +76,12 @@ export function DevPage() {
         "
       >
         <div className="flex-auto flex flex-col items-center justify-center p-4 gap-4 bg-white">
+          <a ref={ref as any} className="hidden"></a>
           <button
             className="w-60 p-2 bg-blue-500 text-white shadow-md rounded"
             onClick={exportLocalStorage}
           >
             Export local storage
-            <a ref={ref as any} className="hidden"></a>
           </button>
           <button
             className="w-60 p-2 bg-blue-500 text-white shadow-md rounded"
