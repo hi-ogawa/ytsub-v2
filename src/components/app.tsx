@@ -109,7 +109,7 @@ function Header({ openMenu }: { openMenu: () => void }) {
       />
       <Route
         path="practice"
-        element={<div className="text-lg">Practice (WIP)</div>}
+        element={<div className="text-lg">Practice</div>}
       />
       <Route path="*" element={null} />
     </Routes>

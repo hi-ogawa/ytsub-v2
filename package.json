@@ -34,6 +34,7 @@
     "react-router-dom": "^6.2.1",
     "react-use": "^17.3.2",
     "sprintf-js": "^1.1.2",
+    "superjson": "^1.8.0",
     "ts-results": "^3.3.0"
   },
   "devDependencies": {

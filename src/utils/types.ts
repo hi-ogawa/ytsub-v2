@@ -75,6 +75,7 @@ export interface BookmarkEntry {
   watchParameters: WatchParameters;
   captionEntry: CaptionEntry;
   bookmarkText: string;
+  practiceEntryId?: PracticeEntryId;
 }
 
 export interface DemoEntry {
@@ -82,3 +83,5 @@ export interface DemoEntry {
   videoMetadata: VideoMetadata;
   captionEntries: CaptionEntry[];
 }
+
+export type PracticeEntryId = string;
