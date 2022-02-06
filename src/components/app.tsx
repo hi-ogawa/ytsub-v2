@@ -191,6 +191,11 @@ const MENU_ENTRIES: MenuEntry[] = [
     icon: "school",
     title: "Practice",
   },
+  {
+    to: "/dev",
+    icon: "developer_mode",
+    title: "Dev",
+  },
 ];
 
 function Menu({ closeDrawer }: { closeDrawer: () => void }) {

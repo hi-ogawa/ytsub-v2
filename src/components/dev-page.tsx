@@ -1,4 +1,6 @@
+import { useSnackbar } from "notistack";
 import * as React from "react";
+import { DUMP } from "../utils/demo-entries";
 import {
   useBookmarkEntries,
   useHistoryEntries,
@@ -8,9 +10,10 @@ import {
 
 export function DevPage() {
   const [languageSettings] = useLanguageSetting();
-  const [historyEntries] = useHistoryEntries();
-  const [bookmarkEntries] = useBookmarkEntries();
-  const [practiceSystem] = usePracticeSystem();
+  const [historyEntries, , , setHistoryEntries] = useHistoryEntries();
+  const [bookmarkEntries, , , setBookmarkEntries] = useBookmarkEntries();
+  const [practiceSystem, setPracticeSystem] = usePracticeSystem();
+  const { enqueueSnackbar } = useSnackbar();
   const ref = React.useRef<HTMLElement>();
 
   function exportLocalStorage() {
@@ -28,13 +31,33 @@ export function DevPage() {
     el.setAttribute("href", url);
     el.setAttribute("download", "ytsub-v2-local-storage.json");
     el.click();
+    enqueueSnackbar("local stroage exported");
   }
 
   function clearLocalStorage() {
     const ok = confirm("Are you sure?");
     if (ok) {
       localStorage.clear();
+      enqueueSnackbar("local storage cleared");
     }
+  }
+
+  function loadDumpHistoryEntries() {
+    setHistoryEntries(DUMP.historyEntries);
+    enqueueSnackbar("history entries loaded");
+  }
+
+  function loadDumpBookmarkEntries() {
+    setBookmarkEntries(DUMP.bookmarkEntries);
+    enqueueSnackbar("bookmark entries loaded");
+  }
+
+  function loadPracticeEntries() {
+    for (const entry of bookmarkEntries) {
+      practiceSystem.addNewEntry(entry);
+    }
+    setPracticeSystem(practiceSystem);
+    enqueueSnackbar("practice entries loaded");
   }
 
   return (
@@ -60,6 +83,24 @@ export function DevPage() {
             onClick={clearLocalStorage}
           >
             Clear local storage
+          </button>
+          <button
+            className="w-60 p-2 bg-blue-500 text-white shadow-md rounded"
+            onClick={loadDumpHistoryEntries}
+          >
+            Load dump (history)
+          </button>
+          <button
+            className="w-60 p-2 bg-blue-500 text-white shadow-md rounded"
+            onClick={loadDumpBookmarkEntries}
+          >
+            Load dump (bookmark)
+          </button>
+          <button
+            className="w-60 p-2 bg-blue-500 text-white shadow-md rounded"
+            onClick={loadPracticeEntries}
+          >
+            Load practice entries
           </button>
         </div>
       </div>

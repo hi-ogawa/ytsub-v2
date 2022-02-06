@@ -20,7 +20,8 @@ export function useLanguageSetting(): LocalStorageReturnValue<LanguageSetting> {
 export function useHistoryEntries(): [
   entries: HistoryEntry[],
   add: (entry: HistoryEntry) => void,
-  remove: (entry: HistoryEntry) => void
+  remove: (entry: HistoryEntry) => void,
+  set: (entries: HistoryEntry[]) => void
 ] {
   const [entries, setEntries] = useLocalStorage<HistoryEntry[]>(
     toKey("history-entries"),
@@ -41,13 +42,14 @@ export function useHistoryEntries(): [
     setEntries(filterOut(entry));
   }
 
-  return [entries, add, remove];
+  return [entries, add, remove, setEntries];
 }
 
 export function useBookmarkEntries(): [
   entries: BookmarkEntry[],
   add: (entry: BookmarkEntry) => void,
-  remove: (entry: BookmarkEntry) => void
+  remove: (entry: BookmarkEntry) => void,
+  set: (entries: BookmarkEntry[]) => void
 ] {
   const [entries, setEntries] = useLocalStorage<BookmarkEntry[]>(
     toKey("bookmark-entries"),
@@ -62,7 +64,7 @@ export function useBookmarkEntries(): [
     setEntries(entries.filter((other) => other !== entry));
   }
 
-  return [entries, add, remove];
+  return [entries, add, remove, setEntries];
 }
 
 export function usePracticeSystem(): [
