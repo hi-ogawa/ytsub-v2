@@ -1,6 +1,7 @@
 import { useLocalStorage } from "@rehooks/local-storage";
 import type { LocalStorageReturnValue } from "@rehooks/local-storage/lib/use-localstorage";
 import type { LanguageSetting } from "./language";
+import { PracticeSystem } from "./practice";
 import type { BookmarkEntry, HistoryEntry } from "./types";
 
 const PREFIX = "ytsub-v2";
@@ -62,4 +63,19 @@ export function useBookmarkEntries(): [
   }
 
   return [entries, add, remove];
+}
+
+export function usePracticeSystem(): [
+  practiceSystem: PracticeSystem,
+  setPracticeSystem: (system: PracticeSystem) => void
+] {
+  const [serialized, setSerialized] = useLocalStorage<any>(
+    toKey("practice-system"),
+    new PracticeSystem().serialize()
+  );
+  return [
+    PracticeSystem.deserialize(serialized),
+    (practiceSystem: PracticeSystem) =>
+      setSerialized(practiceSystem.serialize()),
+  ];
 }

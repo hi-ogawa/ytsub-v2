@@ -111,6 +111,7 @@ function Header({ openMenu }: { openMenu: () => void }) {
         path="practice"
         element={<div className="text-lg">Practice</div>}
       />
+      <Route path="dev" element={<div className="text-lg">Dev</div>} />
       <Route path="*" element={null} />
     </Routes>
   );
