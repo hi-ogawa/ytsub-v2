@@ -1,6 +1,11 @@
 import { concat, isEqual } from "lodash";
 import { LanguageCode } from "./language";
-import { DemoEntry, WatchParameters } from "./types";
+import {
+  BookmarkEntry,
+  DemoEntry,
+  HistoryEntry,
+  WatchParameters,
+} from "./types";
 
 export const LANGUAGE_TO_DEMO_ENTRIES: Partial<
   Record<LanguageCode, DemoEntry[]>
@@ -17,3 +22,11 @@ export function findDemoEntry(
     isEqual(entry.watchParameters, watchParameters)
   );
 }
+
+export interface Dump {
+  historyEntries: HistoryEntry[];
+  bookmarkEntries: BookmarkEntry[];
+  practiceSystem: any;
+}
+
+export const DUMP: Dump = require("../../misc/dump/2022-02-06.json");

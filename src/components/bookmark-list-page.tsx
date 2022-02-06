@@ -1,43 +1,38 @@
-import { groupBy, sortBy } from "lodash";
+import { Icon, IconButton, Menu } from "@mui/material";
+import { useSnackbar } from "notistack";
 import * as React from "react";
+import { createGlobalState } from "react-use";
 import * as assert from "../utils/assert";
 import { keys } from "../utils/lodash-extra";
-import { useBookmarkEntries } from "../utils/storage";
-import { BookmarkEntry, CaptionEntry } from "../utils/types";
+import { useBookmarkEntries, usePracticeSystem } from "../utils/storage";
+import {
+  BookmarkEntry,
+  CaptionEntry,
+  groupBookmarkEntries,
+  VideoId,
+} from "../utils/types";
 import { useNavigateCustom } from "../utils/url";
 import { DEFAULT_PLAYER_STATE, Player } from "../utils/youtube";
 import { PLAYER_STATE_SYNC_INTERVAL } from "./misc";
 import { CaptionEntryComponent } from "./subtitles-viewer";
 
-type VideoId = string;
-type GroupedEntries = Record<VideoId, BookmarkEntry[]>;
-
-// TODO: restructure schema for bookmark entry
-function groupEntries(entries: BookmarkEntry[]): GroupedEntries {
-  const groups: GroupedEntries = groupBy(
-    entries,
-    (entry) => entry.watchParameters.videoId
-  );
-  for (const videoId in groups) {
-    groups[videoId] = sortBy(
-      groups[videoId],
-      (entry) => entry.captionEntry.begin
-    );
-  }
-  return groups;
-}
+const useSelectedVideoId = createGlobalState<VideoId | undefined>();
 
 // TODO: Show guide when there's no bookmark
 export function BookmarkListPage() {
   const [entries, _, removeEntry] = useBookmarkEntries();
-  const [selected, selectVideoId] = React.useState<VideoId>();
-  const groupedEntries = groupEntries(entries);
+  const [selected, selectVideoId] = useSelectedVideoId();
+  const groupedEntries = groupBookmarkEntries(entries);
   const videoIds = keys(groupedEntries);
   const entriesToList = (selected && groupedEntries[selected]) || entries;
 
   function onRemoveEntry(entry: BookmarkEntry) {
     removeEntry(entry);
   }
+
+  React.useEffect(() => {
+    selectVideoId(undefined);
+  }, []);
 
   return (
     <div className="sm:p-4 h-full flex justify-center">
@@ -49,49 +44,70 @@ export function BookmarkListPage() {
           sm:border border-solid border-gray-200
         "
       >
-        <div className="p-2 flex-none bg-gray-50 flex items-center justify-content gap-2 overflow-x-auto">
-          {videoIds.map((videoId) => (
-            <div
-              key={videoId}
-              className={`
-                flex-none w-40 aspect-video relative overflow-hidden cursor-pointer
-                ${selected && selected !== videoId && "opacity-40"}
-              `}
-              onClick={() =>
-                selectVideoId(selected === videoId ? undefined : videoId)
-              }
-            >
-              <img
-                className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-                src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
-              />
+        {videoIds.length > 0 ? (
+          <>
+            <div className="p-2 flex-none bg-gray-50 flex items-center justify-content gap-2 overflow-x-auto">
+              {videoIds.map((videoId) => (
+                <div
+                  key={videoId}
+                  className={`
+                      flex-none w-40 aspect-video relative overflow-hidden cursor-pointer
+                      ${selected && selected !== videoId && "opacity-40"}
+                    `}
+                  onClick={() =>
+                    selectVideoId(selected === videoId ? undefined : videoId)
+                  }
+                >
+                  <img
+                    className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                    src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="flex-[1_0_0] overflow-y-auto bg-white">
-          <div className="flex flex-col p-2 gap-2">
-            {entriesToList.map((entry) => (
-              <BookmarkEntryComponent
-                key={entry.bookmarkText}
-                entry={entry}
-                onRemoveEntry={onRemoveEntry}
-              />
-            ))}
+            <div className="flex-[1_0_0] overflow-y-auto bg-white">
+              <div className="flex flex-col p-2 gap-2">
+                {entriesToList.map((entry) => (
+                  <BookmarkEntryComponent
+                    key={entry.bookmarkText}
+                    entry={entry}
+                    onRemoveEntry={onRemoveEntry}
+                    autoplay={false}
+                    defaultIsRepeating={false}
+                  />
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="h-full flex items-center justify-center bg-white text-xl text-gray-500">
+            Empty Bookmark
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
 }
 
-function BookmarkEntryComponent({
+export function BookmarkEntryComponent({
   entry,
   onRemoveEntry,
+  openOverride,
+  autoplay,
+  defaultIsRepeating,
 }: {
   entry: BookmarkEntry;
-  onRemoveEntry: React.Dispatch<BookmarkEntry>;
+  onRemoveEntry?: React.Dispatch<BookmarkEntry>;
+  openOverride?: boolean;
+  autoplay: boolean;
+  defaultIsRepeating: boolean;
 }) {
-  const [open, setOpen] = React.useState(false);
+  let [open, setOpen] = React.useState(false);
+  const isOpenOverride = typeof openOverride === "boolean";
+
+  if (isOpenOverride) {
+    open = openOverride;
+  }
 
   return (
     <div
@@ -106,36 +122,54 @@ function BookmarkEntryComponent({
         p-2 gap-2
       "
       >
-        <span
-          className="font-icon flex-none text-gray-500 cursor-pointer"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? "expand_less" : "expand_more"}
-        </span>
+        {isOpenOverride ? null : (
+          <span
+            className="font-icon flex-none text-gray-500 cursor-pointer"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? "expand_less" : "expand_more"}
+          </span>
+        )}
         <div
           className="grow text-sm cursor-pointer"
           onClick={() => setOpen(!open)}
         >
           {entry.bookmarkText}
         </div>
-        <span
-          className="font-icon flex-none text-gray-500 cursor-pointer"
-          onClick={() => onRemoveEntry(entry)}
-        >
-          close
-        </span>
+        {onRemoveEntry && (
+          <span
+            className="font-icon flex-none text-gray-500 cursor-pointer"
+            onClick={() => onRemoveEntry(entry)}
+          >
+            close
+          </span>
+        )}
       </div>
-      {open && <MiniPlayer entry={entry} />}
+      {open && (
+        <MiniPlayer
+          entry={entry}
+          autoplay={autoplay}
+          defaultIsRepeating={defaultIsRepeating}
+        />
+      )}
     </div>
   );
 }
 
 // TODO: refactor with WatchPageOk
-function MiniPlayer({ entry }: { entry: BookmarkEntry }) {
+function MiniPlayer({
+  entry,
+  autoplay,
+  defaultIsRepeating,
+}: {
+  entry: BookmarkEntry;
+  autoplay: boolean;
+  defaultIsRepeating: boolean;
+}) {
   const navigate = useNavigateCustom();
   const [player, setPlayer] = React.useState<Player>();
   const [playerState, setPlayerState] = React.useState(DEFAULT_PLAYER_STATE);
-  const [isRepeating, setIsRepeating] = React.useState(false);
+  const [isRepeating, setIsRepeating] = React.useState(defaultIsRepeating);
 
   const { captionEntry, watchParameters } = entry;
   const { videoId } = watchParameters;
@@ -149,6 +183,10 @@ function MiniPlayer({ entry }: { entry: BookmarkEntry }) {
     const unsubscribe = setInterval(() => {
       setPlayerState(player.getState());
     }, PLAYER_STATE_SYNC_INTERVAL);
+    if (autoplay) {
+      // autoplay option of iframe doesn't seem to work
+      player.playVideo();
+    }
     return () => clearInterval(unsubscribe);
   }
 
@@ -249,5 +287,66 @@ export function PlayerComponent({
       {/* Mutated by youtube iframe api */}
       <div className="absolute w-full h-full top-0" ref={playerEl as any} />
     </div>
+  );
+}
+
+export function BookmarkListPageMenu() {
+  const [entries] = useBookmarkEntries();
+  const [system, setSystem] = usePracticeSystem();
+  const [selected] = useSelectedVideoId();
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement>();
+  const { enqueueSnackbar } = useSnackbar();
+
+  function openMenuOnClick(event: any) {
+    setAnchorEl(event.currentTarget as HTMLElement);
+  }
+
+  function closeMenu() {
+    setAnchorEl(undefined);
+  }
+
+  // TODO: prevent adding duplicates
+  function addToDeck() {
+    if (!selected) return;
+
+    const selectedEntries = groupBookmarkEntries(entries)[selected];
+    if (!selectedEntries) return;
+
+    for (const entry of selectedEntries) {
+      system.addNewEntry(entry);
+    }
+    setSystem(system);
+    enqueueSnackbar("Added bookmarks to a deck", { variant: "success" });
+    closeMenu();
+  }
+
+  return (
+    <>
+      <IconButton
+        color="inherit"
+        sx={{ marginLeft: 1 }}
+        onClick={openMenuOnClick}
+      >
+        <Icon>more_vert</Icon>
+      </IconButton>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={closeMenu}
+        sx={{ padding: 0 }}
+        className="text-sm"
+      >
+        <li
+          className={`
+            px-4 py-2 flex items-center justify-content cursor-pointer
+            ${!selected && "text-gray-400"}
+          `}
+          onClick={addToDeck}
+        >
+          Add to Deck
+        </li>
+      </Menu>
+    </>
   );
 }
