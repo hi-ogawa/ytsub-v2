@@ -1,37 +1,23 @@
-import { groupBy, sortBy } from "lodash";
 import * as React from "react";
 import * as assert from "../utils/assert";
 import { keys } from "../utils/lodash-extra";
 import { useBookmarkEntries } from "../utils/storage";
-import { BookmarkEntry, CaptionEntry } from "../utils/types";
+import {
+  BookmarkEntry,
+  CaptionEntry,
+  groupBookmarkEntries,
+  VideoId,
+} from "../utils/types";
 import { useNavigateCustom } from "../utils/url";
 import { DEFAULT_PLAYER_STATE, Player } from "../utils/youtube";
 import { PLAYER_STATE_SYNC_INTERVAL } from "./misc";
 import { CaptionEntryComponent } from "./subtitles-viewer";
 
-type VideoId = string;
-type GroupedEntries = Record<VideoId, BookmarkEntry[]>;
-
-// TODO: restructure schema for bookmark entry
-function groupEntries(entries: BookmarkEntry[]): GroupedEntries {
-  const groups: GroupedEntries = groupBy(
-    entries,
-    (entry) => entry.watchParameters.videoId
-  );
-  for (const videoId in groups) {
-    groups[videoId] = sortBy(
-      groups[videoId],
-      (entry) => entry.captionEntry.begin
-    );
-  }
-  return groups;
-}
-
 // TODO: Show guide when there's no bookmark
 export function BookmarkListPage() {
   const [entries, _, removeEntry] = useBookmarkEntries();
   const [selected, selectVideoId] = React.useState<VideoId>();
-  const groupedEntries = groupEntries(entries);
+  const groupedEntries = groupBookmarkEntries(entries);
   const videoIds = keys(groupedEntries);
   const entriesToList = (selected && groupedEntries[selected]) || entries;
 
@@ -95,11 +81,17 @@ export function BookmarkListPage() {
 export function BookmarkEntryComponent({
   entry,
   onRemoveEntry,
+  openOverride,
 }: {
   entry: BookmarkEntry;
   onRemoveEntry?: React.Dispatch<BookmarkEntry>;
+  openOverride?: boolean;
 }) {
-  const [open, setOpen] = React.useState(false);
+  let [open, setOpen] = React.useState(false);
+  const isOpenOverride = typeof openOverride === "boolean";
+  if (isOpenOverride) {
+    open = openOverride;
+  }
 
   return (
     <div
@@ -114,12 +106,14 @@ export function BookmarkEntryComponent({
         p-2 gap-2
       "
       >
-        <span
-          className="font-icon flex-none text-gray-500 cursor-pointer"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? "expand_less" : "expand_more"}
-        </span>
+        {isOpenOverride ? null : (
+          <span
+            className="font-icon flex-none text-gray-500 cursor-pointer"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? "expand_less" : "expand_more"}
+          </span>
+        )}
         <div
           className="grow text-sm cursor-pointer"
           onClick={() => setOpen(!open)}

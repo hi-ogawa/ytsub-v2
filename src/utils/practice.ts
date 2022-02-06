@@ -1,3 +1,4 @@
+import { isEqual } from "lodash";
 import superjson from "superjson";
 import * as assert from "./assert";
 import { deepcopy } from "./copy";
@@ -113,6 +114,7 @@ export class PracticeSystem {
   );
   counts: Record<QueueType, number> = deepcopy(DEFAULT_PRACTICE_COUNTS);
   options: PracticeOptions = DEFAULT_PRACTICE_OPTIONS;
+  lastAnsweredAt: Date = new Date(0);
 
   serialize(): any {
     return superjson.serialize({
@@ -121,18 +123,25 @@ export class PracticeSystem {
   }
 
   static deserialize(serialized: any): PracticeSystem {
-    const {
-      data: { queues, counts, options },
-    } = superjson.deserialize<{ data: PracticeSystem }>(serialized);
+    const { data } =
+      superjson.deserialize<{ data: PracticeSystem }>(serialized);
     const result = new PracticeSystem();
-    result.queues = queues;
-    result.counts = counts;
-    result.options = options;
+    for (const prop of SERIALIZED_PROPS) {
+      (result[prop] as any) = data[prop];
+    }
     return result;
   }
 
-  resetCounts(): void {
+  resetOnNewDay(now: Date = new Date()): boolean {
+    // Compare YYYY-MM-DD (local time)
+    function toDay(d: Date): number[] {
+      return [d.getFullYear(), d.getMonth(), d.getDate()];
+    }
+    if (isEqual(toDay(now), toDay(this.lastAnsweredAt))) {
+      return false;
+    }
     this.counts = deepcopy(DEFAULT_PRACTICE_COUNTS);
+    return true;
   }
 
   getNextEntry(now: Date = new Date()): PracticeEntry | undefined {
@@ -165,6 +174,7 @@ export class PracticeSystem {
   ): void {
     const preQueueType = this.deleteEntry(entry);
     this.counts[preQueueType]++;
+    this.lastAnsweredAt = new Date(now);
     this.scheduleEntry(entry, preQueueType, { type, createdAt: now });
   }
 
@@ -254,6 +264,13 @@ export class PracticeSystem {
   fix(): void {}
 }
 
+const SERIALIZED_PROPS = [
+  "queues",
+  "counts",
+  "options",
+  "lastAnsweredAt",
+] as const;
+
 superjson.registerClass(PracticeSystem, {
-  allowProps: ["queues", "counts", "options"],
+  allowProps: SERIALIZED_PROPS as unknown as string[],
 });

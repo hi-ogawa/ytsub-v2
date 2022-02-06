@@ -7,6 +7,7 @@ import {
   useLanguageSetting,
   usePracticeSystem,
 } from "../utils/storage";
+import { groupBookmarkEntries } from "../utils/types";
 
 export function DevPage() {
   const [languageSettings] = useLanguageSetting();
@@ -53,8 +54,12 @@ export function DevPage() {
   }
 
   function loadPracticeEntries() {
-    for (const entry of bookmarkEntries) {
-      practiceSystem.addNewEntry(entry);
+    // Group and order it
+    const groups = groupBookmarkEntries(bookmarkEntries);
+    for (const key in groups) {
+      for (const entry of groups[key]) {
+        practiceSystem.addNewEntry(entry);
+      }
     }
     setPracticeSystem(practiceSystem);
     enqueueSnackbar("practice entries loaded");

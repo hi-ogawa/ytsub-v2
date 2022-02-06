@@ -1,4 +1,5 @@
 import { Static, Type as t } from "@sinclair/typebox";
+import { groupBy, sortBy } from "lodash";
 
 export const CaptionConfigSchema = t.Object({
   // e.g. ".en", ".fr", (manual caption) "a.fr" (auto caption)
@@ -85,3 +86,23 @@ export interface DemoEntry {
 }
 
 export type PracticeEntryId = string;
+
+export type VideoId = string;
+export type GroupedBookmarkEntries = Record<VideoId, BookmarkEntry[]>;
+
+// TODO: rethink about the schema for bookmark entries
+export function groupBookmarkEntries(
+  entries: BookmarkEntry[]
+): GroupedBookmarkEntries {
+  const groups: GroupedBookmarkEntries = groupBy(
+    entries,
+    (entry) => entry.watchParameters.videoId
+  );
+  for (const videoId in groups) {
+    groups[videoId] = sortBy(
+      groups[videoId],
+      (entry) => entry.captionEntry.begin
+    );
+  }
+  return groups;
+}
