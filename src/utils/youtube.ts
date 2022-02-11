@@ -1,3 +1,4 @@
+import { sortBy } from "lodash";
 import { sprintf } from "sprintf-js";
 import { LanguageCode } from "./language";
 import { CaptionConfig, CaptionEntry, VideoMetadata } from "./types";
@@ -97,8 +98,7 @@ export function ttmlsToCaptionEntries(
   const entries1 = ttmlToEntries(ttml1);
   const entries2 = ttmlToEntries(ttml2);
   return entries1.map(({ begin, end, text }) => {
-    // TODO: allow non exact timestamp (it happens for manually added captions)
-    const e2 = entries2.find((e2) => e2.begin === begin);
+    const e2 = sortBy(entries2, (e2) => Math.abs(e2.begin - begin))[0];
     return {
       begin,
       end,
