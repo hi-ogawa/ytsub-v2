@@ -465,6 +465,12 @@ export function WatchPageMenu() {
     }
   }
 
+  // const [pulsating, setPulsating] = React.useState(false);
+  // function startPulsating() {
+  //   setPulsating(true);
+  //   setTimeout(() => setPulsating(false), 1000);
+  // }
+
   return (
     <>
       <IconButton
@@ -489,6 +495,23 @@ export function WatchPageMenu() {
           <input className="mr-3" type="checkbox" checked={autoScroll} />
           <span>Auto scroll</span>
         </li>
+        {/* <li
+          className={`
+            px-4 py-2 flex items-center justify-content cursor-pointer
+            relative overflow-hidden
+            before:top-[50%] before:left-[50%] before:translate-x-[-50%] before:translate-y-[-50%]
+            before:absolute
+            before:rounded-full
+            before:bg-gray-500/40
+            before:transition-[background,transform]
+            before:duration-[400ms]
+            before:ease-in
+            ${pulsating && "before:w-4 before:h-4 before:bg-gray-500/0 before:scale-[20]"}
+          `}
+          onClick={startPulsating}
+        >
+          Ripple test
+        </li> */}
         <li
           className={`px-4 py-2 flex items-center justify-content cursor-pointer ${
             repeatingEntries.length === 0 && "text-gray-400"
@@ -509,3 +532,32 @@ export function WatchPageMenu() {
     </>
   );
 }
+
+// states
+// need to reset by timeout?
+//   useTimeoutFn
+// via keydown/keyup
+// [classes, props, ] = useRipple
+
+// component
+// ref (imperative)
+// function Ripple<ComponentType>({} : { Component: ComponentType, ref: any }) {
+//   return <Component></Component>;
+// }
+
+/* <label class="
+    relative
+    before:absolute before:rounded-full focus-within:before:w-4 focus-within:before:h-4
+    before:bg-white/40
+    before:transition-[background,transform]
+    before:duration-300
+    before:delay-0
+    before:ease-in
+    focus-within:before:bg-white/0
+    focus-within:before:scale-[20]
+    w-40 h-10 bg-blue-500 m-4 rounded shadow flex items-center justify-center
+    cursor-pointer
+  ">
+  <div class="text-white text-lg font-bold">HELLO</div>
+  <input type="checkbox" class="absolute -z-10" />
+</label> */
