@@ -1,4 +1,4 @@
-import { isEqual } from "lodash";
+import { isEqual, sortBy } from "lodash";
 import superjson from "superjson";
 import * as assert from "./assert";
 import { deepcopy } from "./copy";
@@ -221,16 +221,19 @@ export class PracticeSystem {
     this.insertEntry(entry, postQueueType);
   }
 
-  private insertEntry(entry: PracticeEntry, queueType: QueueType): void {
+  insertEntry(entry: PracticeEntry, queueType: QueueType): void {
     const queue = this.queues[queueType];
     if (queueType === "NEW") {
       queue.push(entry);
     } else {
       assert.ok(entry.schedules.length > 0);
-      const index = queue.findIndex((other) => {
+      let index = queue.findIndex((other) => {
         assert.ok(other.schedules.length > 0);
         return entry.schedules[0] < other.schedules[0];
       });
+      if (index === -1) {
+        index = queue.length;
+      }
       queue.splice(index, 0, entry);
     }
   }
@@ -256,7 +259,11 @@ export class PracticeSystem {
   validate(): void {}
 
   // TODO: Update to satify the invariance
-  fix(): void {}
+  fix(): void {
+    for (const t of ["LEARN", "REVIEW"] as const) {
+      this.queues[t] = sortBy(this.queues[t], (e) => e.schedules[0].getTime());
+    }
+  }
 }
 
 const SERIALIZED_PROPS = [
