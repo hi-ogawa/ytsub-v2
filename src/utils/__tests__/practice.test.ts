@@ -233,7 +233,7 @@ describe("practice/PracticeSystem", () => {
     });
   });
 
-  describe.only("insertEntry", () => {
+  describe("insertEntry", () => {
     beforeAll(() => {
       jest.useFakeTimers().setSystemTime(DATE);
     });
