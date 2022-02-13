@@ -65,6 +65,12 @@ export function DevPage() {
     enqueueSnackbar("practice entries loaded");
   }
 
+  function fixPracticeSystem() {
+    practiceSystem.fix();
+    setPracticeSystem(practiceSystem);
+    enqueueSnackbar("practice system fixed");
+  }
+
   return (
     <div className="sm:p-4 h-full flex justify-center">
       <div
@@ -106,6 +112,12 @@ export function DevPage() {
             onClick={loadPracticeEntries}
           >
             Load practice entries
+          </button>
+          <button
+            className="w-60 p-2 bg-blue-500 text-white shadow-md rounded"
+            onClick={fixPracticeSystem}
+          >
+            fix practice system
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { afterAll, beforeAll, describe, expect, it, jest } from "@jest/globals";
 import * as assert from "assert/strict";
 import { PracticeSystem } from "../practice";
 import { BookmarkEntry } from "../types";
@@ -9,11 +9,16 @@ import { BookmarkEntry } from "../types";
 // (datetime.datetime(2022, 2, 6, 4, 18, 23, 654075, tzinfo=datetime.timezone.utc), 1644121103.654075)
 const DATE = new Date(1644121103 * 1000);
 
-jest.useFakeTimers();
-jest.setSystemTime(DATE);
-
 describe("practice/PracticeSystem", () => {
   describe("basic", () => {
+    beforeAll(() => {
+      jest.useFakeTimers().setSystemTime(DATE);
+    });
+
+    afterAll(() => {
+      jest.useRealTimers();
+    });
+
     it("works", () => {
       const system = new PracticeSystem();
 
@@ -225,6 +230,44 @@ describe("practice/PracticeSystem", () => {
           },
         }
       `);
+    });
+  });
+
+  describe.only("insertEntry", () => {
+    beforeAll(() => {
+      jest.useFakeTimers().setSystemTime(DATE);
+    });
+
+    afterAll(() => {
+      jest.useRealTimers();
+    });
+
+    it("works", () => {
+      const system = new PracticeSystem();
+
+      const b1: BookmarkEntry = {
+        watchParameters: {} as any,
+        captionEntry: {} as any,
+        bookmarkText: "hello",
+      };
+      const b2: BookmarkEntry = {
+        watchParameters: {} as any,
+        captionEntry: {} as any,
+        bookmarkText: "hey",
+      };
+
+      const p1 = system.addNewEntry(b1);
+      const p2 = system.addNewEntry(b2);
+
+      jest.setSystemTime(DATE.getTime() + 60 * 1000);
+      system.answerEntry(p1, "GOOD");
+
+      jest.setSystemTime(DATE.getTime() + 120 * 1000);
+      system.answerEntry(p2, "GOOD");
+
+      const [l1, l2] = system.queues.LEARN;
+      expect(l1.id).toBe(p1.id);
+      expect(l2.id).toBe(p2.id);
     });
   });
 });
