@@ -23,6 +23,12 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
+    fallback: {
+      // suppress unnecessary node libraries in emscriten initialize code of sql.js
+      fs: false,
+      path: false,
+      crypto: false,
+    },
   },
   module: {
     rules: [

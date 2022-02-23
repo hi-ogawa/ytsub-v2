@@ -5,6 +5,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
+import * as database from "../utils/database";
 import { App } from "./app";
 import { RescuePage } from "./rescue-page";
 
@@ -30,6 +31,9 @@ export function Root() {
       }
     };
   }
+
+  const db = database.open();
+  console.log(db);
 
   return (
     <BrowserRouter>
