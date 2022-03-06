@@ -1,7 +1,7 @@
+/** @type {import("@typescript-eslint/utils").TSESLint.Linter.Config} */
 module.exports = {
   extends: ["prettier"],
   parser: "@typescript-eslint/parser",
-  /** @type {import("@typescript-eslint/types").ParserOptions} */
   parserOptions: {
     project: "tsconfig.json",
     sourceType: "module",
