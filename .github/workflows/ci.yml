@@ -6,49 +6,69 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm ci
-      - run: npm run lint:check
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint:check
 
   tsc:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm ci
-      - run: npm run tsc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run tsc
 
   test:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm ci
-      - run: npm run test
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run test
 
   webpack:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm ci
-      - run: npm run webpack
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run webpack
 
   playwright:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: "6.29.1"
       - uses: actions/setup-node@v2
         with:
           node-version: "16.13.2"
-      - run: npm ci
-      - run: npx playwright install --with-deps
-      - run: npm run test:playwright
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpx playwright install --with-deps
+      - run: pnpm run test:playwright
