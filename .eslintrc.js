@@ -1,10 +1,7 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-  },
   extends: ["prettier"],
   parser: "@typescript-eslint/parser",
+  /** @type {import("@typescript-eslint/types").ParserOptions} */
   parserOptions: {
     project: "tsconfig.json",
     sourceType: "module",
@@ -14,5 +11,4 @@ module.exports = {
     "import/order": ["error"],
     "sort-imports": ["error", { ignoreDeclarationSort: true }],
   },
-  ignorePatterns: [],
 };
