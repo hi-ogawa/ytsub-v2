@@ -1,5 +1,5 @@
-import { beforeAll, describe, expect, it } from "@jest/globals";
 import * as fs from "fs/promises";
+import { beforeAll, describe, expect, it } from "@jest/globals";
 import {
   parseTimestamp,
   parseVideoId,

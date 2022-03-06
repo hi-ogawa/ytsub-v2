@@ -8,8 +8,8 @@ import { useBookmarkEntries, usePracticeSystem } from "../utils/storage";
 import {
   BookmarkEntry,
   CaptionEntry,
-  groupBookmarkEntries,
   VideoId,
+  groupBookmarkEntries,
 } from "../utils/types";
 import { useNavigateCustom } from "../utils/url";
 import { DEFAULT_PLAYER_STATE, Player } from "../utils/youtube";
