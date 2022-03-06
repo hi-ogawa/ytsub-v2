@@ -10,8 +10,7 @@ jobs:
         with:
           node-version: "16.13.2"
       - run: npm ci
-      - run: npm run prettier:check
-      - run: npm run isort:check
+      - run: npm run lint:check
 
   tsc:
     runs-on: ubuntu-20.04
