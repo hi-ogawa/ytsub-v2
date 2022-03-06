@@ -1,10 +1,12 @@
 import { Icon, IconButton } from "@mui/material";
 import { ProviderContext, SnackbarKey, SnackbarProvider } from "notistack";
 import * as React from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./app";
+import { RescuePage } from "./rescue-page";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -49,10 +51,18 @@ export function Root() {
         )}
       >
         <QueryClientProvider client={queryClient}>
-          <App />
+          <AppWithErrorBoundary />
           <ReactQueryDevtools />
         </QueryClientProvider>
       </SnackbarProvider>
     </BrowserRouter>
+  );
+}
+
+function AppWithErrorBoundary() {
+  return (
+    <ErrorBoundary FallbackComponent={RescuePage}>
+      <App />
+    </ErrorBoundary>
   );
 }

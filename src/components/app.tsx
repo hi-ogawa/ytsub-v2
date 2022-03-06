@@ -2,40 +2,49 @@ import {
   AppBar,
   Box,
   CssBaseline,
-  Divider,
   Drawer,
-  FormControlLabel,
   Icon,
   IconButton,
-  InputBase,
   List,
-  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
-  Switch,
   Toolbar,
 } from "@mui/material";
 import { memoize } from "lodash";
 import { useSnackbar } from "notistack";
 import * as React from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import { usePlayerSettings } from "../utils/storage";
 import { parseVideoId } from "../utils/youtube";
-import { BookmarkListPage } from "./bookmark-list-page";
+import { BookmarkListPage, BookmarkListPageMenu } from "./bookmark-list-page";
 import { DevPage } from "./dev-page";
 import { HomePage } from "./home-page";
+import { PracticePage } from "./practice-page";
+import { RescuePage } from "./rescue-page";
 import { SettingsPage } from "./settings-page";
 import { SetupPage } from "./setup-page";
 import { ShareTargetPage } from "./share-target";
 import { WatchHistoryPage } from "./watch-history-page";
-import { WatchPage } from "./watch-page";
+import { WatchPage, WatchPageMenu } from "./watch-page";
 
-function Header({ openMenu }: { openMenu: () => void }) {
+function HeaderSearchInput() {
   const navigate = useNavigate();
   const [input, setInput] = React.useState("");
+  const [open, setOpen] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const ref = React.useRef<HTMLInputElement>(null);
+
+  function openInput() {
+    ref.current?.focus();
+    setInput("");
+    setOpen(true);
+  }
+
+  function closeInput() {
+    ref.current?.blur();
+    setInput("");
+    setOpen(false);
+  }
 
   function onEnter() {
     const videoId = parseVideoId(input);
@@ -47,68 +56,99 @@ function Header({ openMenu }: { openMenu: () => void }) {
   }
 
   return (
+    <div
+      className={`
+        relative items-center flex items-center
+        transition-[background-color] duration-700 ease-in-out
+        ${open ? "bg-white/60" : "bg-white/0"}
+      `}
+    >
+      <div
+        className="font-icon text-2xl px-2 select-none"
+        onClick={() => (open ? closeInput() : openInput())}
+      >
+        search
+      </div>
+      <input
+        ref={ref}
+        className={`
+          flex-1 min-w-0 w-full text-base bg-transparent placeholder:text-white/70 outline-0
+          transition-[padding,width] duration-700 ease-in-out
+          ${open ? "w-40 pr-8" : "w-0 pr-0"}
+        `}
+        placeholder="Enter URL or ID"
+        value={input}
+        onChange={({ target: { value } }) => setInput(value)}
+        onKeyUp={({ key }) => key === "Enter" && onEnter()}
+      />
+      {open && input && (
+        <div
+          className={`
+              absolute right-0 px-2
+              font-icon text-base cursor-pointer select-none
+            `}
+          onClick={() => setInput("")}
+        >
+          close
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Header({ openMenu }: { openMenu: () => void }) {
+  // TODO: refactor with `MENU_ENTRIES` below
+  const title = (
+    <Routes>
+      <Route
+        path="watch-history"
+        element={<div className="text-lg">History</div>}
+      />
+      <Route
+        path="bookmarks"
+        element={<div className="text-lg">Bookmarks</div>}
+      />
+      <Route
+        path="practice"
+        element={<div className="text-lg">Practice</div>}
+      />
+      <Route path="dev" element={<div className="text-lg">Dev</div>} />
+      <Route path="*" element={null} />
+    </Routes>
+  );
+
+  const search = (
+    <Routes>
+      <Route path="watch-history" element={null} />
+      <Route path="bookmarks" element={null} />
+      <Route path="practice" element={null} />
+      <Route path="*" element={<HeaderSearchInput />} />
+    </Routes>
+  );
+
+  const menu = (
+    <Routes>
+      <Route path="watch" element={<WatchPageMenu />} />
+      <Route path="bookmarks" element={<BookmarkListPageMenu />} />
+      <Route path="*" element={null} />
+    </Routes>
+  );
+
+  return (
     <AppBar position="static">
       <Toolbar variant="dense">
         <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
           <IconButton
             color="inherit"
-            sx={{ marginRight: 2 }}
+            sx={{ marginRight: 1 }}
             onClick={openMenu}
           >
             <Icon>menu</Icon>
           </IconButton>
-          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
-            <Box
-              sx={{
-                flexGrow: 1,
-                maxWidth: "400px",
-                display: "flex",
-                borderRadius: 1,
-                background: "hsl(0, 100%, 100%, 0.25)",
-                transition: "background 200ms",
-                ":focus-within, :hover": {
-                  background: "hsl(0, 100%, 100%, 0.35)",
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  flex: "0 0 40px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Icon>search</Icon>
-              </Box>
-              <InputBase
-                sx={{ color: "inherit", flexGrow: 1 }}
-                placeholder="Enter URL or ID"
-                value={input}
-                onChange={({ target: { value } }) => setInput(value)}
-                inputProps={{
-                  onKeyUp: ({ key }) => key === "Enter" && onEnter(),
-                }}
-              />
-              <Box
-                sx={{
-                  flex: "0 0 40px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  transition: "opacity 200ms",
-                  opacity: input ? 0.8 : 0,
-                  ":hover": {
-                    opacity: 1,
-                  },
-                }}
-                onClick={() => setInput("")}
-              >
-                <Icon fontSize="small">close</Icon>
-              </Box>
-            </Box>
-          </Box>
+          {title}
+          <div className="flex-1"></div>
+          {search}
+          {menu}
         </Box>
       </Toolbar>
     </AppBar>
@@ -148,11 +188,19 @@ const MENU_ENTRIES: MenuEntry[] = [
     icon: "bookmarks",
     title: "Bookmarks",
   },
+  {
+    to: "/practice",
+    icon: "school",
+    title: "Practice",
+  },
+  {
+    to: "/dev",
+    icon: "developer_mode",
+    title: "Dev",
+  },
 ];
 
 function Menu({ closeDrawer }: { closeDrawer: () => void }) {
-  const [playerSettings, setPlayerSettings] = usePlayerSettings();
-
   return (
     <Box sx={{ width: "200px" }}>
       <List>
@@ -168,24 +216,6 @@ function Menu({ closeDrawer }: { closeDrawer: () => void }) {
             <ListItemText primary={entry.title} />
           </ListItemButton>
         ))}
-        <Divider />
-        <ListSubheader>Player Settings</ListSubheader>
-        <ListItem sx={{ pl: 4 }}>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={playerSettings.autoScroll}
-                onChange={(event) =>
-                  setPlayerSettings({
-                    ...playerSettings,
-                    autoScroll: event.target.checked,
-                  })
-                }
-              />
-            }
-            label="Auto Scroll"
-          />
-        </ListItem>
       </List>
     </Box>
   );
@@ -213,7 +243,7 @@ export function App() {
           backgroundColor: "grey.50",
         }}
       >
-        <Box sx={{ flex: "0 0 auto" }}>
+        <Box sx={{ flex: "0 0 auto", zIndex: 1 }}>
           <Header openMenu={() => setIsDrawerOpen(true)} />
         </Box>
         <Routes>
@@ -223,8 +253,10 @@ export function App() {
           <Route path="watch" element={<WatchPage />} />
           <Route path="watch-history" element={<WatchHistoryPage />} />
           <Route path="bookmarks" element={<BookmarkListPage />} />
+          <Route path="practice" element={<PracticePage />} />
           <Route path="share-target" element={<ShareTargetPage />} />
           <Route path="dev" element={<DevPage />} />
+          <Route path="rescue" element={<RescuePage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Box>

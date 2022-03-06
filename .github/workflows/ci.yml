@@ -14,8 +14,7 @@ jobs:
           node-version: "16.13.2"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run prettier:check
-      - run: pnpm run isort:check
+      - run: pnpm run lint:check
 
   tsc:
     runs-on: ubuntu-20.04

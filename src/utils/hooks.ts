@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from "react-query";
+import { UseQueryOptions, useQuery } from "react-query";
 import { proxyFetch } from "./proxy";
 import { parseVideoMetadata, ttmlsToCaptionEntries } from "./youtube";
 import { loadYoutubeApi } from "./youtube";

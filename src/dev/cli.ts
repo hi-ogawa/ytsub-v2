@@ -1,7 +1,7 @@
 import * as fs from "fs/promises";
 import * as yargs from "yargs";
 import * as assert from "../utils/assert";
-import { DemoEntry, stripVideoMetadata, WatchParameters } from "../utils/types";
+import { DemoEntry, WatchParameters, stripVideoMetadata } from "../utils/types";
 import {
   captionConfigToUrl,
   parseVideoMetadata,

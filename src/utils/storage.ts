@@ -1,7 +1,8 @@
 import { useLocalStorage } from "@rehooks/local-storage";
 import type { LocalStorageReturnValue } from "@rehooks/local-storage/lib/use-localstorage";
 import type { LanguageSetting } from "./language";
-import type { BookmarkEntry, HistoryEntry, PlayerSettings } from "./types";
+import { PracticeSystem } from "./practice";
+import type { BookmarkEntry, HistoryEntry } from "./types";
 
 const PREFIX = "ytsub-v2";
 
@@ -19,7 +20,8 @@ export function useLanguageSetting(): LocalStorageReturnValue<LanguageSetting> {
 export function useHistoryEntries(): [
   entries: HistoryEntry[],
   add: (entry: HistoryEntry) => void,
-  remove: (entry: HistoryEntry) => void
+  remove: (entry: HistoryEntry) => void,
+  set: (entries: HistoryEntry[]) => void
 ] {
   const [entries, setEntries] = useLocalStorage<HistoryEntry[]>(
     toKey("history-entries"),
@@ -40,13 +42,14 @@ export function useHistoryEntries(): [
     setEntries(filterOut(entry));
   }
 
-  return [entries, add, remove];
+  return [entries, add, remove, setEntries];
 }
 
 export function useBookmarkEntries(): [
   entries: BookmarkEntry[],
   add: (entry: BookmarkEntry) => void,
-  remove: (entry: BookmarkEntry) => void
+  remove: (entry: BookmarkEntry) => void,
+  set: (entries: BookmarkEntry[]) => void
 ] {
   const [entries, setEntries] = useLocalStorage<BookmarkEntry[]>(
     toKey("bookmark-entries"),
@@ -61,11 +64,20 @@ export function useBookmarkEntries(): [
     setEntries(entries.filter((other) => other !== entry));
   }
 
-  return [entries, add, remove];
+  return [entries, add, remove, setEntries];
 }
 
-export function usePlayerSettings(): LocalStorageReturnValue<PlayerSettings> {
-  return useLocalStorage<PlayerSettings>(toKey("player-settings"), {
-    autoScroll: false,
-  });
+export function usePracticeSystem(): [
+  practiceSystem: PracticeSystem,
+  setPracticeSystem: (system: PracticeSystem) => void
+] {
+  const [serialized, setSerialized] = useLocalStorage<any>(
+    toKey("practice-system"),
+    new PracticeSystem().serialize()
+  );
+  return [
+    PracticeSystem.deserialize(serialized),
+    (practiceSystem: PracticeSystem) =>
+      setSerialized(practiceSystem.serialize()),
+  ];
 }
