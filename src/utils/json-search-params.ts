@@ -1,9 +1,9 @@
 import * as assert from "./assert";
 import {
-  fromPathJson,
   Key,
   PathJson,
   Primitive,
+  fromPathJson,
   toPathJson,
 } from "./path-json";
 

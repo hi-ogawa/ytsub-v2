@@ -1,5 +1,5 @@
-import { afterAll, beforeAll, describe, expect, it, jest } from "@jest/globals";
 import * as assert from "assert/strict";
+import { afterAll, beforeAll, describe, expect, it, jest } from "@jest/globals";
 import { PracticeSystem } from "../practice";
 import { BookmarkEntry } from "../types";
 

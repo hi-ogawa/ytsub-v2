@@ -30,9 +30,9 @@ import {
 import { useJsonSearchParams, useNavigateCustom } from "../utils/url";
 import { withHook3 } from "../utils/with-hook";
 import {
-  captionConfigToUrl,
   DEFAULT_PLAYER_STATE,
   Player,
+  captionConfigToUrl,
 } from "../utils/youtube";
 import { BOOKMARKABLE_CLASSNAME, PLAYER_STATE_SYNC_INTERVAL } from "./misc";
 import { SubtitlesViewer } from "./subtitles-viewer";

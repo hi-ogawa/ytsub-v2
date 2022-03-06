@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { hash32, Rng } from "../rng";
+import { Rng, hash32 } from "../rng";
 
 describe("rng/hash32", () => {
   describe("basic", () => {
